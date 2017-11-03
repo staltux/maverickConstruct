@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <event-group description="" sid="189804282197888" title="HomeScreen">
+            <sub-events>
+                <event-block sid="635930371558261">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="810792994860447" type="System">
+                            <param id="0" name="First value">LayoutName</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;HomeScreen&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="474763199002647">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="857028527865530" type="Keyboard">
+                                    <param id="0" name="Key">13 (Return)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-43" name="Go to next/previous layout" sid="802719035522422" type="System">
+                                    <param id="0" name="Which">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="288553828820547" title="MainMenu">
+            <sub-events>
+                <event-block sid="458278533352212">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="925873279842220" type="System">
+                            <param id="0" name="First value">LayoutName</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;MainMenu&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="195969908842432">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="116387938479834" type="Keyboard">
+                                    <param id="0" name="Key">13 (Return)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="216488395989346" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu1&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="867866735956837">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="103852703564778" type="Keyboard">
+                                    <param id="0" name="Key">13 (Return)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="311465709162556" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu2&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="741023401555405">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="495116271558056" type="Keyboard">
+                                    <param id="0" name="Key">13 (Return)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="224422171263895" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu3&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="641228705755213">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="622987242402332" type="Keyboard">
+                                    <param id="0" name="Key">83 (S)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="160724557925249" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu1&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="184526754364575" type="System">
+                                    <param id="0" name="Seconds">0.0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="572222158009807" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu2&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="601131503955886">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="515365392484030" type="Keyboard">
+                                    <param id="0" name="Key">83 (S)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="811513476601130" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu2&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="764790741425681" type="System">
+                                    <param id="0" name="Seconds">0.0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="709124097852073" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu3&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="905117293199100">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="543036696556045" type="Keyboard">
+                                    <param id="0" name="Key">87 (W)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="778627250055316" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu3&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="475234986126879" type="System">
+                                    <param id="0" name="Seconds">0.0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="829696323267603" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu2&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="612561996309467">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="389687261149605" type="Keyboard">
+                                    <param id="0" name="Key">87 (W)</param>
+                                </condition>
+                                <condition id="2" name="Is playing" sid="305571116702342" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu2&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="536249994518715" type="System">
+                                    <param id="0" name="Seconds">0.0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="937576759213948" type="Menu">
+                                    <param id="0" name="Animation">&quot;Menu1&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="740652668230968">
+                            <conditions>
+                                <condition id="-2" name="On start of layout" sid="275076863091996" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="382127935367839" type="System">
+                                    <param id="0" name="Seconds">3.0</param>
+                                </action>
+                                <action behavior="Fade" id="1" name="Start fade" sid="628901760884295" type="Menu" />
+                                <action id="-15" name="Set visible" sid="956461786276058" type="Menu">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
