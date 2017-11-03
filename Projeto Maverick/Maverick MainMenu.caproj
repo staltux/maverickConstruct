@@ -13,6 +13,7 @@
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
@@ -103,14 +104,45 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="OfficeBackground" sid="734461061495062">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="852554238900766" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\Downloads\42171.jpg" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Maverick_Rosto" sid="490075213009027">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="219494732457845" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Maverick_Rosto.png">
+                        <collision-poly>
+                            <point x="0.273973" y="0.273973" />
+                            <point x="0.5" y="0.143836" />
+                            <point x="0.691781" y="0.308219" />
+                            <point x="0.575342" y="0.5" />
+                            <point x="0.821918" y="0.821918" />
+                            <point x="0.5" y="1" />
+                            <point x="0" y="1" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="DialogText" sid="843230348985714">
+            <plugin id="Text" />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>HomeScreen.xml</layout>
         <layout>MainMenu.xml</layout>
+        <layout>LeonardOffice.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Event sheet 2.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="0" />
