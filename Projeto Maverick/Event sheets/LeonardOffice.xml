@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>LeonardOffice</name>
+    <events>
+        <variable constant="0" name="isFadding" sid="985832975208919" static="0" type="number">0</variable>
+        <variable constant="0" name="NEXT_STAGE" sid="175344652335313" static="0" type="text">HomeScreen</variable>
+        <variable constant="1" name="dialog_how" sid="224691652065650" static="0" type="number">0</variable>
+        <variable constant="1" name="DIALOG_TEXT" sid="805879620322073" static="0" type="number">1</variable>
+        <variable constant="1" name="dialog_maverick" sid="176224662364794" static="0" type="number">0</variable>
+        <variable constant="1" name="dialog_leonard" sid="255771327322205" static="0" type="number">1</variable>
+        <variable constant="1" name="DIALOG_END" sid="797712525986432" static="0" type="number">2</variable>
+        <event-block sid="873306582778641">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="503662690874360" type="System" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="2" name="Set font face" sid="475333672128617" type="LeonardDialogText">
+                    <param id="0" name="Font face">&quot;Kingthings Trypewriter 2&quot;</param>
+                    <param id="1" name="Style">0</param>
+                </action>
+                <action disabled="1" id="2" name="Set font face" sid="146955519283774" type="MaverickDialogText">
+                    <param id="0" name="Font face">&quot;Kingthings Trypewriter 2&quot;</param>
+                    <param id="1" name="Style">0</param>
+                </action>
+                <action disabled="1" id="2" name="Set font face" sid="416546041349941" type="LeonardDialogText">
+                    <param id="0" name="Font face">&quot;Kingthings Trypewriter 2&quot;</param>
+                    <param id="1" name="Style">0</param>
+                </action>
+                <action id="-18" name="Set layer opacity" sid="138229186057199" type="System">
+                    <param id="0" name="Layer">&quot;leonard&quot;</param>
+                    <param id="1" name="Opacity">0</param>
+                </action>
+                <action id="-18" name="Set layer opacity" sid="767408065057482" type="System">
+                    <param id="0" name="Layer">&quot;maverick&quot;</param>
+                    <param id="1" name="Opacity">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment></comment>
+        <event-block sid="696443981227124">
+            <conditions>
+                <condition id="-18" name="On created" sid="246000206352571" type="DialogArray" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set at XY" sid="526126904867405" type="DialogArray">
+                    <param id="0" name="X">0</param>
+                    <param id="1" name="Y">DIALOG_HOW</param>
+                    <param id="2" name="Value">DIALOG_LEONARD</param>
+                </action>
+                <action id="3" name="Set at XY" sid="325201946117958" type="DialogArray">
+                    <param id="0" name="X">0</param>
+                    <param id="1" name="Y">DIALOG_TEXT</param>
+                    <param id="2" name="Value">&quot;Maverick, você precisa encontrar a garota que não lembro o nome!&quot;</param>
+                </action>
+                <action id="3" name="Set at XY" sid="242075611914944" type="DialogArray">
+                    <param id="0" name="X">1</param>
+                    <param id="1" name="Y">DIALOG_HOW</param>
+                    <param id="2" name="Value">DIALOG_MAVERICK</param>
+                </action>
+                <action id="3" name="Set at XY" sid="297612959350519" type="DialogArray">
+                    <param id="0" name="X">1</param>
+                    <param id="1" name="Y">DIALOG_TEXT</param>
+                    <param id="2" name="Value">&quot;Eu tambem não lembro o nome dela... Era motoqueira fantasma?&quot;</param>
+                </action>
+                <action id="3" name="Set at XY" sid="179684372704240" type="DialogArray">
+                    <param id="0" name="X">2</param>
+                    <param id="1" name="Y">DIALOG_HOW</param>
+                    <param id="2" name="Value">DIALOG_LEONARD</param>
+                </action>
+                <action id="3" name="Set at XY" sid="701667095565804" type="DialogArray">
+                    <param id="0" name="X">2</param>
+                    <param id="1" name="Y">DIALOG_TEXT</param>
+                    <param id="2" name="Value">&quot;Não sei, mas é importante, vá logo rapaz!&quot;</param>
+                </action>
+                <action id="3" name="Set at XY" sid="632836172154732" type="DialogArray">
+                    <param id="0" name="X">3</param>
+                    <param id="1" name="Y">DIALOG_HOW</param>
+                    <param id="2" name="Value">DIALOG_MAVERICK</param>
+                </action>
+                <action id="3" name="Set at XY" sid="821799043587821" type="DialogArray">
+                    <param id="0" name="X">3</param>
+                    <param id="1" name="Y">DIALOG_TEXT</param>
+                    <param id="2" name="Value">&quot;Ok, já estou indo :(&quot;</param>
+                </action>
+                <action id="3" name="Set at XY" sid="538811827284786" type="DialogArray">
+                    <param id="0" name="X">4</param>
+                    <param id="1" name="Y">DIALOG_HOW</param>
+                    <param id="2" name="Value">DIALOG_END</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="860397528733364">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="378710965037042" type="System">
+                    <param id="0" name="First value">DialogArray.At(OfficeBackground.dialog_line,DIALOG_HOW)</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">DIALOG_MAVERICK</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="418022461212759" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="526583088896293" type="MaverickDialogText">
+                    <param id="0" name="Text">DialogArray.At(OfficeBackground.dialog_line,DIALOG_TEXT)</param>
+                </action>
+                <action id="-18" name="Set layer opacity" sid="216200573615239" type="System">
+                    <param id="0" name="Layer">&quot;maverick&quot;</param>
+                    <param id="1" name="Opacity">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="854599080961952">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="397182759075740" type="System">
+                    <param id="0" name="First value">DialogArray.At(OfficeBackground.dialog_line,DIALOG_HOW)</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">DIALOG_LEONARD</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="462557732818204" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="966359247900198" type="LeonardDialogText">
+                    <param id="0" name="Text">DialogArray.At(OfficeBackground.dialog_line,DIALOG_TEXT)</param>
+                </action>
+                <action id="-18" name="Set layer opacity" sid="959710407756138" type="System">
+                    <param id="0" name="Layer">&quot;leonard&quot;</param>
+                    <param id="1" name="Opacity">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="773260830510281">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="886468987158518" type="System">
+                    <param id="0" name="First value">DialogArray.At(OfficeBackground.dialog_line,DIALOG_HOW)</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">DIALOG_END</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="954285568925188" type="OfficeBackground">
+                    <param id="0" name="Instance variable">dialog_line</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-25" name="Go to layout (by name)" sid="984235964072359" type="System">
+                    <param id="0" name="Layout">NEXT_STAGE</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="563327216693361">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="918429836312839" type="Keyboard" />
+                <condition id="-14" name="Compare variable" sid="673232759557920" type="System">
+                    <param id="0" name="Variable">isFadding</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="992207076234721" type="System">
+                    <param id="0" name="Variable">isFadding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="364968255121623">
+                    <conditions>
+                        <condition id="-10" name="For" sid="471372645749802" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="972220718744522" type="System">
+                            <param id="0" name="Seconds">0.05 * loopindex</param>
+                        </action>
+                        <action id="-18" name="Set layer opacity" sid="573752722204262" type="System">
+                            <param id="0" name="Layer">&quot;maverick&quot;</param>
+                            <param id="1" name="Opacity">LayerOpacity(&quot;maverick&quot;) - 10</param>
+                        </action>
+                        <action id="-18" name="Set layer opacity" sid="636168621541789" type="System">
+                            <param id="0" name="Layer">&quot;leonard&quot;</param>
+                            <param id="1" name="Opacity">LayerOpacity(&quot;leonard&quot;) - 10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="703714112773374">
+                    <conditions />
+                    <actions>
+                        <action id="-16" name="Wait" sid="580745069316360" type="System">
+                            <param id="0" name="Seconds">1</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="151894214046049" type="OfficeBackground">
+                            <param id="0" name="Instance variable">dialog_line</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="296785645373072" type="System">
+                            <param id="0" name="Variable">isFadding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

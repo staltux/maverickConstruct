@@ -52,7 +52,11 @@
                                     <param id="0" name="Animation">&quot;Menu1&quot;</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-2" name="Go to layout" sid="780831522849007" type="System">
+                                    <param id="0" name="Layout">LeonardOffice</param>
+                                </action>
+                            </actions>
                         </event-block>
                         <event-block sid="867866735956837">
                             <conditions>
