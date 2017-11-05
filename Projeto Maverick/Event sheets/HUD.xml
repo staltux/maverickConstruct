@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>HUD</name>
+    <events>
+        <event-block sid="700660746460467">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="506574952677290" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="640239674260104" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="135555857599963">
+            <conditions>
+                <condition id="0" name="On function" sid="805388622405378" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="145841909108337" type="Hp" />
+                <action id="-9" name="Destroy" sid="356735485906273" type="Sp" />
+                <action id="-9" name="Destroy" sid="959010603457715" type="HudTail" />
+            </actions>
+            <sub-events>
+                <variable constant="0" name="hx" sid="169946997432669" static="0" type="number">0</variable>
+                <event-block sid="844302250133724">
+                    <conditions>
+                        <condition id="-10" name="For" sid="144258841266756" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">Player.hpMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="411907804416008" type="System">
+                            <param id="0" name="Object to create">Hp</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;hp&quot;) + hx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;hp&quot;)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="924513517579282" type="System">
+                            <param id="0" name="Variable">hx</param>
+                            <param id="1" name="Value">Hp.Width</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="915944040194198">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="252702951380419" type="Player">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="769756259917143" type="Hp">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="112453528968769">
+                    <conditions />
+                    <actions>
+                        <action id="-3" name="Create object" sid="847264548868571" type="System">
+                            <param id="0" name="Object to create">HudTail</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;hp&quot;) + hx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;hp&quot;) - ((HudTail.Height - Hp.Height)/2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <variable constant="0" name="sx" sid="180345363736859" static="0" type="number">0</variable>
+                <event-block sid="671627795218318">
+                    <conditions>
+                        <condition id="-10" name="For" sid="810497944274355" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">Player.spMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="963182887471460" type="System">
+                            <param id="0" name="Object to create">Sp</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;sp&quot;) + sx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;sp&quot;)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="686616861955225" type="System">
+                            <param id="0" name="Variable">sx</param>
+                            <param id="1" name="Value">Hp.Width</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="503526658082790">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="240967861208632" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="207811487134815" type="Sp">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="370401311832691">
+                    <conditions />
+                    <actions>
+                        <action id="-3" name="Create object" sid="256355366249996" type="System">
+                            <param id="0" name="Object to create">HudTail</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;sp&quot;) + sx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;sp&quot;) - ((HudTail.Height - Sp.Height)/2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

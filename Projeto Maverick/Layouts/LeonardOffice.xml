@@ -78,16 +78,19 @@
             <instances>
                 <instance type="dialog_frame" uid="9">
                     <properties>
-                        <left-margin>128</left-margin>
-                        <right-margin>128</right-margin>
-                        <top-margin>128</top-margin>
-                        <bottom-margin>128</bottom-margin>
+                        <left-margin>109</left-margin>
+                        <right-margin>109</right-margin>
+                        <top-margin>109</top-margin>
+                        <bottom-margin>109</bottom-margin>
                         <edges>Stretch</edges>
-                        <fill>Stretch</fill>
+                        <fill>Tile</fill>
                         <initial-visibility>Visible</initial-visibility>
                         <hotspot>Top-left</hotspot>
                         <seams>Overlap</seams>
                     </properties>
+                    <behavior-instances>
+                        <behavior-instance type="NoSave" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -194,16 +197,19 @@
                 </instance>
                 <instance type="dialog_frame" uid="10">
                     <properties>
-                        <left-margin>128</left-margin>
-                        <right-margin>128</right-margin>
-                        <top-margin>128</top-margin>
-                        <bottom-margin>128</bottom-margin>
+                        <left-margin>109</left-margin>
+                        <right-margin>109</right-margin>
+                        <top-margin>109</top-margin>
+                        <bottom-margin>109</bottom-margin>
                         <edges>Stretch</edges>
-                        <fill>Stretch</fill>
+                        <fill>Tile</fill>
                         <initial-visibility>Visible</initial-visibility>
                         <hotspot>Top-left</hotspot>
                         <seams>Overlap</seams>
                     </properties>
+                    <behavior-instances>
+                        <behavior-instance type="NoSave" />
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>

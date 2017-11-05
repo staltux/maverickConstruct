@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Player</name>
+    <events>
+        <variable constant="0" name="isHooked" sid="463982910736409" static="0" type="number">0</variable>
+        <event-block sid="537751253661824">
+            <conditions>
+                <condition id="-18" name="On created" sid="120760193720788" type="Player" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="494254861480770" type="Player">
+                    <param id="0" name="Object">MaverickSprite</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">7</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="576288405419277" type="MaverickSprite">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="849974923121481" title="Andar">
+            <sub-events>
+                <event-block sid="645257642172916">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="107276457505712" type="Keyboard">
+                            <param id="0" name="Key">68 (D)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="7" name="Simulate control" sid="605500288720325" type="Player">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="989958526047434" type="Player">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="754543823972789">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="638155715677808" type="Keyboard">
+                            <param id="0" name="Key">65 (A)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="7" name="Simulate control" sid="504272892472240" type="Player">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="253299507506038" type="Player">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="388623236361560">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="567958927081609" type="Keyboard">
+                            <param id="0" name="Key">83 (S)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="12" name="Fall through" sid="318194986985267" type="Player" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="101973545116312" title="Pulo">
+            <sub-events>
+                <event-block sid="420359221393525">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="469988075286115" type="Keyboard">
+                            <param id="0" name="Key">87 (W)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="136516370279913" type="Player">
+                            <param id="0" name="Instance variable">doubleJump</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="925569729530120" type="Player">
+                            <param id="0" name="Vector Y">-Player.Platform.JumpStrength</param>
+                        </action>
+                        <action id="-12" name="Subtract from" sid="316469205384250" type="Player">
+                            <param id="0" name="Instance variable">doubleJump</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="315140840359516">
+                    <conditions>
+                        <condition behavior="Platform" id="9" name="On landed" sid="522713719601568" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="281896499483941" type="Player">
+                            <param id="0" name="Instance variable">doubleJump</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="748681231825331" title="Gancho">
+            <sub-events>
+                <event-block sid="363699906661180">
+                    <conditions>
+                        <condition id="0" name="On click" sid="944212464778309" type="Mouse">
+                            <param id="0" name="Mouse button">2</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                        <condition id="1" name="Is overlapping another object" sid="576143949761612" type="MouseTarget">
+                            <param id="0" name="Object">StageOne_Gancho</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="511475656362555" type="System">
+                            <param id="0" name="Variable">isHooked</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="0" name="Set ignoring input" sid="804910656619244" type="Player">
+                            <param id="0" name="Input">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="943011871069041" type="System">
+                            <param id="0" name="Variable">isHooked</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="820806801522636" type="MouseTarget">
+                            <param id="0" name="Instance variable">hookx</param>
+                            <param id="1" name="Value">StageOne_Gancho.SnapX(Mouse.X)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="761547794449693" type="MouseTarget">
+                            <param id="0" name="Instance variable">hooky</param>
+                            <param id="1" name="Value">StageOne_Gancho.SnapY(Mouse.Y)</param>
+                        </action>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="166680101858120" type="Player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="273570718093443">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="116674008718524" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="506855802157559" type="MouseTarget">
+                            <param id="0" name="X">Mouse.X</param>
+                            <param id="1" name="Y">Mouse.Y</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="818899829562380">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="634713266257453" type="System">
+                                    <param id="0" name="Variable">isHooked</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-23" name="Move at angle" sid="464359086917194" type="Player">
+                                    <param id="0" name="Angle">angle(Player.X,Player.Y,MouseTarget.hookx,MouseTarget.hooky)</param>
+                                    <param id="1" name="Distance">15</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="812184043435842">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="969514067649757" type="System">
+                                    <param id="0" name="First value">distance(Player.X,Player.Y,MouseTarget.hookx,MouseTarget.hooky)</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">128</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="227803534195995" type="Function">
+                                    <param id="0" name="Name">&quot;UnHook&quot;</param>
+                                    <param id="1" name="Parameter {n}">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="444038198661971">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="685916469212060" type="Player">
+                            <param id="0" name="Object">Solidos</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="411711031598700" type="Function">
+                            <param id="0" name="Name">&quot;UnHook&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="191355246767584">
+                    <conditions>
+                        <condition id="0" name="On function" sid="475304586534309" type="Function">
+                            <param id="0" name="Name">&quot;UnHook&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="356374762962020" type="System">
+                            <param id="0" name="Variable">isHooked</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="629743588538031" type="System">
+                            <param id="0" name="Variable">isHooked</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="Platform" id="0" name="Set ignoring input" sid="118833486937822" type="Player">
+                            <param id="0" name="Input">0</param>
+                        </action>
+                        <action behavior="Platform" id="11" name="Set enabled" sid="810462405880866" type="Player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="144254465677836">
+                            <conditions>
+                                <condition id="1" name="Compare parameter" sid="412748846022782" type="Function">
+                                    <param id="0" name="Index">0</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="9" name="Set vector Y" sid="506649172509827" type="Player">
+                                    <param id="0" name="Vector Y">-Player.Platform.JumpStrength * 1.5</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="668297114892525" type="Player">
+                                    <param id="0" name="Instance variable">doubleJump</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <comment>ANTIGO</comment>
+        <event-block sid="104635385478048">
+            <conditions>
+                <condition id="0" name="On function" sid="505409192291917" type="Function">
+                    <param id="0" name="Name">&quot;Damage&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="569699916416708" type="Player">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+                <condition behavior="Flash" id="0" inverted="1" name="Is flashing" sid="515699296589093" type="MaverickSprite" />
+            </conditions>
+            <actions>
+                <action behavior="Flash" id="0" name="Flash" sid="922717597149633" type="MaverickSprite">
+                    <param id="0" name="&apos;On&apos; time">0.1</param>
+                    <param id="1" name="&apos;Off&apos; time">0.1</param>
+                    <param id="2" name="Duration">1.0</param>
+                </action>
+                <action id="-12" name="Subtract from" sid="972220723279089" type="Player">
+                    <param id="0" name="Instance variable">hp</param>
+                    <param id="1" name="Value">Function.Param(1)</param>
+                </action>
+                <action id="0" name="Call function" sid="435293274129500" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="936598243065137">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="412356937991043" type="Player">
+                    <param id="0" name="Instance variable">hp</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="301986776336962" type="Player" />
+            </actions>
+        </event-block>
+        <event-block sid="852910885981383">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="102598233842601" type="Player" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="589739874501799" type="System" />
+            </actions>
+        </event-block>
+        <event-group description="" sid="349081858193479" title="Animações">
+            <sub-events>
+                <event-block sid="606222071023529">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="199984990973911" type="System">
+                            <param id="0" name="First value">Mouse.X</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">Player.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="666099996797881" type="MaverickSprite">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="263319109971480">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="871232297092902" type="System">
+                            <param id="0" name="First value">Mouse.X</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">Player.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="465148163489222" type="MaverickSprite">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="602120461263969">
+                    <conditions>
+                        <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="945605285314365" type="Player" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="962191956412512" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;stop&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="237841522803290">
+                    <conditions>
+                        <condition behavior="Platform" id="0" name="Is moving" sid="354403598453450" type="Player" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="749357937232225">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="715793188360993" type="Player">
+                                    <param id="0" name="Instance variable">direction</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="683125693826796" type="System">
+                                    <param id="0" name="First value">Mouse.X</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="251955477443109" type="MaverickSprite">
+                                    <param id="0" name="Animation">&quot;walkR&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="511653771535522">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="263260354510578" type="Player">
+                                    <param id="0" name="Instance variable">direction</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="637665803692144" type="System">
+                                    <param id="0" name="First value">Mouse.X</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="265001249880571" type="MaverickSprite">
+                                    <param id="0" name="Animation">&quot;walkL&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="330044651998841">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="821700141311576" type="Player">
+                                    <param id="0" name="Instance variable">direction</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="550864921402587" type="System">
+                                    <param id="0" name="First value">Mouse.X</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="313584951689827" type="MaverickSprite">
+                                    <param id="0" name="Animation">&quot;walkL&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="129700719881210">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="736399872115510" type="Player">
+                                    <param id="0" name="Instance variable">direction</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="784258260327463" type="System">
+                                    <param id="0" name="First value">Mouse.X</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="614767858347534" type="MaverickSprite">
+                                    <param id="0" name="Animation">&quot;walkR&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

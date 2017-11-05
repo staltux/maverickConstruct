@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Zombie</name>
+    <events>
+        <event-block sid="854498694695954">
+            <conditions>
+                <condition id="-18" name="On created" sid="325507858043584" type="Zombie" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="736945344239774" type="Zombie">
+                    <param id="0" name="Object">HpBarBase</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="557507710202228" type="HpBarBase">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="502329037297041" type="HpBarBase">
+                    <param id="0" name="Instance variable">enemie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="112871106300434" type="HpBarBase">
+                    <param id="0" name="Object">HpBarValue</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="966531198163211" type="HpBarValue">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="641078930893136" type="HpBarValue">
+                    <param id="0" name="Instance variable">enemie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+                <action id="-10" name="Set value" sid="778052019990970" type="HpBarValue">
+                    <param id="0" name="Instance variable">hp</param>
+                    <param id="1" name="Value">Zombie.hp</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="749477115750588" type="Zombie">
+                    <param id="0" name="Object">FightDetector</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="265567331973609" type="FightDetector">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="956304377265297" type="FightDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="587048391814028" type="Zombie">
+                    <param id="0" name="Object">NearDetector</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="516828432312651" type="NearDetector">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="157932059405561" type="NearDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="152972794925099" type="Zombie">
+                    <param id="0" name="Object">FarDetector</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="857850703007792" type="FarDetector">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="235639979261003" type="FarDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="462460330390341">
+            <conditions>
+                <condition id="-11" name="For Each" sid="738209677695374" type="System">
+                    <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="1" name="Is overlapping another object" sid="866865205993943" type="Zombie">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="146592976701581">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="679745408205280" type="HpBarBase">
+                            <param id="0" name="Instance variable">enemie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="189364362231901" type="HpBarValue">
+                            <param id="0" name="Instance variable">enemie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="832981868108204" type="Zombie">
+                            <param id="0" name="Instance variable">hp</param>
+                            <param id="1" name="Value">Bullet.damage</param>
+                        </action>
+                        <action id="-5" name="Set width" sid="771270762561577" type="HpBarValue">
+                            <param id="0" name="Width">HpBarBase.Width * (Zombie.hp/HpBarValue.hp)</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="378633475340384" type="HpBarBase">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="736250495852605" type="HpBarValue">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="740613091429458" type="HpBarValue">
+                            <param id="0" name="Object">DamageTxt</param>
+                            <param id="1" name="Layer">&quot;Base&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="688474974331220">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Set text" sid="544660974665918" type="DamageTxt">
+                                    <param id="0" name="Text">&quot;&quot; &amp; Bullet.damage</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="869686702656102" type="DamageTxt">
+                                    <param id="0" name="X">DamageTxt.X - (HpBarBase.Width/2)</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="254132228919979" type="DamageTxt">
+                                    <param id="0" name="X">DamageTxt.X + int(random(HpBarBase.Width))</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="296213612665723" type="System">
+                                    <param id="0" name="Seconds">1.0</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="440534962977592" type="DamageTxt" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="585739888400049">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="495408567194349" type="Bullet">
+                                    <param id="0" name="Instance variable">isFragment</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="843676306349291" type="Bullet" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block disabled="1" sid="916106199682559">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="921793122846189" type="Zombie">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="687232120513023" type="HpBarBase">
+                    <param id="0" name="Instance variable">enemie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="533870436507008" type="HpBarValue">
+                    <param id="0" name="Instance variable">enemie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="354296303743938" type="Zombie">
+                    <param id="0" name="Instance variable">hp</param>
+                    <param id="1" name="Value">Bullet.damage</param>
+                </action>
+                <action id="-5" name="Set width" sid="831265469891395" type="HpBarValue">
+                    <param id="0" name="Width">HpBarBase.Width * (Zombie.hp/HpBarValue.hp)</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="989614490327391" type="HpBarBase">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="468883810102717" type="HpBarValue">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="818774136378079" type="HpBarValue">
+                    <param id="0" name="Object">DamageTxt</param>
+                    <param id="1" name="Layer">&quot;Base&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block disabled="1" sid="671688821804722">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="657979467493135" type="DamageTxt">
+                            <param id="0" name="Text">&quot;&quot; &amp; Bullet.damage</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="552951064317999" type="DamageTxt">
+                            <param id="0" name="X">DamageTxt.X - (HpBarBase.Width/2)</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="333574307734222" type="DamageTxt">
+                            <param id="0" name="X">DamageTxt.X + int(random(HpBarBase.Width))</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="807779776655268" type="System">
+                            <param id="0" name="Seconds">1.0</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="119878182025937" type="DamageTxt" />
+                    </actions>
+                </event-block>
+                <event-block disabled="1" sid="341911274569302">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="899155273026763" type="Bullet">
+                            <param id="0" name="Instance variable">isFragment</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="126153703617001" type="Bullet" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="798318083878961">
+            <conditions>
+                <condition id="-11" name="For Each" sid="550798980841633" type="System">
+                    <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="386937823989229" type="Zombie">
+                    <param id="0" name="Instance variable">hp</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="556823598089034">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="682289420173782" type="HpBarBase">
+                            <param id="0" name="Instance variable">enemie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="295817090993416" type="HpBarValue">
+                            <param id="0" name="Instance variable">enemie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="373382926631594" type="FightDetector">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="793969179470681" type="NearDetector">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="484974695569837" type="FarDetector">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="764170367614255" type="HpBarBase" />
+                        <action id="-9" name="Destroy" sid="460775717005046" type="HpBarValue" />
+                        <action id="-9" name="Destroy" sid="149112912508474" type="FightDetector" />
+                        <action id="-9" name="Destroy" sid="379670319762672" type="NearDetector" />
+                        <action id="-9" name="Destroy" sid="443621097884936" type="FarDetector" />
+                        <action id="-9" name="Destroy" sid="914758654913551" type="Zombie" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="242960828373640">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="736358649205423" type="System" />
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" sid="559815496062232" type="HpBarValue">
+                    <param id="0" name="Opacity">lerp(HpBarValue.Opacity,0,0.05)</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="980223262269948" type="HpBarBase">
+                    <param id="0" name="Opacity">lerp(HpBarBase.Opacity,0,0.05)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="140713978544240">
+            <conditions>
+                <condition id="0" name="On function" sid="657825416733531" type="Function">
+                    <param id="0" name="Name">&quot;ChasePlayer&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="960293920652817" type="Zombie">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="136134364535537" type="FightDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="747606571772949" type="NearDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="289815392163990" type="FarDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
+                    <param id="0" name="Vector X">Zombie.Platform.MaxSpeed * ((Player.X &gt; Zombie.X)?1:-1)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="752060858758728">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="785698135008421" type="System">
+                            <param id="0" name="First value">Player.X</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">Zombie.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="109951309088545" type="Zombie">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="853446714421775" type="FightDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="687325377051747" type="NearDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="160655857678913" type="FarDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="245022279979814">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="123476539400634" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="497778145219766" type="Zombie">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="773079507480160" type="FightDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="188143752789106" type="NearDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="804169124112925" type="FarDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="228482148228033">
+            <conditions>
+                <condition id="-11" name="For Each" sid="167573610792679" type="System">
+                    <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="425686211777611" type="FightDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="713678917355163" type="NearDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="683668672848515" type="FarDetector">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="684817545729500">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="626805708249703" type="Player">
+                            <param id="0" name="Object">FightDetector</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="710845038087565" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="657053042990751" type="Zombie">
+                            <param id="0" name="Instance variable">attackCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="299535842920417">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="509816230557460" type="System">
+                                    <param id="0" name="First value">Zombie.attackCount</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">Zombie.attackDelay</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="577877623887008" type="Function">
+                                    <param id="0" name="Name">&quot;Damage&quot;</param>
+                                    <param id="1" name="Parameter {n}">Player.UID{###}Zombie.attack</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="148917273617081" type="Zombie">
+                                    <param id="0" name="Instance variable">attackCount</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="777965273088915">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="252458596967506" type="System" />
+                        <condition id="1" name="Is overlapping another object" sid="205024863497653" type="Player">
+                            <param id="0" name="Object">NearDetector</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="776842908572549" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="385711196232039" type="Zombie">
+                            <param id="0" name="Instance variable">attackCount</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="278006911506038" type="Function">
+                            <param id="0" name="Name">&quot;ChasePlayer&quot;</param>
+                            <param id="1" name="Parameter {n}">Zombie.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="972923604884575">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="810615273529759" type="System" />
+                        <condition id="1" name="Is overlapping another object" sid="820538273178896" type="Player">
+                            <param id="0" name="Object">FarDetector</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" sid="855417630024784" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="401578738953438" type="Zombie">
+                            <param id="0" name="Instance variable">attackCount</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Call function" sid="369766990110395" type="Function">
+                            <param id="0" name="Name">&quot;ChasePlayer&quot;</param>
+                            <param id="1" name="Parameter {n}">Zombie.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="527627061972462">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="849622630803038" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="218534425418074" type="Zombie">
+                            <param id="0" name="Instance variable">attackCount</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="951589978520485" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

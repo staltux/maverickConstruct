@@ -4,7 +4,7 @@
     <name>LeonardOffice</name>
     <events>
         <variable constant="0" name="isFadding" sid="985832975208919" static="0" type="number">0</variable>
-        <variable constant="0" name="NEXT_STAGE" sid="175344652335313" static="0" type="text">HomeScreen</variable>
+        <variable constant="0" name="NEXT_STAGE" sid="175344652335313" static="0" type="text">Stage_One</variable>
         <variable constant="1" name="dialog_how" sid="224691652065650" static="0" type="number">0</variable>
         <variable constant="1" name="DIALOG_TEXT" sid="805879620322073" static="0" type="number">1</variable>
         <variable constant="1" name="dialog_maverick" sid="176224662364794" static="0" type="number">0</variable>

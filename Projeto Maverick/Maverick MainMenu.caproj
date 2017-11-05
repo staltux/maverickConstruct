@@ -12,15 +12,28 @@
     <used-plugins>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Tilemap" version="1">Tilemap</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
+        <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
+        <behavior author="Scirra" id="NoSave" version="1">No Save</behavior>
         <behavior author="Scirra" id="Persist" version="1">Persist</behavior>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
+        <behavior author="Scirra" id="Platform" version="1">Platform</behavior>
+        <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
+        <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
+        <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="Scirra" id="jumpthru" version="1">Jump-thru</behavior>
+        <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
     <used-effects />
     <configurations>
@@ -53,6 +66,11 @@
         <object-folder name="LeonardOffice">
             <object-type name="dialog_frame" sid="672907038053217">
                 <plugin id="NinePatch" />
+                <behaviors>
+                    <behavior-type name="NoSave" sid="385633206980067">
+                        <behavior id="NoSave" />
+                    </behavior-type>
+                </behaviors>
                 <texture original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\dialog_frame.png" />
             </object-type>
             <object-type name="MaverickDialogText" sid="843230348985714">
@@ -78,6 +96,28 @@
             </object-type>
             <object-type name="LeonardDialogText" sid="758069965629400">
                 <plugin id="Text" />
+            </object-type>
+            <object-type name="Bullet" sid="932667498791519">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="damage" sid="759348212475453" type="number" />
+                    <instance-variable comment="in pixels" name="maxDistance" sid="321011455562600" type="number" />
+                    <instance-variable name="isMissle" sid="572132396776498" type="boolean" />
+                    <instance-variable name="isFragment" sid="838735313816619" type="boolean" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Bullet" sid="564664505113192">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout" sid="643622473861093">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="764953576794807" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
             </object-type>
             <object-type name="Leonard_Rosto" sid="366407122372400">
                 <plugin id="Sprite" />
@@ -123,6 +163,109 @@
                     <type>OfficeBackground</type>
                     <type>DialogArray</type>
                 </container>
+            </object-type>
+        </object-folder>
+        <object-folder name="Maps">
+            <object-folder name="StageOne">
+                <object-type name="StageOne_Solido" sid="779083718041706">
+                    <plugin id="Tilemap" />
+                    <behaviors>
+                        <behavior-type name="NoSave" sid="859182299941222">
+                            <behavior id="NoSave" />
+                        </behavior-type>
+                        <behavior-type name="Solid" sid="562037272626162">
+                            <behavior id="solid" />
+                        </behavior-type>
+                    </behaviors>
+                    <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
+                    <tiles />
+                </object-type>
+                <object-type name="TutorialText" sid="426589762032283">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="StageOne_Gancho" sid="949178872091153">
+                    <plugin id="Tilemap" />
+                    <behaviors>
+                        <behavior-type name="NoSave" sid="994970005799762">
+                            <behavior id="NoSave" />
+                        </behavior-type>
+                    </behaviors>
+                    <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
+                    <tiles />
+                </object-type>
+                <object-type name="StageOne_Plataforma" sid="692696416414206">
+                    <plugin id="Tilemap" />
+                    <behaviors>
+                        <behavior-type name="NoSave" sid="487502873879807">
+                            <behavior id="NoSave" />
+                        </behavior-type>
+                        <behavior-type name="Jumpthru" sid="737702673394526">
+                            <behavior id="jumpthru" />
+                        </behavior-type>
+                    </behaviors>
+                    <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
+                    <tiles />
+                </object-type>
+            </object-folder>
+        </object-folder>
+        <object-folder name="HUD">
+            <object-type name="Hp" sid="371423526888196">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="734466269482937" speed="0">
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\HP Cheia.png" />
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\HP Vazia.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Sp" sid="280643631099465">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="2" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="159012793160123" speed="0">
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\SP Cheia.png" />
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\SP Vazia.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="HudTail" sid="679334928994680">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="110893218354275" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Ponta HUD.png">
+                            <collision-poly>
+                                <point x="0.0769231" y="0.0769231" />
+                                <point x="0.5" y="0" />
+                                <point x="0.846154" y="0.153846" />
+                                <point x="1" y="0.5" />
+                                <point x="0.846154" y="0.846154" />
+                                <point x="0.5" y="1" />
+                                <point x="0.0769231" y="0.923077" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="HudBase" sid="956360513736721">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="461656781149494" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\HUD vazia.png">
+                            <image-point name="hp" x="1" y="0.0714286" />
+                            <image-point name="sp" x="1" y="0.238095" />
+                            <collision-poly>
+                                <point x="0.15" y="0.0714286" />
+                                <point x="0.5" y="0" />
+                                <point x="0.925" y="0.0357143" />
+                                <point x="0.775" y="0.5" />
+                                <point x="0.375" y="0.702381" />
+                                <point x="0.5" y="0.535714" />
+                                <point x="0.1" y="0.952381" />
+                                <point x="0.025" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
             </object-type>
         </object-folder>
         <object-type name="Keyboard" sid="136842830077556">
@@ -189,21 +332,276 @@
         <object-type name="Browser" sid="599842237155138">
             <plugin id="Browser" />
         </object-type>
+        <object-type name="Player" sid="859776219480557">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="hp" sid="881633479754786" type="number" />
+                <instance-variable name="hpMax" sid="503184846028055" type="number" />
+                <instance-variable name="sp" sid="817113191299250" type="number" />
+                <instance-variable name="spMax" sid="418264887172506" type="number" />
+                <instance-variable name="doubleJump" sid="454163996039278" type="number" />
+                <instance-variable name="direction" sid="955119993547784" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="918633367788123">
+                    <behavior id="Platform" />
+                </behavior-type>
+                <behavior-type name="ScrollTo" sid="588194846180271">
+                    <behavior id="scrollto" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="858568115891643" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="-0.953125" y="-0.15625" />
+                        <image-point name="Imagepoint 2" x="-0.265625" y="-0.703125" />
+                        <image-point name="Imagepoint 3" x="0.5" y="-0.828125" />
+                        <image-point name="Imagepoint 4" x="1.59375" y="-0.6875" />
+                        <image-point name="Imagepoint 5" x="2.5625" y="-0.03125" />
+                        <image-point name="Imagepoint 6" x="1.51563" y="0.40625" />
+                        <image-point name="Imagepoint 7" x="0.5" y="0" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MouseTarget" sid="330645569129816">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="hookx" sid="650263592548656" type="number" />
+                <instance-variable name="hooky" sid="149021846893383" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="983937463665218" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Function" sid="214829700221987">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Zombie" sid="753406943764447">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="hp" sid="594180394370917" type="number" />
+                <instance-variable name="isPlayerNear" sid="337945116347914" type="boolean" />
+                <instance-variable comment="in ticks" name="attackDelay" sid="163365378525636" type="number" />
+                <instance-variable name="attackCount" sid="243388673247470" type="number" />
+                <instance-variable name="attack" sid="611267854042871" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Platform" sid="202421388336541">
+                    <behavior id="Platform" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="617225056684099">
+                    <behavior id="destroy" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="285284884722228">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="351571848799118" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="1">
+                        <image-point name="Imagepoint 1" x="0.5" y="-0.21875" />
+                        <image-point name="Imagepoint 2" x="0.5" y="0.5" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Maverick" sid="151317587550049">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Pin" sid="210743077435029">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="8" loop="0" name="run" pingpong="0" repeatcount="1" repeatto="0" sid="153717333311412" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_01.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_02.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_03.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_04.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_05.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_06.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_07.png" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_08.png" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MaverickSprite" sid="147427982239858">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Pin" sid="201350919207988">
+                    <behavior id="Pin" />
+                </behavior-type>
+                <behavior-type name="NoSave" sid="331007512033119">
+                    <behavior id="NoSave" />
+                </behavior-type>
+                <behavior-type name="Flash" sid="576025867061131">
+                    <behavior id="Flash" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="8" loop="1" name="walkR" pingpong="0" repeatcount="1" repeatto="0" sid="791350592290161" speed="10">
+                    <frame duration="1" hotspotX="0.572917" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_01.png" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_02.png" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_03.png" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_04.png" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_05.png" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_06.png" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_07.png" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_08.png" />
+                </animation>
+                <animation framecount="8" loop="1" name="walkL" pingpong="0" repeatcount="1" repeatto="0" sid="491489431266730" speed="10">
+                    <frame duration="1" hotspotX="0.572917" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
+                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
+                </animation>
+                <animation framecount="1" loop="1" name="stop" pingpong="0" repeatcount="1" repeatto="0" sid="544945498845843" speed="10">
+                    <frame duration="1" hotspotX="0.494792" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Estatico.png">
+                        <collision-poly>
+                            <point x="0.359375" y="0.359375" />
+                            <point x="0.5" y="0.078125" />
+                            <point x="0.59375" y="0.40625" />
+                            <point x="0.671875" y="0.5" />
+                            <point x="0.65625" y="0.65625" />
+                            <point x="0.5" y="0.6875" />
+                            <point x="0.3125" y="0.6875" />
+                            <point x="0.359375" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="NearDetector" sid="106691444093764">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="zombie" sid="772665363871329" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="990533374127109">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="146907589582388" speed="5">
+                    <frame duration="1" hotspotX="0.24" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="FarDetector" sid="151060064167967">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="zombie" sid="975467646631592" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="934138309361536">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="984433270549189" speed="5">
+                    <frame duration="1" hotspotX="0.24" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="FightDetector" sid="892839407720995">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="zombie" sid="455394983029502" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="400106727308981">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="739053012482254" speed="5">
+                    <frame duration="1" hotspotX="0.256" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HpBarBase" sid="310186547754259">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="enemie" sid="569717208657733" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="446506067544504">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="514972849961795" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="Imagepoint 1" x="0" y="0.5" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HpBarValue" sid="110763125353898">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="enemie" sid="285070158158800" type="number" />
+                <instance-variable name="hp" sid="570556730775354" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="832091050632772">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="415412820241729" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="DamageTxt" sid="698822515814388">
+            <plugin id="Text" />
+            <behaviors>
+                <behavior-type name="Sine" sid="847371745904224">
+                    <behavior id="Sin" />
+                </behavior-type>
+            </behaviors>
+        </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="Solidos" plugin-id="Tilemap" sid="501274490816367">
+            <members>
+                <member>StageOne_Solido</member>
+            </members>
+        </family>
+        <family name="Plataformas" plugin-id="Tilemap" sid="598905925904010">
+            <members>
+                <member>StageOne_Plataforma</member>
+            </members>
+        </family>
+    </families>
     <layout-folder>
         <layout>HomeScreen.xml</layout>
         <layout>MainMenu.xml</layout>
         <layout>LeonardOffice.xml</layout>
+        <layout>Stage_One.xml</layout>
+        <layout>HUD.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Event sheet 1.xml</event-sheet>
         <event-sheet>LeonardOffice.xml</event-sheet>
+        <event-sheet>Stage_One.xml</event-sheet>
+        <event-sheet>Player.xml</event-sheet>
+        <event-sheet>HUD.xml</event-sheet>
+        <event-sheet>Zombie.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="0" />
         <global-instance type="Mouse" uid="1" />
         <global-instance type="Browser" uid="14" />
+        <global-instance type="Function" uid="32" />
     </global-instances>
     <sounds-folder />
     <music-folder />
