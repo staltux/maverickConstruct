@@ -18,6 +18,11 @@
                     <param id="0" name="Pin to">Player</param>
                     <param id="1" name="Mode">0</param>
                 </action>
+                <action id="0" name="Spawn another object" sid="697730338023622" type="MaverickSprite">
+                    <param id="0" name="Object">GunDefault</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">&quot;gun&quot;</param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="849974923121481" title="Andar">
@@ -303,6 +308,9 @@
                         <action id="7" name="Set mirrored" sid="666099996797881" type="MaverickSprite">
                             <param id="0" name="State">0</param>
                         </action>
+                        <action id="8" name="Set flipped" sid="848952581818841" type="GunDefault">
+                            <param id="0" name="State">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="263319109971480">
@@ -315,6 +323,12 @@
                     </conditions>
                     <actions>
                         <action id="7" name="Set mirrored" sid="465148163489222" type="MaverickSprite">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="8" name="Set flipped" sid="219246898151887" type="GunDefault">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action disabled="1" id="7" name="Set mirrored" sid="184279380383209" type="GunDefault">
                             <param id="0" name="State">1</param>
                         </action>
                     </actions>
@@ -420,5 +434,26 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="702598509388562">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="545191290591339" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="194443411694757" type="GunDefault">
+                    <param id="0" name="Object">MaverickSprite</param>
+                    <param id="1" name="Image point (optional)">&quot;gun&quot;</param>
+                </action>
+                <action id="-8" name="Set angle" sid="748965306037776" type="GunDefault">
+                    <param id="0" name="Angle">angle(Player.X,Player.Y,Mouse.X,Mouse.Y)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <variable constant="0" name="a" sid="464599507088148" static="0" type="number">0</variable>
+                <event-block sid="647948688347516">
+                    <conditions />
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>

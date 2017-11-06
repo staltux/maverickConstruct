@@ -40,8 +40,8 @@
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>1280</width>
-        <height>720</height>
+        <width>1920</width>
+        <height>1080</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
@@ -268,6 +268,115 @@
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder name="Maverick">
+            <object-type name="MaverickSprite" sid="147427982239858">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="201350919207988">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                    <behavior-type name="NoSave" sid="331007512033119">
+                        <behavior id="NoSave" />
+                    </behavior-type>
+                    <behavior-type name="Flash" sid="576025867061131">
+                        <behavior id="Flash" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="8" loop="1" name="walkR" pingpong="0" repeatcount="1" repeatto="0" sid="791350592290161" speed="10">
+                        <frame duration="1" hotspotX="0.572917" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_01.png">
+                            <image-point name="gun" x="0.536458" y="0.333333" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_02.png">
+                            <image-point name="gun" x="0.598958" y="0.34375" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_03.png">
+                            <image-point name="gun" x="0.583333" y="0.348958" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_04.png">
+                            <image-point name="gun" x="0.598958" y="0.291667" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_05.png">
+                            <image-point name="gun" x="0.604167" y="0.3125" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_06.png">
+                            <image-point name="gun" x="0.645833" y="0.322917" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_07.png">
+                            <image-point name="gun" x="0.625" y="0.322917" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_08.png">
+                            <image-point name="gun" x="0.625" y="0.322917" />
+                        </frame>
+                    </animation>
+                    <animation framecount="8" loop="1" name="walkL" pingpong="0" repeatcount="1" repeatto="0" sid="491489431266730" speed="10">
+                        <frame duration="1" hotspotX="0.572917" hotspotY="0">
+                            <image-point name="gun" x="0.630208" y="0.328125" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0">
+                            <image-point name="gun" x="0.619792" y="0.328125" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0">
+                            <image-point name="gun" x="0.640625" y="0.322917" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0">
+                            <image-point name="gun" x="0.604167" y="0.322917" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0">
+                            <image-point name="gun" x="0.598958" y="0.291667" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0">
+                            <image-point name="gun" x="0.59375" y="0.322917" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.661458" hotspotY="0">
+                            <image-point name="gun" x="0.619792" y="0.333333" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.630208" hotspotY="0">
+                            <image-point name="gun" x="0.557292" y="0.317708" />
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="1" name="stop" pingpong="0" repeatcount="1" repeatto="0" sid="544945498845843" speed="10">
+                        <frame duration="1" hotspotX="0.572917" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Estatico.png">
+                            <image-point name="gun" x="0.390625" y="0.291667" />
+                            <collision-poly>
+                                <point x="0.359375" y="0.359375" />
+                                <point x="0.5" y="0.078125" />
+                                <point x="0.59375" y="0.40625" />
+                                <point x="0.671875" y="0.5" />
+                                <point x="0.65625" y="0.65625" />
+                                <point x="0.5" y="0.6875" />
+                                <point x="0.3125" y="0.6875" />
+                                <point x="0.359375" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="GunDefault" sid="961269542372516">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin" sid="137612578004055">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="544666883001882" speed="5">
+                        <frame duration="1" hotspotX="0.371429" hotspotY="0.371429" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Default.png">
+                            <collision-poly>
+                                <point x="0.328571" y="0.328571" />
+                                <point x="0.5" y="0.385714" />
+                                <point x="0.6" y="0.4" />
+                                <point x="0.757143" y="0.5" />
+                                <point x="0.542857" y="0.542857" />
+                                <point x="0.5" y="0.542857" />
+                                <point x="0.485714" y="0.514286" />
+                                <point x="0.457143" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="Keyboard" sid="136842830077556">
             <plugin id="Keyboard" />
         </object-type>
@@ -404,76 +513,6 @@
                     <frame duration="1" hotspotX="0.5" hotspotY="1">
                         <image-point name="Imagepoint 1" x="0.5" y="-0.21875" />
                         <image-point name="Imagepoint 2" x="0.5" y="0.5" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Maverick" sid="151317587550049">
-            <plugin id="Sprite" />
-            <behaviors>
-                <behavior-type name="Pin" sid="210743077435029">
-                    <behavior id="Pin" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="8" loop="0" name="run" pingpong="0" repeatcount="1" repeatto="0" sid="153717333311412" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_01.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_02.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_03.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_04.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_05.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_06.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_07.png" />
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_08.png" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="MaverickSprite" sid="147427982239858">
-            <plugin id="Sprite" />
-            <behaviors>
-                <behavior-type name="Pin" sid="201350919207988">
-                    <behavior id="Pin" />
-                </behavior-type>
-                <behavior-type name="NoSave" sid="331007512033119">
-                    <behavior id="NoSave" />
-                </behavior-type>
-                <behavior-type name="Flash" sid="576025867061131">
-                    <behavior id="Flash" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="8" loop="1" name="walkR" pingpong="0" repeatcount="1" repeatto="0" sid="791350592290161" speed="10">
-                    <frame duration="1" hotspotX="0.572917" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_01.png" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_02.png" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_03.png" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_04.png" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_05.png" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_06.png" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_07.png" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavRun_08.png" />
-                </animation>
-                <animation framecount="8" loop="1" name="walkL" pingpong="0" repeatcount="1" repeatto="0" sid="491489431266730" speed="10">
-                    <frame duration="1" hotspotX="0.572917" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.661458" hotspotY="0" />
-                    <frame duration="1" hotspotX="0.630208" hotspotY="0" />
-                </animation>
-                <animation framecount="1" loop="1" name="stop" pingpong="0" repeatcount="1" repeatto="0" sid="544945498845843" speed="10">
-                    <frame duration="1" hotspotX="0.494792" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Estatico.png">
-                        <collision-poly>
-                            <point x="0.359375" y="0.359375" />
-                            <point x="0.5" y="0.078125" />
-                            <point x="0.59375" y="0.40625" />
-                            <point x="0.671875" y="0.5" />
-                            <point x="0.65625" y="0.65625" />
-                            <point x="0.5" y="0.6875" />
-                            <point x="0.3125" y="0.6875" />
-                            <point x="0.359375" y="0.5" />
-                        </collision-poly>
                     </frame>
                 </animation>
             </animation-folder>
