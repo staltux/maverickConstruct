@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>Maverick MainMenu</name>
+    <name>Maverick</name>
     <description></description>
     <version>1.0.0.0</version>
     <author></author>
@@ -24,6 +24,7 @@
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="Fade" version="1">Fade</behavior>
         <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
+        <behavior author="Scirra" id="LOS" version="1">Line Of Sight</behavior>
         <behavior author="Scirra" id="NoSave" version="1">No Save</behavior>
         <behavior author="Scirra" id="Persist" version="1">Persist</behavior>
         <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
@@ -96,28 +97,6 @@
             </object-type>
             <object-type name="LeonardDialogText" sid="758069965629400">
                 <plugin id="Text" />
-            </object-type>
-            <object-type name="Bullet" sid="932667498791519">
-                <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable name="damage" sid="759348212475453" type="number" />
-                    <instance-variable comment="in pixels" name="maxDistance" sid="321011455562600" type="number" />
-                    <instance-variable name="isMissle" sid="572132396776498" type="boolean" />
-                    <instance-variable name="isFragment" sid="838735313816619" type="boolean" />
-                </instance-variables>
-                <behaviors>
-                    <behavior-type name="Bullet" sid="564664505113192">
-                        <behavior id="Bullet" />
-                    </behavior-type>
-                    <behavior-type name="DestroyOutsideLayout" sid="643622473861093">
-                        <behavior id="destroy" />
-                    </behavior-type>
-                </behaviors>
-                <animation-folder>
-                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="764953576794807" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                    </animation>
-                </animation-folder>
             </object-type>
             <object-type name="Leonard_Rosto" sid="366407122372400">
                 <plugin id="Sprite" />
@@ -269,6 +248,238 @@
             </object-type>
         </object-folder>
         <object-folder name="Maverick">
+            <object-folder name="Guns">
+                <object-type global="1" name="DefaultGun" sid="121072294186672">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                    </container>
+                </object-type>
+                <object-type name="Bullet" sid="932667498791519">
+                    <plugin id="Sprite" />
+                    <instance-variables>
+                        <instance-variable name="damage" sid="759348212475453" type="number" />
+                        <instance-variable comment="in pixels" name="maxDistance" sid="321011455562600" type="number" />
+                        <instance-variable name="isRocket" sid="572132396776498" type="boolean" />
+                        <instance-variable name="isFragment" sid="838735313816619" type="boolean" />
+                    </instance-variables>
+                    <behaviors>
+                        <behavior-type name="Bullet" sid="564664505113192">
+                            <behavior id="Bullet" />
+                        </behavior-type>
+                        <behavior-type name="DestroyOutsideLayout" sid="643622473861093">
+                            <behavior id="destroy" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="764953576794807" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="Gun" sid="961269542372516">
+                    <plugin id="Sprite" />
+                    <instance-variables>
+                        <instance-variable name="isChanging" sid="676943211148772" type="boolean" />
+                        <instance-variable name="a" sid="948189053536825" type="number" />
+                    </instance-variables>
+                    <behaviors>
+                        <behavior-type name="Pin" sid="137612578004055">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                        <behavior-type name="Flash" sid="743032555518530">
+                            <behavior id="Flash" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="default" pingpong="0" repeatcount="1" repeatto="0" sid="462856390419618" speed="15">
+                            <frame duration="1" hotspotX="0.266667" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Frame\DF_frame1.png">
+                                <image-point name="bullet" x="0.685714" y="0.466667" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.266667" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Frame\DF_frame2.png">
+                                <image-point name="bullet" x="0.642857" y="0.466667" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.266667" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Frame\DF_frame3.png">
+                                <image-point name="bullet" x="0.685714" y="0.466667" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.266667" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Frame\DF_frame4.png">
+                                <image-point name="bullet" x="0.685714" y="0.466667" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                        </animation>
+                        <animation framecount="4" loop="0" name="rocket" pingpong="0" repeatcount="1" repeatto="0" sid="323065018998700" speed="15">
+                            <frame duration="1" hotspotX="0.242857" hotspotY="0.338095" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Frame\RT_Frame1.png">
+                                <image-point name="bullet" x="0.695238" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.242857" hotspotY="0.338095" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Frame\RT_Frame2.png">
+                                <image-point name="bullet" x="0.642857" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.242857" hotspotY="0.338095" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Frame\RT_Frame3.png">
+                                <image-point name="bullet" x="0.685714" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.242857" hotspotY="0.338095" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Frame\RT_Frame4.png">
+                                <image-point name="bullet" x="0.685714" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                        </animation>
+                        <animation framecount="4" loop="0" name="shotgun" pingpong="0" repeatcount="1" repeatto="0" sid="491289818362356" speed="15">
+                            <frame duration="1" hotspotX="0.257143" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Frame\ST_frame1.png">
+                                <image-point name="bullet" x="0.704762" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.257143" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Frame\ST_frame2.png">
+                                <image-point name="bullet" x="0.666667" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.257143" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Frame\ST_frame3.png">
+                                <image-point name="bullet" x="0.704762" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.257143" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Frame\ST_frame4.png">
+                                <image-point name="bullet" x="0.704762" y="0.461905" />
+                                <image-point name="recoil" x="0.390476" y="0.480952" />
+                            </frame>
+                        </animation>
+                        <animation framecount="4" loop="0" name="sniper" pingpong="0" repeatcount="1" repeatto="0" sid="674287939693313" speed="15">
+                            <frame duration="1" hotspotX="0.171429" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Frame\ST_Frame1.png">
+                                <image-point name="bullet" x="0.819048" y="0.428571" />
+                                <image-point name="recoil" x="0.27619" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.171429" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Frame\ST_Frame2.png">
+                                <image-point name="bullet" x="0.8" y="0.428571" />
+                                <image-point name="recoil" x="0.27619" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.171429" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Frame\ST_Frame3.png">
+                                <image-point name="bullet" x="0.819048" y="0.428571" />
+                                <image-point name="recoil" x="0.27619" y="0.480952" />
+                            </frame>
+                            <frame duration="1" hotspotX="0.171429" hotspotY="0.357143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Frame\ST_Frame4.png">
+                                <image-point name="bullet" x="0.819048" y="0.428571" />
+                                <image-point name="recoil" x="0.27619" y="0.480952" />
+                            </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type global="1" name="Shotgun" sid="686259072780398">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                    </container>
+                </object-type>
+                <object-type global="1" name="Rocket" sid="167694548128856">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                    </container>
+                </object-type>
+                <object-type global="1" name="Sniper" sid="976154998936813">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                    </container>
+                </object-type>
+            </object-folder>
+            <object-folder name="Particles">
+                <object-type name="DF_Recoil" sid="360095636870443">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="889633910781524" speed="15">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Recoil\DF_frame1_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Recoil\DF_frame2_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Recoil\DF_frame3_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Recoil\DF_frame4_recoil.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="RT_Recoil" sid="175814264964320">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="597375413075539" speed="15">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Recoil\RT_Frame1_Recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Recoil\RT_Frame2_Recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Recoil\RT_Frame3_Recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Recoil\RT_Frame4_Recoil.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="SH_Recoil" sid="800185789355409">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="473184852829252" speed="15">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Recoil\ST_frame1_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Recoil\ST_frame2_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Recoil\ST_frame3_recoil.png" />
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Recoil\ST_frame4_recoil.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="DF_Smoke" sid="309156947367469">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="302411495135625" speed="15">
+                            <frame duration="1" hotspotX="0.642857" hotspotY="0.461905" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Smoke\DF_frame1_smoke.png" />
+                            <frame duration="1" hotspotX="0.642857" hotspotY="0.461905" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Smoke\DF_frame2_smoke.png" />
+                            <frame duration="1" hotspotX="0.642857" hotspotY="0.461905" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Smoke\DF_frame3_smoke.png" />
+                            <frame duration="1" hotspotX="0.642857" hotspotY="0.461905" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Defaut\DF_Smoke\DF_frame4_smoke.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="RT_Smoke" sid="156223860745758">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="756422277051102" speed="15">
+                            <frame duration="1" hotspotX="0.666667" hotspotY="0.452381" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Smoke\RT_Frame1_Smoke.png" />
+                            <frame duration="1" hotspotX="0.666667" hotspotY="0.452381" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Smoke\RT_Frame2_Smoke.png" />
+                            <frame duration="1" hotspotX="0.666667" hotspotY="0.452381" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Smoke\RT_Frame3_Smoke.png" />
+                            <frame duration="1" hotspotX="0.666667" hotspotY="0.452381" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Rocket\RT_Smoke\RT_Frame4_Smoke.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="SH_Smoke" sid="548586519312556">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="739399443238576" speed="15">
+                            <frame duration="1" hotspotX="0.657143" hotspotY="0.457143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Smoke\ST_frame1_Smoke.png" />
+                            <frame duration="1" hotspotX="0.657143" hotspotY="0.457143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Smoke\ST_frame2_Smoke.png" />
+                            <frame duration="1" hotspotX="0.657143" hotspotY="0.457143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Smoke\ST_frame3_Smoke.png" />
+                            <frame duration="1" hotspotX="0.657143" hotspotY="0.457143" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Shotgun\ST_Smoke\ST_frame4_Smoke.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="SN_Smoke" sid="100827723172700">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="4" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="452150979920735" speed="15">
+                            <frame duration="1" hotspotX="0.804762" hotspotY="0.442857" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Smoke\ST_Frame1_Smoke.png" />
+                            <frame duration="1" hotspotX="0.804762" hotspotY="0.442857" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Smoke\ST_Frame2_Smoke.png" />
+                            <frame duration="1" hotspotX="0.804762" hotspotY="0.442857" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Smoke\ST_Frame3_Smoke.png" />
+                            <frame duration="1" hotspotX="0.804762" hotspotY="0.442857" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Smoke\ST_Frame4_Smoke.png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
             <object-type name="MaverickSprite" sid="147427982239858">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -336,7 +547,7 @@
                         </frame>
                     </animation>
                     <animation framecount="1" loop="1" name="stop" pingpong="0" repeatcount="1" repeatto="0" sid="544945498845843" speed="10">
-                        <frame duration="1" hotspotX="0.572917" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Estatico.png">
+                        <frame duration="1" hotspotX="0.520833" hotspotY="-0.0520833" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Estatico.png">
                             <image-point name="gun" x="0.390625" y="0.291667" />
                             <collision-poly>
                                 <point x="0.359375" y="0.359375" />
@@ -350,28 +561,99 @@
                             </collision-poly>
                         </frame>
                     </animation>
+                    <animation framecount="2" loop="0" name="jump" pingpong="0" repeatcount="1" repeatto="0" sid="619477417404619" speed="10">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_01.png">
+                            <image-point name="gun" x="0.484375" y="0.364583" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_02.png">
+                            <image-point name="gun" x="0.40625" y="0.291667" />
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="fall" pingpong="0" repeatcount="1" repeatto="0" sid="151307734834637" speed="5">
+                        <frame duration="1" hotspotX="0.46875" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_03.png">
+                            <image-point name="gun" x="0.375" y="0.322917" />
+                            <collision-poly>
+                                <point x="0.34375" y="0.34375" />
+                                <point x="0.5" y="0.125" />
+                                <point x="0.6875" y="0.5" />
+                                <point x="0.65625" y="0.65625" />
+                                <point x="0.5" y="0.828125" />
+                                <point x="0.34375" y="0.65625" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="0" name="jump_run" pingpong="0" repeatcount="1" repeatto="0" sid="553234471456107" speed="7">
+                        <frame duration="1" hotspotX="0.46875" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_01.png">
+                            <image-point name="gun" x="0.432292" y="0.328125" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.46875" hotspotY="0" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_03.png">
+                            <image-point name="gun" x="0.375" y="0.34375" />
+                            <collision-poly>
+                                <point x="0.34375" y="0.34375" />
+                                <point x="0.5" y="0.125" />
+                                <point x="0.6875" y="0.5" />
+                                <point x="0.65625" y="0.65625" />
+                                <point x="0.5" y="0.828125" />
+                                <point x="0.34375" y="0.65625" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="land" pingpong="0" repeatcount="1" repeatto="0" sid="341403067322174" speed="5">
+                        <frame duration="1" hotspotX="0.46875" hotspotY="-0.104167" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\MavJump_04.png">
+                            <image-point name="gun" x="0.479167" y="0.364583" />
+                            <collision-poly>
+                                <point x="0.5" y="0.125" />
+                                <point x="0.671875" y="0.328125" />
+                                <point x="0.515625" y="0.5" />
+                                <point x="0.6875" y="0.6875" />
+                                <point x="0.5" y="0.96875" />
+                                <point x="0.328125" y="0.671875" />
+                                <point x="0.3125" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="GunDefault" sid="961269542372516">
+            <object-type name="Player" sid="859776219480557">
                 <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="hp" sid="881633479754786" type="number" />
+                    <instance-variable name="hpMax" sid="503184846028055" type="number" />
+                    <instance-variable name="sp" sid="817113191299250" type="number" />
+                    <instance-variable name="spMax" sid="418264887172506" type="number" />
+                    <instance-variable name="doubleJump" sid="454163996039278" type="number" />
+                    <instance-variable name="direction" sid="955119993547784" type="number" />
+                    <instance-variable name="gun" sid="483164702638504" type="number" />
+                    <instance-variable name="hardLand" sid="925838384198771" type="boolean" />
+                </instance-variables>
                 <behaviors>
-                    <behavior-type name="Pin" sid="137612578004055">
-                        <behavior id="Pin" />
+                    <behavior-type name="Platform" sid="918633367788123">
+                        <behavior id="Platform" />
+                    </behavior-type>
+                    <behavior-type name="ScrollTo" sid="588194846180271">
+                        <behavior id="scrollto" />
+                    </behavior-type>
+                    <behavior-type name="LineOfSight" sid="878838581367081">
+                        <behavior id="LOS" />
                     </behavior-type>
                 </behaviors>
+                <container>
+                    <type>Player</type>
+                    <type>DefaultGun</type>
+                    <type>Shotgun</type>
+                    <type>Rocket</type>
+                    <type>Sniper</type>
+                </container>
                 <animation-folder>
-                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="544666883001882" speed="5">
-                        <frame duration="1" hotspotX="0.371429" hotspotY="0.371429" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Default.png">
-                            <collision-poly>
-                                <point x="0.328571" y="0.328571" />
-                                <point x="0.5" y="0.385714" />
-                                <point x="0.6" y="0.4" />
-                                <point x="0.757143" y="0.5" />
-                                <point x="0.542857" y="0.542857" />
-                                <point x="0.5" y="0.542857" />
-                                <point x="0.485714" y="0.514286" />
-                                <point x="0.457143" y="0.5" />
-                            </collision-poly>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="858568115891643" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="-0.953125" y="-0.15625" />
+                            <image-point name="Imagepoint 2" x="-0.265625" y="-0.703125" />
+                            <image-point name="Imagepoint 3" x="0.5" y="-0.828125" />
+                            <image-point name="Imagepoint 4" x="1.59375" y="-0.6875" />
+                            <image-point name="Imagepoint 5" x="2.5625" y="-0.03125" />
+                            <image-point name="Imagepoint 6" x="1.51563" y="0.40625" />
+                            <image-point name="Imagepoint 7" x="0.5" y="0" />
                         </frame>
                     </animation>
                 </animation-folder>
@@ -440,38 +722,6 @@
         </object-type>
         <object-type name="Browser" sid="599842237155138">
             <plugin id="Browser" />
-        </object-type>
-        <object-type name="Player" sid="859776219480557">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="hp" sid="881633479754786" type="number" />
-                <instance-variable name="hpMax" sid="503184846028055" type="number" />
-                <instance-variable name="sp" sid="817113191299250" type="number" />
-                <instance-variable name="spMax" sid="418264887172506" type="number" />
-                <instance-variable name="doubleJump" sid="454163996039278" type="number" />
-                <instance-variable name="direction" sid="955119993547784" type="number" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Platform" sid="918633367788123">
-                    <behavior id="Platform" />
-                </behavior-type>
-                <behavior-type name="ScrollTo" sid="588194846180271">
-                    <behavior id="scrollto" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="858568115891643" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <image-point name="Imagepoint 1" x="-0.953125" y="-0.15625" />
-                        <image-point name="Imagepoint 2" x="-0.265625" y="-0.703125" />
-                        <image-point name="Imagepoint 3" x="0.5" y="-0.828125" />
-                        <image-point name="Imagepoint 4" x="1.59375" y="-0.6875" />
-                        <image-point name="Imagepoint 5" x="2.5625" y="-0.03125" />
-                        <image-point name="Imagepoint 6" x="1.51563" y="0.40625" />
-                        <image-point name="Imagepoint 7" x="0.5" y="0" />
-                    </frame>
-                </animation>
-            </animation-folder>
         </object-type>
         <object-type name="MouseTarget" sid="330645569129816">
             <plugin id="Sprite" />
@@ -620,6 +870,33 @@
                 <member>StageOne_Plataforma</member>
             </members>
         </family>
+        <family name="Guns" plugin-id="Arr" sid="301459905344482">
+            <members>
+                <member>DefaultGun</member>
+                <member>Rocket</member>
+                <member>Shotgun</member>
+                <member>Sniper</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="initial" sid="635184318698060" type="number" />
+                <instance-variable name="current" sid="930336519682313" type="number" />
+                <instance-variable name="max" sid="301342353762973" type="number" />
+                <instance-variable name="bullets" sid="575464518787064" type="number" />
+                <instance-variable name="maxspeed" sid="366449334235258" type="number" />
+                <instance-variable name="id" sid="511627680915861" type="number" />
+            </instance-variables>
+        </family>
+        <family name="Particles" plugin-id="Sprite" sid="852871138849386">
+            <members>
+                <member>DF_Recoil</member>
+                <member>DF_Smoke</member>
+                <member>RT_Recoil</member>
+                <member>RT_Smoke</member>
+                <member>SH_Recoil</member>
+                <member>SH_Smoke</member>
+                <member>SN_Smoke</member>
+            </members>
+        </family>
     </families>
     <layout-folder>
         <layout>HomeScreen.xml</layout>
@@ -635,6 +912,7 @@
         <event-sheet>Player.xml</event-sheet>
         <event-sheet>HUD.xml</event-sheet>
         <event-sheet>Zombie.xml</event-sheet>
+        <event-sheet>General.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="0" />

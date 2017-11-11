@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2layout>
+    <name>HomeScreen</name>
+    <sid>707534473989000</sid>
+    <event-sheet>Event sheet 1</event-sheet>
+    <size>
+        <width>1920</width>
+        <height>1080</height>
+    </size>
+    <margins>
+        <horizontal>500</horizontal>
+        <vertical>500</vertical>
+    </margins>
+    <unbounded-scrolling>0</unbounded-scrolling>
+    <layers>
+        <layer name="Backgroud" sid="168044987371682">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances>
+                <instance type="HomeScreen" uid="2">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>959</x>
+                        <y>539.5</y>
+                        <z>0</z>
+                        <width>1918</width>
+                        <height>1077</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="MaverickSprite" uid="45">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                        <behavior-instance type="NoSave" />
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-314.5</x>
+                        <y>392</y>
+                        <z>0</z>
+                        <width>192</width>
+                        <height>192</height>
+                        <depth>0</depth>
+                        <hotspotX>0.572916687</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Gun" uid="46">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <isChanging>false</isChanging>
+                        <a>0</a>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                        <behavior-instance type="Flash" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-275.5</x>
+                        <y>222</y>
+                        <z>0</z>
+                        <width>210</width>
+                        <height>210</height>
+                        <depth>0</depth>
+                        <hotspotX>0.266666681</hotspotX>
+                        <hotspotY>0.357142866</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+            <effects />
+        </layer>
+    </layers>
+    <nonworld-instances>
+        <instance type="Shotgun" uid="49">
+            <properties>
+                <width>10</width>
+                <height>10</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <initial>1</initial>
+                <current>1</current>
+                <max>1</max>
+                <bullets>0</bullets>
+                <maxspeed>0</maxspeed>
+                <id>2</id>
+            </instance-variables>
+        </instance>
+        <instance type="Sniper" uid="52">
+            <properties>
+                <width>10</width>
+                <height>10</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <initial>1</initial>
+                <current>1</current>
+                <max>1</max>
+                <bullets>0</bullets>
+                <maxspeed>0</maxspeed>
+                <id>3</id>
+            </instance-variables>
+        </instance>
+    </nonworld-instances>
+    <effects />
+</c2layout>

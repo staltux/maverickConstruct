@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>General</name>
+    <events>
+        <event-block sid="599336368248038">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="465229080078902" type="Bullet">
+                    <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="354586006674930" type="Bullet">
+                    <param id="0" name="Instance variable">isFragment</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="109455221351278" type="Function">
+                    <param id="0" name="Name">&quot;Dimiss&quot;</param>
+                    <param id="1" name="Parameter {n}">Bullet.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="822075964529785">
+            <conditions>
+                <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="485750381653239" type="Bullet">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Distance">Bullet.maxDistance</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="176601977392884" type="Function">
+                    <param id="0" name="Name">&quot;Dimiss&quot;</param>
+                    <param id="1" name="Parameter {n}">Bullet.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="282114064798296">
+            <conditions>
+                <condition id="0" name="On function" sid="374814077755035" type="Function">
+                    <param id="0" name="Name">&quot;Dimiss&quot;</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="805373430800949" type="Bullet">
+                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="x" sid="324800413040978" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="263293886452626" static="0" type="number">0</variable>
+                <event-block sid="285637329358603">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="527090528161168" type="System">
+                            <param id="0" name="Variable">x</param>
+                            <param id="1" name="Value">Bullet.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="460786006624783" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">Bullet.Y</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="599479002782001" type="Bullet" />
+                    </actions>
+                    <sub-events>
+                        <event-block sid="993737132856998">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="247049851836870" type="Bullet">
+                                    <param id="0" name="Instance variable">isRocket</param>
+                                </condition>
+                                <condition id="-10" name="For" sid="172778930512585" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">8</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="930053165031939" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="108797528949218" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                    <param id="1" name="Parameter {n}">CBFRAGMENT{###} (loopindex * 45){###}x{###}y{###}2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="891150250261523">
+            <conditions>
+                <condition id="4" name="On finished" sid="434273838582745" type="Particles">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="660769847430001" type="Particles" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

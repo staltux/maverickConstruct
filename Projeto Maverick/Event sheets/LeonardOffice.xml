@@ -172,7 +172,7 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Wait" sid="972220718744522" type="System">
-                            <param id="0" name="Seconds">0.05 * loopindex</param>
+                            <param id="0" name="Seconds">0.04 * loopindex</param>
                         </action>
                         <action id="-18" name="Set layer opacity" sid="573752722204262" type="System">
                             <param id="0" name="Layer">&quot;maverick&quot;</param>
@@ -188,7 +188,7 @@
                     <conditions />
                     <actions>
                         <action id="-16" name="Wait" sid="580745069316360" type="System">
-                            <param id="0" name="Seconds">1</param>
+                            <param id="0" name="Seconds">0.5</param>
                         </action>
                         <action id="-11" name="Add to" sid="151894214046049" type="OfficeBackground">
                             <param id="0" name="Instance variable">dialog_line</param>

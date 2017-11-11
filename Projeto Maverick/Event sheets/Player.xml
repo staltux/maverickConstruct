@@ -3,6 +3,14 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Player</name>
     <events>
+        <variable constant="1" name="cbfragment" sid="666932327752254" static="0" type="number">0</variable>
+        <variable constant="1" name="cbrocket" sid="917691395079898" static="0" type="number">1</variable>
+        <variable constant="0" name="ag" sid="498340881593960" static="0" type="number">45</variable>
+        <variable constant="1" name="CbDAMAGE" sid="391648741626228" static="0" type="number">0</variable>
+        <variable constant="1" name="crecall" sid="732808294504888" static="0" type="number">1</variable>
+        <variable constant="1" name="CBCOUNT" sid="484884168188159" static="0" type="number">2</variable>
+        <variable constant="1" name="cbspeed" sid="740149875881557" static="0" type="number">3</variable>
+        <variable constant="1" name="cbmaxdistance" sid="414322653879882" static="0" type="number">4</variable>
         <variable constant="0" name="isHooked" sid="463982910736409" static="0" type="number">0</variable>
         <event-block sid="537751253661824">
             <conditions>
@@ -19,9 +27,12 @@
                     <param id="1" name="Mode">0</param>
                 </action>
                 <action id="0" name="Spawn another object" sid="697730338023622" type="MaverickSprite">
-                    <param id="0" name="Object">GunDefault</param>
+                    <param id="0" name="Object">Gun</param>
                     <param id="1" name="Layer">&quot;Player&quot;</param>
                     <param id="2" name="Image point">&quot;gun&quot;</param>
+                </action>
+                <action id="5" name="Set frame" sid="142859440035502" type="Gun">
+                    <param id="0" name="Frame number">3</param>
                 </action>
             </actions>
         </event-block>
@@ -105,6 +116,74 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="278404359446497">
+                    <conditions>
+                        <condition behavior="Platform" id="3" name="Is jumping" sid="892742168103033" type="Player" />
+                        <condition disabled="1" id="-8" name="Compare two values" sid="503044631911275" type="System">
+                            <param id="0" name="First value">abs(Player.Platform.VectorX)</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="329816070238657" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;jump&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="284603020964232" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;jump&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block disabled="1" sid="803996324326003">
+                    <conditions>
+                        <condition behavior="Platform" id="3" name="Is jumping" sid="784454523008387" type="Player" />
+                        <condition id="-8" name="Compare two values" sid="737394941152949" type="System">
+                            <param id="0" name="First value">abs(Player.Platform.VectorX)</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="194146108711613" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;jump_run&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="220079260149406" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;jump_run&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="496533524277791">
+                    <conditions>
+                        <condition behavior="Platform" id="4" name="Is falling" sid="374206699576920" type="Player" />
+                        <condition id="2" inverted="1" name="Is playing" sid="168764859984617" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;fall&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="140986702539586" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;fall&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="815628531849710">
+                    <conditions>
+                        <condition behavior="Platform" id="4" name="Is falling" sid="814109835787681" type="Player" />
+                        <condition id="-8" name="Compare two values" sid="480267273637664" type="System">
+                            <param id="0" name="First value">Player.Platform.Speed</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">900</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="426553770390577" type="Player">
+                            <param id="0" name="Instance variable">hardLand</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="748681231825331" title="Gancho">
@@ -122,6 +201,10 @@
                             <param id="0" name="Variable">isHooked</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition behavior="LineOfSight" id="1" name="Has LOS to position" sid="109490170599541" type="Player">
+                            <param id="0" name="X">Mouse.X</param>
+                            <param id="1" name="Y">Mouse.Y</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -144,6 +227,12 @@
                             <param id="0" name="State">0</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="246934734647324">
+                            <conditions />
+                            <actions />
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="273570718093443">
                     <conditions>
@@ -188,9 +277,12 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="444038198661971">
+                <event-block any="1" sid="444038198661971">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="685916469212060" type="Player">
+                            <param id="0" name="Object">Solidos</param>
+                        </condition>
+                        <condition id="1" name="Is overlapping another object" sid="920754991145280" type="Player">
                             <param id="0" name="Object">Solidos</param>
                         </condition>
                     </conditions>
@@ -264,6 +356,11 @@
                     <param id="1" name="&apos;Off&apos; time">0.1</param>
                     <param id="2" name="Duration">1.0</param>
                 </action>
+                <action behavior="Flash" id="0" name="Flash" sid="840267054281600" type="Gun">
+                    <param id="0" name="&apos;On&apos; time">0.1</param>
+                    <param id="1" name="&apos;Off&apos; time">0.1</param>
+                    <param id="2" name="Duration">1.0</param>
+                </action>
                 <action id="-12" name="Subtract from" sid="972220723279089" type="Player">
                     <param id="0" name="Instance variable">hp</param>
                     <param id="1" name="Value">Function.Param(1)</param>
@@ -296,6 +393,85 @@
         </event-block>
         <event-group description="" sid="349081858193479" title="Animações">
             <sub-events>
+                <event-block sid="702598509388562">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="545191290591339" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="194443411694757" type="Gun">
+                            <param id="0" name="Object">MaverickSprite</param>
+                            <param id="1" name="Image point (optional)">&quot;gun&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="996101348352629">
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="998925645990904" type="Gun">
+                                    <param id="0" name="Instance variable">isChanging</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-8" name="Set angle" sid="748965306037776" type="Gun">
+                                    <param id="0" name="Angle">angle(Player.X,Player.Y,Mouse.X,Mouse.Y)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="198017651839773">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="693851842791072" type="Gun">
+                                    <param id="0" name="Instance variable">isChanging</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="483421914959955" type="Gun">
+                                    <param id="0" name="Instance variable">a</param>
+                                    <param id="1" name="Value">lerp(Gun.a,360,0.1)</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="985765939122480" type="Gun">
+                                    <param id="0" name="Angle">Gun.a</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="906726721583287">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="764851657374045" type="System">
+                                            <param id="0" name="First value">Mouse.X</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Player.X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="490366066385745" type="Gun">
+                                            <param id="0" name="Angle">180 - Gun.a</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="942442754930764">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="823290029714757" type="Gun">
+                                    <param id="0" name="Instance variable">isChanging</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="180822183795317" type="Gun">
+                                    <param id="0" name="Instance variable">a</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">355</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="351360615769929" type="Gun">
+                                    <param id="0" name="Instance variable">isChanging</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="647948688347516">
+                            <conditions />
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <event-block sid="606222071023529">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="199984990973911" type="System">
@@ -308,7 +484,7 @@
                         <action id="7" name="Set mirrored" sid="666099996797881" type="MaverickSprite">
                             <param id="0" name="State">0</param>
                         </action>
-                        <action id="8" name="Set flipped" sid="848952581818841" type="GunDefault">
+                        <action id="8" name="Set flipped" sid="848952581818841" type="Gun">
                             <param id="0" name="State">0</param>
                         </action>
                     </actions>
@@ -325,10 +501,10 @@
                         <action id="7" name="Set mirrored" sid="465148163489222" type="MaverickSprite">
                             <param id="0" name="State">1</param>
                         </action>
-                        <action id="8" name="Set flipped" sid="219246898151887" type="GunDefault">
+                        <action id="8" name="Set flipped" sid="219246898151887" type="Gun">
                             <param id="0" name="State">1</param>
                         </action>
-                        <action disabled="1" id="7" name="Set mirrored" sid="184279380383209" type="GunDefault">
+                        <action disabled="1" id="7" name="Set mirrored" sid="184279380383209" type="Gun">
                             <param id="0" name="State">1</param>
                         </action>
                     </actions>
@@ -336,6 +512,9 @@
                 <event-block sid="602120461263969">
                     <conditions>
                         <condition behavior="Platform" id="0" inverted="1" name="Is moving" sid="945605285314365" type="Player" />
+                        <condition id="2" inverted="1" name="Is playing" sid="159365702034825" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;land&quot;</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="4" name="Set animation" sid="962191956412512" type="MaverickSprite">
@@ -347,6 +526,8 @@
                 <event-block sid="237841522803290">
                     <conditions>
                         <condition behavior="Platform" id="0" name="Is moving" sid="354403598453450" type="Player" />
+                        <condition behavior="Platform" id="4" inverted="1" name="Is falling" sid="661340459173593" type="Player" />
+                        <condition behavior="Platform" id="3" inverted="1" name="Is jumping" sid="309097741283804" type="Player" />
                     </conditions>
                     <actions />
                     <sub-events>
@@ -432,28 +613,706 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-            </sub-events>
-        </event-group>
-        <event-block sid="702598509388562">
-            <conditions>
-                <condition id="-1" name="Every tick" sid="545191290591339" type="System" />
-            </conditions>
-            <actions>
-                <action id="-4" name="Set position to another object" sid="194443411694757" type="GunDefault">
-                    <param id="0" name="Object">MaverickSprite</param>
-                    <param id="1" name="Image point (optional)">&quot;gun&quot;</param>
-                </action>
-                <action id="-8" name="Set angle" sid="748965306037776" type="GunDefault">
-                    <param id="0" name="Angle">angle(Player.X,Player.Y,Mouse.X,Mouse.Y)</param>
-                </action>
-            </actions>
-            <sub-events>
-                <variable constant="0" name="a" sid="464599507088148" static="0" type="number">0</variable>
-                <event-block sid="647948688347516">
-                    <conditions />
-                    <actions />
+                <event-block sid="846922887837008">
+                    <conditions>
+                        <condition behavior="Platform" id="9" name="On landed" sid="569588903149358" type="Player" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="966761239149927" type="Player">
+                            <param id="0" name="Instance variable">hardLand</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="395219990568447" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;land&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="631093995247002" type="Player">
+                            <param id="0" name="Instance variable">hardLand</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="401866664633758">
+                    <conditions>
+                        <condition id="4" name="On finished" sid="499018792618277" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;land&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="632428285933102" type="MaverickSprite">
+                            <param id="0" name="Animation">&quot;stop&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
+        </event-group>
+        <event-group description="" sid="627723931076356" title="Guns">
+            <sub-events>
+                <event-block sid="103724210289122">
+                    <conditions>
+                        <condition id="0" name="On click" sid="837148064373452" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="844053334431326" type="Function">
+                            <param id="0" name="Name">&quot;Shoot&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-group description="" sid="965012642290715" title="Default">
+                    <sub-events>
+                        <event-block sid="879311681907690">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="389571499268226" type="DefaultGun" />
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" sid="892895958724717" type="DefaultGun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBDAMAGE</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="931991907226415" type="DefaultGun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CRECALL</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="364344486064953" type="DefaultGun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBCOUNT</param>
+                                    <param id="2" name="Value">5</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="566327547256390" type="DefaultGun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBSPEED</param>
+                                    <param id="2" name="Value">800</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="211172611599990" type="DefaultGun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBMAXDISTANCE</param>
+                                    <param id="2" name="Value">400</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="136654811238284">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="739707206390927" type="Rocket" />
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" sid="764706923020714" type="Rocket">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBDAMAGE</param>
+                                    <param id="2" name="Value">2</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="881844304315611" type="Rocket">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CRECALL</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="714535133356132" type="Rocket">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBCOUNT</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="776090613678284" type="Rocket">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBSPEED</param>
+                                    <param id="2" name="Value">900</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="168681654280235" type="Rocket">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBMAXDISTANCE</param>
+                                    <param id="2" name="Value">700</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="490778529846454">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="474026402813589" type="Shotgun" />
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" sid="418790139107216" type="Shotgun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBDAMAGE</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="973216520916790" type="Shotgun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CRECALL</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="972464695111802" type="Shotgun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBCOUNT</param>
+                                    <param id="2" name="Value">5</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="514455188810303" type="Shotgun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBSPEED</param>
+                                    <param id="2" name="Value">600</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="381754172569206" type="Shotgun">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBMAXDISTANCE</param>
+                                    <param id="2" name="Value">250</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="218255587001514">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="746743088178334" type="Sniper" />
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" sid="574753356855552" type="Sniper">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBDAMAGE</param>
+                                    <param id="2" name="Value">10</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="925882284569807" type="Sniper">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CRECALL</param>
+                                    <param id="2" name="Value">1</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="146493260380945" type="Sniper">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBCOUNT</param>
+                                    <param id="2" name="Value">5</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="756981087044715" type="Sniper">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBSPEED</param>
+                                    <param id="2" name="Value">1000</param>
+                                </action>
+                                <action id="3" name="Set at XY" sid="310002384022768" type="Sniper">
+                                    <param id="0" name="X">1</param>
+                                    <param id="1" name="Y">CBMAXDISTANCE</param>
+                                    <param id="2" name="Value">2000</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="607976862625604">
+                            <conditions>
+                                <condition id="0" name="On function" sid="836076753507111" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="905791771343223" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="334859751637032" type="Gun">
+                                    <param id="0" name="Object">Bullet</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="Image point">&quot;bullet&quot;</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="310466130163758" type="Bullet">
+                                    <param id="0" name="Instance variable">isRocket</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="618204407908478" type="Bullet">
+                                    <param id="0" name="Instance variable">damage</param>
+                                    <param id="1" name="Value">Guns.At(Guns.current,CBDAMAGE)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="494199979871760" type="Bullet">
+                                    <param id="0" name="Instance variable">maxDistance</param>
+                                    <param id="1" name="Value">Guns.At(Guns.current,CBMAXDISTANCE)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="927184051975330" type="Bullet">
+                                    <param id="0" name="Speed">Guns.At(Guns.current,CBSPEED)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="893741966814749">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="943390344521714" type="System">
+                                            <param id="0" name="First value">Function.ParamCount</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                        <condition id="1" name="Compare parameter" sid="259417917440887" type="Function">
+                                            <param id="0" name="Index">0</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">CBROCKET</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="967559799277172" type="Bullet">
+                                            <param id="0" name="Instance variable">isRocket</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="179243481087692">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="326586762183197" type="System">
+                                            <param id="0" name="First value">Function.ParamCount</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                        <condition id="1" name="Compare parameter" sid="635663519486726" type="Function">
+                                            <param id="0" name="Index">0</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">CBFRAGMENT</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="674099482781991" type="Bullet">
+                                            <param id="0" name="Instance variable">isFragment</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="903042557096605">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="262991293767854" type="System">
+                                            <param id="0" name="First value">Function.ParamCount</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-8" name="Set angle" sid="283950247249481" type="Bullet">
+                                            <param id="0" name="Angle">Function.Param(1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="977685022263665">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="403999121490792" type="System">
+                                            <param id="0" name="First value">Function.ParamCount</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" sid="842669820742390" type="Bullet">
+                                            <param id="0" name="X">Function.Param(2)</param>
+                                            <param id="1" name="Y">Function.Param(3)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="812306085429964">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="822456445965273" type="System">
+                                            <param id="0" name="First value">Function.ParamCount</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Second value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="530731774691985" type="Bullet">
+                                            <param id="0" name="Instance variable">damage</param>
+                                            <param id="1" name="Value">Guns.At(Guns.current,CBDAMAGE) / Function.Param(4)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="629483926571923" type="Bullet">
+                                            <param id="0" name="Instance variable">maxDistance</param>
+                                            <param id="1" name="Value">Guns.At(Guns.current,CBMAXDISTANCE) / Function.Param(4)</param>
+                                        </action>
+                                        <action behavior="Bullet" id="0" name="Set speed" sid="635023232022040" type="Bullet">
+                                            <param id="0" name="Speed">Guns.At(Guns.current,CBSPEED) / Function.Param(4)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="388786409965763">
+                            <conditions>
+                                <condition id="0" name="On function" sid="332416462033725" type="Function">
+                                    <param id="0" name="Name">&quot;Shoot&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="976999097495988" type="Player">
+                                    <param id="0" name="Instance variable">gun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">DefaultGun.id</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="873687996727241" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="303672390436743" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="3" name="Start" sid="598566509627572" type="Gun">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="138196664958760" type="System">
+                                    <param id="0" name="Object to create">DF_Recoil</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="710170889255555" type="DF_Recoil">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;recoil&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="351587647739100" type="System">
+                                    <param id="0" name="Object to create">DF_Smoke</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="454606701897521" type="DF_Smoke">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;bullet&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="311018656014033">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="379741092305342" type="System">
+                                            <param id="0" name="First value">Mouse.X</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Player.X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="675013178024400" type="DF_Recoil">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="721778243473481" type="DF_Smoke">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="269690898790848">
+                            <conditions>
+                                <condition id="0" name="On function" sid="963125805647137" type="Function">
+                                    <param id="0" name="Name">&quot;Shoot&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="472650144471032" type="Player">
+                                    <param id="0" name="Instance variable">gun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Sniper.id</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="865862842374589" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="463440029498527" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="3" name="Start" sid="515687190525850" type="Gun">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="445921951255192" type="System">
+                                    <param id="0" name="Object to create">SN_Smoke</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="609156213920531" type="SN_Smoke">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;bullet&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="754950467911056">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="941687200162006" type="System">
+                                            <param id="0" name="First value">Mouse.X</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Player.X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="126207852017481" type="SN_Smoke">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="816768425680621">
+                            <conditions>
+                                <condition id="0" name="On function" sid="133129693378794" type="Function">
+                                    <param id="0" name="Name">&quot;Shoot&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="573681572565909" type="Player">
+                                    <param id="0" name="Instance variable">gun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Rocket.id</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="573902109633636" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="488194838929051" type="Function">
+                                    <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                    <param id="1" name="Parameter {n}">CBROCKET</param>
+                                </action>
+                                <action id="3" name="Start" sid="759381631348052" type="Gun">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="921230710883652" type="System">
+                                    <param id="0" name="Object to create">RT_Recoil</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="747864192492582" type="RT_Recoil">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;recoil&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="376691206206511" type="System">
+                                    <param id="0" name="Object to create">RT_Smoke</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="941018114638221" type="RT_Smoke">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;bullet&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="699772610626290">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="568919320729020" type="System">
+                                            <param id="0" name="First value">Mouse.X</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Player.X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="349641616379933" type="RT_Recoil">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="215423409643545" type="RT_Smoke">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="455002902611729">
+                            <conditions>
+                                <condition id="0" name="On function" sid="510913940867138" type="Function">
+                                    <param id="0" name="Name">&quot;Shoot&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="730443556995695" type="Player">
+                                    <param id="0" name="Instance variable">gun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Shotgun.id</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="836070000502858" type="Guns">
+                                    <param id="0" name="Instance variable">id</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Player.gun</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Start" sid="628841794181224" type="Gun">
+                                    <param id="0" name="From">1</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="559326752839022" type="System">
+                                    <param id="0" name="Object to create">SH_Recoil</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="332712996322038" type="SH_Recoil">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;recoil&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="624762546082376" type="System">
+                                    <param id="0" name="Object to create">SH_Smoke</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">0</param>
+                                    <param id="3" name="Y">0</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="105025435265876" type="SH_Smoke">
+                                    <param id="0" name="Object">Gun</param>
+                                    <param id="1" name="Image point (optional)">&quot;bullet&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="335303342536820">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="345796076842099" type="System">
+                                            <param id="0" name="First value">Mouse.X</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Second value">Player.X</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Set mirrored" sid="684507685700116" type="SH_Recoil">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="135391821148743" type="SH_Smoke">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="551013052243859">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="187563584583252" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">8</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="943544783428832" type="Function">
+                                            <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
+                                            <param id="1" name="Parameter {n}">0{###}Gun.Angle - 20  + (loopindex * 5)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <comment>teste de armas</comment>
+        <event-block sid="468378392938794">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="652345474571600" type="Keyboard">
+                    <param id="0" name="Key">49 (1)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="714174132688479" type="Gun">
+                    <param id="0" name="Animation">&quot;default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="689623313671525" type="Gun">
+                    <param id="0" name="Frame number">3</param>
+                </action>
+                <action behavior="Flash" disabled="1" id="0" name="Flash" sid="484292491190888" type="Gun">
+                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                    <param id="2" name="Duration">0.4</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="112645910763813" type="Gun">
+                    <param id="0" name="Instance variable">isChanging</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="773514839348636" type="Gun">
+                    <param id="0" name="Instance variable">a</param>
+                    <param id="1" name="Value">280</param>
+                </action>
+                <action id="-10" name="Set value" sid="371933715560149" type="Player">
+                    <param id="0" name="Instance variable">gun</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="205518722602237">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="963699451979357" type="Keyboard">
+                    <param id="0" name="Key">50 (2)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="503844835074448" type="Gun">
+                    <param id="0" name="Animation">&quot;rocket&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="347126399554136" type="Gun">
+                    <param id="0" name="Frame number">3</param>
+                </action>
+                <action behavior="Flash" disabled="1" id="0" name="Flash" sid="125263248042050" type="Gun">
+                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                    <param id="2" name="Duration">0.4</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="596546299179562" type="Gun">
+                    <param id="0" name="Instance variable">isChanging</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="911583007130000" type="Gun">
+                    <param id="0" name="Instance variable">a</param>
+                    <param id="1" name="Value">280</param>
+                </action>
+                <action id="-10" name="Set value" sid="333907806113874" type="Player">
+                    <param id="0" name="Instance variable">gun</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="917423778836188">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="692450764486629" type="Keyboard">
+                    <param id="0" name="Key">51 (3)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="203951219896430" type="Gun">
+                    <param id="0" name="Animation">&quot;shotgun&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="651200368879480" type="Gun">
+                    <param id="0" name="Frame number">3</param>
+                </action>
+                <action behavior="Flash" disabled="1" id="0" name="Flash" sid="302723055538238" type="Gun">
+                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                    <param id="2" name="Duration">0.4</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="929531349012503" type="Gun">
+                    <param id="0" name="Instance variable">isChanging</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="992241349021807" type="Gun">
+                    <param id="0" name="Instance variable">a</param>
+                    <param id="1" name="Value">280</param>
+                </action>
+                <action id="-10" name="Set value" sid="908650013919334" type="Player">
+                    <param id="0" name="Instance variable">gun</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="422916905526582">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="858699876754825" type="Keyboard">
+                    <param id="0" name="Key">52 (4)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="623641744170293" type="Gun">
+                    <param id="0" name="Animation">&quot;sniper&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="201859339710821" type="Gun">
+                    <param id="0" name="Frame number">3</param>
+                </action>
+                <action behavior="Flash" disabled="1" id="0" name="Flash" sid="250464607411425" type="Gun">
+                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                    <param id="2" name="Duration">0.4</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="471469652829911" type="Gun">
+                    <param id="0" name="Instance variable">isChanging</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="122481182459625" type="Gun">
+                    <param id="0" name="Instance variable">a</param>
+                    <param id="1" name="Value">280</param>
+                </action>
+                <action id="-10" name="Set value" sid="954337220453193" type="Player">
+                    <param id="0" name="Instance variable">gun</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

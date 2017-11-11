@@ -6,5 +6,6 @@
         <include>Zombie</include>
         <include>HUD</include>
         <include>Player</include>
+        <include>General</include>
     </events>
 </c2eventsheet>
