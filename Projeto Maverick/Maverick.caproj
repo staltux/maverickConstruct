@@ -185,6 +185,19 @@
                     <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
                     <tiles />
                 </object-type>
+                <object-type name="StageOne_Dano" sid="784819684339234">
+                    <plugin id="Tilemap" />
+                    <behaviors>
+                        <behavior-type name="NoSave" sid="142933299164096">
+                            <behavior id="NoSave" />
+                        </behavior-type>
+                        <behavior-type name="Solid" sid="636259899225003">
+                            <behavior id="solid" />
+                        </behavior-type>
+                    </behaviors>
+                    <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
+                    <tiles />
+                </object-type>
             </object-folder>
         </object-folder>
         <object-folder name="HUD">
@@ -245,6 +258,33 @@
                         </frame>
                     </animation>
                 </animation-folder>
+            </object-type>
+            <object-type name="Gear" sid="695745466772466">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Platform" sid="912771525355058">
+                        <behavior id="Platform" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="789838043838702" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\076041-3d-transparent-glass-icon-business-gear8.png">
+                            <collision-poly>
+                                <point x="0.277344" y="0.277344" />
+                                <point x="0.5" y="0.101563" />
+                                <point x="0.730469" y="0.269531" />
+                                <point x="0.910156" y="0.5" />
+                                <point x="0.738281" y="0.738281" />
+                                <point x="0.5" y="0.914063" />
+                                <point x="0.269531" y="0.730469" />
+                                <point x="0.101563" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="GearText" sid="234582880113990">
+                <plugin id="Text" />
             </object-type>
         </object-folder>
         <object-folder name="Maverick">
@@ -625,6 +665,7 @@
                     <instance-variable name="direction" sid="955119993547784" type="number" />
                     <instance-variable name="gun" sid="483164702638504" type="number" />
                     <instance-variable name="hardLand" sid="925838384198771" type="boolean" />
+                    <instance-variable name="gears" sid="282292854995949" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Platform" sid="918633367788123">
@@ -858,6 +899,14 @@
                 </behavior-type>
             </behaviors>
         </object-type>
+        <object-type name="EndStage" sid="665453303704064">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="886854734135017" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Solidos" plugin-id="Tilemap" sid="501274490816367">
@@ -867,6 +916,7 @@
         </family>
         <family name="Plataformas" plugin-id="Tilemap" sid="598905925904010">
             <members>
+                <member>StageOne_Dano</member>
                 <member>StageOne_Plataforma</member>
             </members>
         </family>
@@ -903,6 +953,7 @@
         <layout>MainMenu.xml</layout>
         <layout>LeonardOffice.xml</layout>
         <layout>Stage_One.xml</layout>
+        <layout>Dash.xml</layout>
         <layout>HUD.xml</layout>
     </layout-folder>
     <event-folder>
@@ -913,6 +964,7 @@
         <event-sheet>HUD.xml</event-sheet>
         <event-sheet>Zombie.xml</event-sheet>
         <event-sheet>General.xml</event-sheet>
+        <event-sheet>Dash.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="0" />

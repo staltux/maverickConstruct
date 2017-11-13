@@ -124,6 +124,14 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="720521967597112">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="753092657045342" type="GearText">
+                            <param id="0" name="Text">&quot;&quot; &amp; Player.gears</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-block>
     </events>

@@ -224,7 +224,16 @@
                     <param id="2" name="Value">0</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="0" name="Spawn another object" sid="691152150726714" type="Zombie">
+                    <param id="0" name="Object">Gear</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action behavior="Platform" id="11" name="Set enabled" sid="248585197992854" type="Gear">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
             <sub-events>
                 <event-block sid="556823598089034">
                     <conditions>

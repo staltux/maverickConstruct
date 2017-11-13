@@ -7,5 +7,31 @@
         <include>HUD</include>
         <include>Player</include>
         <include>General</include>
+        <event-block sid="641191187420496">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="122045089279691" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set layer visible" sid="157376917825411" type="System">
+                    <param id="0" name="Layer">&quot;Gear&quot;</param>
+                    <param id="1" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="632096321303219">
+            <conditions>
+                <condition id="-19" name="On destroyed" sid="481769666374458" type="Zombie" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set layer visible" sid="236862753712263" type="System">
+                    <param id="0" name="Layer">&quot;Gear&quot;</param>
+                    <param id="1" name="Visibility">1</param>
+                </action>
+                <action id="-4" name="Set layer visible" sid="281220848940314" type="System">
+                    <param id="0" name="Layer">&quot;Texts&quot;</param>
+                    <param id="1" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

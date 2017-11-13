@@ -97,5 +97,48 @@
                 <action id="-9" name="Destroy" sid="660769847430001" type="Particles" />
             </actions>
         </event-block>
+        <event-block sid="395032325598393">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="804254392113099" type="Gear">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="208552124735303" type="Player">
+                    <param id="0" name="Instance variable">gears</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="326190148174846" type="Gear" />
+                <action id="0" name="Call function" sid="323185344617113" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="836472905230415">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="563934440487339" type="EndStage">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-43" name="Go to next/previous layout" sid="559027089970080" type="System">
+                    <param id="0" name="Which">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="961088230425313">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="777135016939587" type="Player">
+                    <param id="0" name="Object">StageOne_Dano</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="239256238265440" type="Function">
+                    <param id="0" name="Name">&quot;Damage&quot;</param>
+                    <param id="1" name="Parameter {n}">Player.UID{###}4</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

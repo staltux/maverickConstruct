@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Dash</name>
+    <events>
+        <include>Zombie</include>
+        <include>HUD</include>
+        <include>Player</include>
+        <include>General</include>
+    </events>
+</c2eventsheet>
