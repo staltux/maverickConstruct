@@ -196,7 +196,16 @@
                         </behavior-type>
                     </behaviors>
                     <texture original-source="C:\Users\alexf\workspace\maverickConstruct\TMXs\../PNGs/tileset.png" />
-                    <tiles />
+                    <tiles>
+                        <tile id="8">
+                            <collision-poly>
+                                <point x="0.375" y="0.0742188" />
+                                <point x="0.625" y="0.0703125" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </tile>
+                    </tiles>
                 </object-type>
             </object-folder>
         </object-folder>
@@ -297,6 +306,8 @@
                         <type>Shotgun</type>
                         <type>Rocket</type>
                         <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
                     </container>
                 </object-type>
                 <object-type name="Bullet" sid="932667498791519">
@@ -418,6 +429,8 @@
                         <type>Shotgun</type>
                         <type>Rocket</type>
                         <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
                     </container>
                 </object-type>
                 <object-type global="1" name="Rocket" sid="167694548128856">
@@ -428,6 +441,8 @@
                         <type>Shotgun</type>
                         <type>Rocket</type>
                         <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
                     </container>
                 </object-type>
                 <object-type global="1" name="Sniper" sid="976154998936813">
@@ -438,6 +453,8 @@
                         <type>Shotgun</type>
                         <type>Rocket</type>
                         <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
                     </container>
                 </object-type>
             </object-folder>
@@ -518,6 +535,35 @@
                             <frame duration="1" hotspotX="0.804762" hotspotY="0.442857" original-source="C:\Users\alexf\workspace\maverickConstruct\PNGs\Sniper\ST_Smoke\ST_Frame4_Smoke.png" />
                         </animation>
                     </animation-folder>
+                </object-type>
+            </object-folder>
+            <object-folder name="Skills">
+                <object-type global="1" name="Dash" sid="259638423134450">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
+                    </container>
+                </object-type>
+                <object-type global="1" name="WallJump" sid="696984594388609">
+                    <plugin id="Arr" />
+                    <container>
+                        <type>Player</type>
+                        <type>DefaultGun</type>
+                        <type>Shotgun</type>
+                        <type>Rocket</type>
+                        <type>Sniper</type>
+                        <type>Dash</type>
+                        <type>WallJump</type>
+                    </container>
+                </object-type>
+                <object-type global="1" name="Fall" sid="673819947346534">
+                    <plugin id="Arr" />
                 </object-type>
             </object-folder>
             <object-type name="MaverickSprite" sid="147427982239858">
@@ -666,6 +712,7 @@
                     <instance-variable name="gun" sid="483164702638504" type="number" />
                     <instance-variable name="hardLand" sid="925838384198771" type="boolean" />
                     <instance-variable name="gears" sid="282292854995949" type="number" />
+                    <instance-variable name="speedFall" sid="649626399633136" type="boolean" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Platform" sid="918633367788123">
@@ -677,6 +724,9 @@
                     <behavior-type name="LineOfSight" sid="878838581367081">
                         <behavior id="LOS" />
                     </behavior-type>
+                    <behavior-type name="Timer" sid="659683185498517">
+                        <behavior id="Timer" />
+                    </behavior-type>
                 </behaviors>
                 <container>
                     <type>Player</type>
@@ -684,6 +734,8 @@
                     <type>Shotgun</type>
                     <type>Rocket</type>
                     <type>Sniper</type>
+                    <type>Dash</type>
+                    <type>WallJump</type>
                 </container>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="858568115891643" speed="5">
@@ -907,6 +959,19 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="FallDamage" sid="998702852823124">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Timer" sid="380901770398246">
+                    <behavior id="Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="953003500973466" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="Solidos" plugin-id="Tilemap" sid="501274490816367">
@@ -947,14 +1012,30 @@
                 <member>SN_Smoke</member>
             </members>
         </family>
+        <family name="Skill" plugin-id="Arr" sid="840262472544288">
+            <members>
+                <member>Dash</member>
+                <member>Fall</member>
+                <member>WallJump</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="id" sid="269425378351999" type="number" />
+                <instance-variable name="lastKey" sid="830808407387116" type="number" />
+                <instance-variable name="lastKeyTime" sid="868454774796972" type="number" />
+                <instance-variable name="keyTime" sid="156318854125069" type="number" />
+                <instance-variable name="speed_mult" sid="270084252070715" type="number" />
+            </instance-variables>
+        </family>
     </families>
     <layout-folder>
         <layout>HomeScreen.xml</layout>
         <layout>MainMenu.xml</layout>
         <layout>LeonardOffice.xml</layout>
+        <layout>HUD.xml</layout>
         <layout>Stage_One.xml</layout>
         <layout>Dash.xml</layout>
-        <layout>HUD.xml</layout>
+        <layout>WallJump.xml</layout>
+        <layout>Fall.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Event sheet 1.xml</event-sheet>
@@ -965,6 +1046,7 @@
         <event-sheet>Zombie.xml</event-sheet>
         <event-sheet>General.xml</event-sheet>
         <event-sheet>Dash.xml</event-sheet>
+        <event-sheet>WallJump.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Keyboard" uid="0" />

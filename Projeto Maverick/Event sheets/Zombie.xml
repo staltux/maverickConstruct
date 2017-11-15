@@ -233,6 +233,9 @@
                 <action behavior="Platform" id="11" name="Set enabled" sid="248585197992854" type="Gear">
                     <param id="0" name="State">1</param>
                 </action>
+                <action id="11" name="Set collisions enabled" sid="726749813279807" type="Gear">
+                    <param id="0" name="Collisions">1</param>
+                </action>
             </actions>
             <sub-events>
                 <event-block sid="556823598089034">

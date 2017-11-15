@@ -3,6 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Player</name>
     <events>
+        <variable constant="0" name="MAX_PLAYER_SPEED" sid="490924693314299" static="0" type="number">0</variable>
+        <variable constant="0" name="PLAYER_GRAVITY" sid="377675473074489" static="0" type="number">0</variable>
+        <variable constant="1" name="dash" sid="971073604953582" static="0" type="number">0</variable>
+        <variable constant="1" name="FALL" sid="910289035786541" static="0" type="number">2</variable>
         <variable constant="1" name="cbfragment" sid="666932327752254" static="0" type="number">0</variable>
         <variable constant="1" name="cbrocket" sid="917691395079898" static="0" type="number">1</variable>
         <variable constant="0" name="ag" sid="498340881593960" static="0" type="number">45</variable>
@@ -33,6 +37,14 @@
                 </action>
                 <action id="5" name="Set frame" sid="142859440035502" type="Gun">
                     <param id="0" name="Frame number">3</param>
+                </action>
+                <action id="-9" name="Set value" sid="225660084288703" type="System">
+                    <param id="0" name="Variable">MAX_PLAYER_SPEED</param>
+                    <param id="1" name="Value">Player.Platform.MaxSpeed</param>
+                </action>
+                <action id="-9" name="Set value" sid="799020049924203" type="System">
+                    <param id="0" name="Variable">PLAYER_GRAVITY</param>
+                    <param id="1" name="Value">Player.Platform.Gravity</param>
                 </action>
             </actions>
         </event-block>
@@ -1312,6 +1324,356 @@
                     <param id="0" name="Instance variable">gun</param>
                     <param id="1" name="Value">3</param>
                 </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="885146429929745" title="Skills">
+            <sub-events>
+                <event-group description="" sid="145631239032980" title="Dash">
+                    <sub-events>
+                        <event-block sid="526551814667855">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="150392112962599" type="Keyboard">
+                                    <param id="0" name="Key">68 (D)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="871645220075195" type="Function">
+                                    <param id="0" name="Name">&quot;Dash&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="312188439119909">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="731673219139908" type="Keyboard">
+                                    <param id="0" name="Key">65 (A)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="282929403944890" type="Function">
+                                    <param id="0" name="Name">&quot;Dash&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="652268104148409">
+                            <conditions>
+                                <condition id="0" name="On function" sid="502333953726806" type="Function">
+                                    <param id="0" name="Name">&quot;Dash&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="703970507490287">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="831008303562173" type="Skill">
+                                            <param id="0" name="Instance variable">lastKey</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Keyboard.LastKeyCode</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="473758797959200" type="Skill">
+                                            <param id="0" name="Instance variable">id</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">DASH</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" sid="492348874361570" type="System">
+                                            <param id="0" name="First value">time - Skill.lastKeyTime</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">Skill.keyTime</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="9" name="Set vector Y" sid="573960596202141" type="Player">
+                                            <param id="0" name="Vector Y">0</param>
+                                        </action>
+                                        <action behavior="Platform" id="5" name="Set gravity" sid="673109446191725" type="Player">
+                                            <param id="0" name="Gravity">0</param>
+                                        </action>
+                                        <action behavior="Platform" id="1" name="Set max speed" sid="298585686043103" type="Player">
+                                            <param id="0" name="Max Speed">MAX_PLAYER_SPEED * Dash.speed_mult</param>
+                                        </action>
+                                        <action behavior="Timer" id="0" name="Start timer" sid="595265642335368" type="Player">
+                                            <param id="0" name="Duration">0.5</param>
+                                            <param id="1" name="Type">0</param>
+                                            <param id="2" name="Tag">&quot;Dash&quot;</param>
+                                        </action>
+                                        <action id="-23" name="Move at angle" sid="326545039830404" type="Player">
+                                            <param id="0" name="Angle">-90</param>
+                                            <param id="1" name="Distance">2</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="159207888909747">
+                                            <conditions>
+                                                <condition id="2" name="Key is down" sid="838928005142934" type="Keyboard">
+                                                    <param id="0" name="Key">68 (D)</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Platform" id="8" name="Set vector X" sid="799716351952563" type="Player">
+                                                    <param id="0" name="Vector X">MAX_PLAYER_SPEED * Dash.speed_mult</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="170893016228348">
+                                            <conditions>
+                                                <condition id="2" name="Key is down" sid="604563077993303" type="Keyboard">
+                                                    <param id="0" name="Key">65 (A)</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Platform" id="8" name="Set vector X" sid="223817199178998" type="Player">
+                                                    <param id="0" name="Vector X">-MAX_PLAYER_SPEED * Dash.speed_mult</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="798900030680994">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="942438212821454" type="Skill">
+                                            <param id="0" name="Instance variable">lastKey</param>
+                                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="653512991804994" type="Skill">
+                                            <param id="0" name="Instance variable">lastKeyTime</param>
+                                            <param id="1" name="Value">time</param>
+                                        </action>
+                                        <action id="14" name="Log" sid="498677790645533" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;time is:&quot; &amp; time</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block any="1" sid="982886596195111">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="239283591017739" type="Player">
+                                    <param id="0" name="Tag">&quot;Dash&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="5" name="Set gravity" sid="614888156352659" type="Player">
+                                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
+                                </action>
+                                <action behavior="Platform" id="1" name="Set max speed" sid="948452650893236" type="Player">
+                                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="595291509739762">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="197650996384302" type="Player">
+                                    <param id="0" name="Object">StageOne_Solido</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="5" name="Set gravity" sid="303206169143900" type="Player">
+                                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
+                                </action>
+                                <action behavior="Platform" id="1" name="Set max speed" sid="465328753369389" type="Player">
+                                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="583394215818557" title="WallJump">
+                    <sub-events>
+                        <event-block sid="370803280887764">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="283297515359387" type="Keyboard">
+                                    <param id="0" name="Key">68 (D)</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" name="Is by wall" sid="809472669520350" type="Player">
+                                    <param id="0" name="Side">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="722917252804066" type="Function">
+                                    <param id="0" name="Name">&quot;WallJump&quot;</param>
+                                    <param id="1" name="Parameter {n}">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="968239517541310">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="936288291725468" type="Keyboard">
+                                    <param id="0" name="Key">65 (A)</param>
+                                </condition>
+                                <condition behavior="Platform" id="10" name="Is by wall" sid="191570669294245" type="Player">
+                                    <param id="0" name="Side">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="207577551218762" type="Function">
+                                    <param id="0" name="Name">&quot;WallJump&quot;</param>
+                                    <param id="1" name="Parameter {n}">-1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="525818540000144">
+                            <conditions>
+                                <condition id="0" name="On function" sid="298007197581071" type="Function">
+                                    <param id="0" name="Name">&quot;WallJump&quot;</param>
+                                </condition>
+                                <condition behavior="Platform" id="2" inverted="1" name="Is on floor" sid="874828658895054" type="Player" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="9" name="Set vector Y" sid="241095984521178" type="Player">
+                                    <param id="0" name="Vector Y">-Player.Platform.JumpStrength</param>
+                                </action>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="125212429860167" type="Player">
+                                    <param id="0" name="Vector X">Player.Platform.MaxSpeed * Function.Param(0)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="523913222348033" title="Fall">
+                    <sub-events>
+                        <event-block sid="279786220305988">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="123202092075991" type="Keyboard">
+                                    <param id="0" name="Key">83 (S)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="877301788230011" type="Function">
+                                    <param id="0" name="Name">&quot;Fall&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="196578652660959">
+                            <conditions>
+                                <condition id="0" name="On function" sid="608158838936104" type="Function">
+                                    <param id="0" name="Name">&quot;Fall&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="620886232721998">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="554461163722096" type="Skill">
+                                            <param id="0" name="Instance variable">lastKey</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Keyboard.LastKeyCode</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="589529930832122" type="Skill">
+                                            <param id="0" name="Instance variable">id</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">FALL</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" sid="429676293847165" type="System">
+                                            <param id="0" name="First value">time - Skill.lastKeyTime</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">Skill.keyTime</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="9" name="Set vector Y" sid="741252606477536" type="Player">
+                                            <param id="0" name="Vector Y">MAX_PLAYER_SPEED *  Fall.speed_mult</param>
+                                        </action>
+                                        <action behavior="Platform" id="1" name="Set max speed" sid="674722960675732" type="Player">
+                                            <param id="0" name="Max Speed">MAX_PLAYER_SPEED * Fall.speed_mult</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="562885549142626" type="Player">
+                                            <param id="0" name="Instance variable">speedFall</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="223198538527298">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="316068381241894" type="Skill">
+                                            <param id="0" name="Instance variable">lastKey</param>
+                                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="508920683848009" type="Skill">
+                                            <param id="0" name="Instance variable">lastKeyTime</param>
+                                            <param id="1" name="Value">time</param>
+                                        </action>
+                                        <action id="14" name="Log" sid="181120417380888" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;time is:&quot; &amp; time</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="343848837334483">
+                            <conditions>
+                                <condition id="0" name="On collision with another object" sid="665590356889097" type="Player">
+                                    <param id="0" name="Object">StageOne_Solido</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="975777575606967" type="Player">
+                                    <param id="0" name="Instance variable">speedFall</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="5" name="Set gravity" sid="531622648523989" type="Player">
+                                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
+                                </action>
+                                <action behavior="Platform" id="1" name="Set max speed" sid="471770628157222" type="Player">
+                                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="177087716720808" type="Player">
+                                    <param id="0" name="Object">Bullet</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="862910055565895" type="Bullet">
+                                    <param id="0" name="Instance variable">maxDistance</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="680693312151203" type="Bullet">
+                                    <param id="0" name="Instance variable">damage</param>
+                                    <param id="1" name="Value">16</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="502447378600233" type="Bullet">
+                                    <param id="0" name="Speed">1</param>
+                                </action>
+                                <action id="-5" name="Set width" sid="129378432459085" type="Bullet">
+                                    <param id="0" name="Width">400</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="804845913627841" type="Bullet">
+                                    <param id="0" name="Instance variable">isFragment</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="742354717456831" type="Player">
+                                    <param id="0" name="Instance variable">speedFall</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-block sid="275794947062714">
+            <conditions>
+                <condition id="-18" name="On created" sid="438734497030425" type="FallDamage" />
+            </conditions>
+            <actions>
+                <action behavior="Timer" id="0" name="Start timer" sid="769854367321193" type="FallDamage">
+                    <param id="0" name="Duration">1.0</param>
+                    <param id="1" name="Type">0</param>
+                    <param id="2" name="Tag">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="766225844629363">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="113144660803350" type="FallDamage">
+                    <param id="0" name="Tag">&quot;&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="949164789907902" type="FallDamage" />
             </actions>
         </event-block>
     </events>

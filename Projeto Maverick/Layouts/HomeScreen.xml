@@ -143,6 +143,20 @@
                 <id>3</id>
             </instance-variables>
         </instance>
+        <instance type="WallJump" uid="120">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <id>1</id>
+                <lastKey>0</lastKey>
+                <lastKeyTime>0</lastKeyTime>
+                <keyTime>0.5</keyTime>
+                <speed_mult>0</speed_mult>
+            </instance-variables>
+        </instance>
     </nonworld-instances>
     <effects />
 </c2layout>

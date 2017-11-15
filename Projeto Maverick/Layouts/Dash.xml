@@ -51,8 +51,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>0</x>
-                        <y>0</y>
+                        <x>414</x>
+                        <y>321</y>
                         <z>0</z>
                         <width>1088</width>
                         <height>448</height>
@@ -245,8 +245,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>0</x>
-                        <y>0</y>
+                        <x>412</x>
+                        <y>321</y>
                         <z>0</z>
                         <width>1088</width>
                         <height>448</height>
@@ -300,8 +300,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>288</x>
-                        <y>47</y>
+                        <x>702</x>
+                        <y>368</y>
                         <z>0</z>
                         <width>477</width>
                         <height>253</height>
@@ -326,8 +326,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>358</x>
-                        <y>88</y>
+                        <x>772</x>
+                        <y>409</y>
                         <z>0</z>
                         <width>379</width>
                         <height>63</height>
@@ -353,8 +353,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>347.05480957</x>
-                        <y>127.666732788</y>
+                        <x>761</x>
+                        <y>449</y>
                         <z>0</z>
                         <width>362.754333496</width>
                         <height>143.429458618</height>
@@ -427,6 +427,7 @@
                         <gun>0</gun>
                         <hardLand>false</hardLand>
                         <gears>0</gears>
+                        <speedFall>false</speedFall>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -456,12 +457,13 @@
                                 <use-collision-cells>Yes</use-collision-cells>
                             </properties>
                         </behavior-instance>
+                        <behavior-instance type="Timer" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>147</x>
-                        <y>205</y>
+                        <x>561</x>
+                        <y>526</y>
                         <z>0</z>
                         <width>64</width>
                         <height>192</height>
@@ -706,10 +708,10 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>949.5</x>
-                        <y>186</y>
+                        <x>1406</x>
+                        <y>512</y>
                         <z>0</z>
-                        <width>133</width>
+                        <width>57</width>
                         <height>250</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
@@ -740,6 +742,21 @@
             <effects />
         </layer>
     </layers>
-    <nonworld-instances />
+    <nonworld-instances>
+        <instance type="Dash" uid="74">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <id>0</id>
+                <lastKey>0</lastKey>
+                <lastKeyTime>0</lastKeyTime>
+                <keyTime>0.5</keyTime>
+                <speed_mult>2.5</speed_mult>
+            </instance-variables>
+        </instance>
+    </nonworld-instances>
     <effects />
 </c2layout>
