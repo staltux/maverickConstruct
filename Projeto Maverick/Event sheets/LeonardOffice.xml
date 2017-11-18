@@ -4,7 +4,6 @@
     <name>LeonardOffice</name>
     <events>
         <variable constant="0" name="isFadding" sid="985832975208919" static="0" type="number">0</variable>
-        <variable constant="0" name="NEXT_STAGE" sid="175344652335313" static="0" type="text">Stage_One</variable>
         <variable constant="1" name="dialog_how" sid="224691652065650" static="0" type="number">0</variable>
         <variable constant="1" name="DIALOG_TEXT" sid="805879620322073" static="0" type="number">1</variable>
         <variable constant="1" name="dialog_maverick" sid="176224662364794" static="0" type="number">0</variable>
@@ -141,8 +140,8 @@
                     <param id="0" name="Instance variable">dialog_line</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="-25" name="Go to layout (by name)" sid="984235964072359" type="System">
-                    <param id="0" name="Layout">NEXT_STAGE</param>
+                <action id="-2" name="Go to layout" sid="984235964072359" type="System">
+                    <param id="0" name="Layout">Stage_One</param>
                 </action>
             </actions>
         </event-block>

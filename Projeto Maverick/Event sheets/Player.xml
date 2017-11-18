@@ -7,8 +7,8 @@
         <variable constant="0" name="PLAYER_GRAVITY" sid="377675473074489" static="0" type="number">0</variable>
         <variable constant="1" name="dash" sid="971073604953582" static="0" type="number">0</variable>
         <variable constant="1" name="FALL" sid="910289035786541" static="0" type="number">2</variable>
-        <variable constant="1" name="cbfragment" sid="666932327752254" static="0" type="number">0</variable>
-        <variable constant="1" name="cbrocket" sid="917691395079898" static="0" type="number">1</variable>
+        <variable constant="1" name="CBFRAGMENT" sid="666932327752254" static="0" type="number">1</variable>
+        <variable constant="1" name="CBROCKET" sid="917691395079898" static="0" type="number">2</variable>
         <variable constant="0" name="ag" sid="498340881593960" static="0" type="number">45</variable>
         <variable constant="1" name="CbDAMAGE" sid="391648741626228" static="0" type="number">0</variable>
         <variable constant="1" name="crecall" sid="732808294504888" static="0" type="number">1</variable>
@@ -35,6 +35,10 @@
                     <param id="1" name="Layer">&quot;Player&quot;</param>
                     <param id="2" name="Image point">&quot;gun&quot;</param>
                 </action>
+                <action behavior="Pin" disabled="1" id="0" name="Pin to object" sid="178431159452659" type="Gun">
+                    <param id="0" name="Pin to">MaverickSprite</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
                 <action id="5" name="Set frame" sid="142859440035502" type="Gun">
                     <param id="0" name="Frame number">3</param>
                 </action>
@@ -45,6 +49,30 @@
                 <action id="-9" name="Set value" sid="799020049924203" type="System">
                     <param id="0" name="Variable">PLAYER_GRAVITY</param>
                     <param id="1" name="Value">Player.Platform.Gravity</param>
+                </action>
+                <action id="-3" name="Create object" sid="441468205970484" type="System">
+                    <param id="0" name="Object to create">MouseTarget</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="702002621793036" type="Player">
+                    <param id="0" name="Object">Sopt</param>
+                    <param id="1" name="Layer">&quot;black&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="297782471846758" type="Sopt">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="2" name="Stop" sid="672943500409812" type="Sopt" />
+                <action id="5" name="Set frame" sid="535907610982774" type="Sopt">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="164430810877998" type="Player">
+                    <param id="0" name="Object">Skull</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">0</param>
                 </action>
             </actions>
         </event-block>
@@ -108,6 +136,10 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="0" name="Call function" sid="243958322109165" type="Function">
+                            <param id="0" name="Name">&quot;ResetPlayerSpeed&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
                         <action behavior="Platform" id="9" name="Set vector Y" sid="925569729530120" type="Player">
                             <param id="0" name="Vector Y">-Player.Platform.JumpStrength</param>
                         </action>
@@ -206,9 +238,6 @@
                             <param id="0" name="Mouse button">2</param>
                             <param id="1" name="Click type">0</param>
                         </condition>
-                        <condition id="1" name="Is overlapping another object" sid="576143949761612" type="MouseTarget">
-                            <param id="0" name="Object">StageOne_Gancho</param>
-                        </condition>
                         <condition id="-14" name="Compare variable" sid="511475656362555" type="System">
                             <param id="0" name="Variable">isHooked</param>
                             <param id="1" name="Comparison">0</param>
@@ -220,29 +249,73 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Platform" id="0" name="Set ignoring input" sid="804910656619244" type="Player">
-                            <param id="0" name="Input">1</param>
-                        </action>
-                        <action id="-9" name="Set value" sid="943011871069041" type="System">
-                            <param id="0" name="Variable">isHooked</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="820806801522636" type="MouseTarget">
-                            <param id="0" name="Instance variable">hookx</param>
-                            <param id="1" name="Value">StageOne_Gancho.SnapX(Mouse.X)</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="761547794449693" type="MouseTarget">
-                            <param id="0" name="Instance variable">hooky</param>
-                            <param id="1" name="Value">StageOne_Gancho.SnapY(Mouse.Y)</param>
-                        </action>
-                        <action behavior="Platform" id="11" name="Set enabled" sid="166680101858120" type="Player">
-                            <param id="0" name="State">0</param>
+                        <action id="14" name="Log" sid="871430759670373" type="Browser">
+                            <param id="0" name="Type">0</param>
+                            <param id="1" name="Message">&quot;Have Line&quot;</param>
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block sid="246934734647324">
-                            <conditions />
-                            <actions />
+                        <event-block any="1" sid="246934734647324">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="576143949761612" type="MouseTarget">
+                                    <param id="0" name="Object">StageOne_Gancho</param>
+                                </condition>
+                                <condition id="1" name="Is overlapping another object" sid="613842092987522" type="MouseTarget">
+                                    <param id="0" name="Object">HookPoint</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="920473848537843" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Um ou outro&quot;</param>
+                                </action>
+                                <action behavior="Platform" id="0" name="Set ignoring input" sid="804910656619244" type="Player">
+                                    <param id="0" name="Input">1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="943011871069041" type="System">
+                                    <param id="0" name="Variable">isHooked</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action behavior="Platform" id="11" name="Set enabled" sid="166680101858120" type="Player">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block any="1" sid="390666285817865">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="435765149916138" type="MouseTarget">
+                                            <param id="0" name="Object">StageOne_Gancho</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="820806801522636" type="MouseTarget">
+                                            <param id="0" name="Instance variable">hookx</param>
+                                            <param id="1" name="Value">StageOne_Gancho.SnapX(Mouse.X)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="761547794449693" type="MouseTarget">
+                                            <param id="0" name="Instance variable">hooky</param>
+                                            <param id="1" name="Value">StageOne_Gancho.SnapY(Mouse.Y)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="521267459069467">
+                                    <conditions>
+                                        <condition id="1" name="Is overlapping another object" sid="756545801226261" type="MouseTarget">
+                                            <param id="0" name="Object">HookPoint</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="930558358828553" type="MouseTarget">
+                                            <param id="0" name="Instance variable">hookx</param>
+                                            <param id="1" name="Value">HookPoint.X</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="155460927350935" type="MouseTarget">
+                                            <param id="0" name="Instance variable">hooky</param>
+                                            <param id="1" name="Value">HookPoint.Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -1328,6 +1401,205 @@
         </event-block>
         <event-group description="" sid="885146429929745" title="Skills">
             <sub-events>
+                <event-group description="" sid="121929128081618" title="Skull">
+                    <sub-events>
+                        <variable constant="0" name="vel" sid="330471819136447" static="0" type="number">0</variable>
+                        <event-block sid="201808363453538">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="680921830250340" type="Skull" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Timer" id="0" name="Start timer" sid="989779878162458" type="Skull">
+                                    <param id="0" name="Duration">1.0</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;Flow&quot;</param>
+                                </action>
+                                <action behavior="Timer" id="0" name="Start timer" sid="107422342417140" type="Skull">
+                                    <param id="0" name="Duration">20</param>
+                                    <param id="1" name="Type">1</param>
+                                    <param id="2" name="Tag">&quot;Heal&quot;</param>
+                                </action>
+                                <action behavior="Timer" id="0" name="Start timer" sid="144597075957008" type="Skull">
+                                    <param id="0" name="Duration">10</param>
+                                    <param id="1" name="Type">1</param>
+                                    <param id="2" name="Tag">&quot;SP&quot;</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="817427838301448" type="Skull">
+                                    <param id="0" name="Object">SkullSprite</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="155144172090496" type="SkullSprite">
+                                    <param id="0" name="Pin to">Skull</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="640085888902532" type="Skull">
+                                    <param id="0" name="Object">Sopt</param>
+                                    <param id="1" name="Layer">&quot;black&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="551056726966292" type="Sopt">
+                                    <param id="0" name="Pin to">Skull</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="948279860949426" type="Sopt">
+                                    <param id="0" name="Width">160</param>
+                                    <param id="1" name="Height">160</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="929925089365471">
+                            <conditions />
+                            <actions>
+                                <action id="-10" name="Set value" sid="535220204259504" type="Skull">
+                                    <param id="0" name="Instance variable">targetX</param>
+                                    <param id="1" name="Value">Player.ImagePointX(Skull.Point)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="134822563988356" type="Skull">
+                                    <param id="0" name="Instance variable">targetY</param>
+                                    <param id="1" name="Value">Player.ImagePointY(Skull.Point)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="657069984185891" type="System">
+                                    <param id="0" name="Variable">vel</param>
+                                    <param id="1" name="Value">(distance(Skull.X,Skull.Y,Skull.targetX,Skull.targetY)/64) * Skull.maxSpeed</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="630676914167143" type="System">
+                                    <param id="0" name="Variable">vel</param>
+                                    <param id="1" name="Value">vel &lt; 2 ? 2 : vel</param>
+                                </action>
+                                <action id="-23" name="Move at angle" sid="354349461726190" type="Skull">
+                                    <param id="0" name="Angle">angle(Skull.X,Skull.Y,Skull.targetX,Skull.targetY)</param>
+                                    <param id="1" name="Distance">vel</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="395524346976228">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="258712769824585" type="Skull">
+                                    <param id="0" name="Instance variable">targetX</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">Skull.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="284534794917034" type="SkullSprite">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="120114611132146">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="665431954066582" type="System" />
+                                <condition id="-7" name="Compare instance variable" sid="170227844917921" type="Skull">
+                                    <param id="0" name="Instance variable">targetX</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">Skull.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Set mirrored" sid="885433017069811" type="SkullSprite">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="729763311413292">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="766817745292396" type="Skull">
+                                    <param id="0" name="Tag">&quot;Heal&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="624233514464571" type="Player">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">Player.hpMax</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" sid="787444259181395" type="SkullSprite">
+                                    <param id="0" name="Animation">&quot;action&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="147456520360373" type="SkullSprite">
+                                    <param id="0" name="Object">SkullSmoke</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="841202738005241">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="865753380121001" type="Skull">
+                                    <param id="0" name="Tag">&quot;SP&quot;</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="229867859022069" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">Player.spMax</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="698033419987259" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="694765946103280" type="Function">
+                                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="718879831431951">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="568317708926115" type="Skull">
+                                    <param id="0" name="Tag">&quot;Flow&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="338828578177399" type="Skull">
+                                    <param id="0" name="Instance variable">Point</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="931538192853090" type="Skull">
+                                    <param id="0" name="Instance variable">Point</param>
+                                    <param id="1" name="Value">Skull.Point%(Player.ImagePointCount-1)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="786411858887189" type="Skull">
+                                    <param id="0" name="Instance variable">Point</param>
+                                    <param id="1" name="Value">Skull.Point=0? 1:Skull.Point</param>
+                                </action>
+                                <action behavior="Timer" id="0" name="Start timer" sid="453380414244634" type="Skull">
+                                    <param id="0" name="Duration">random(8)/7</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;Flow&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="699024609662630">
+                            <conditions>
+                                <condition id="4" name="On finished" sid="514116387208238" type="SkullSprite">
+                                    <param id="0" name="Animation">&quot;action&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="371103795303582" type="Player">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="978480790799830" type="SkullSprite">
+                                    <param id="0" name="Animation">&quot;idle&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="103664358116983" type="Function">
+                                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="410577878724462">
+                            <conditions />
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-group>
                 <event-group description="" sid="145631239032980" title="Dash">
                     <sub-events>
                         <event-block sid="526551814667855">
@@ -1361,8 +1633,18 @@
                                 <condition id="0" name="On function" sid="502333953726806" type="Function">
                                     <param id="0" name="Name">&quot;Dash&quot;</param>
                                 </condition>
+                                <condition id="-7" name="Compare instance variable" sid="768323714651080" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="0" name="Call function" sid="286629392260631" type="Function">
+                                    <param id="0" name="Name">&quot;ResetPlayerSpeed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <event-block sid="703970507490287">
                                     <conditions>
@@ -1380,6 +1662,11 @@
                                             <param id="0" name="First value">time - Skill.lastKeyTime</param>
                                             <param id="1" name="Comparison">3</param>
                                             <param id="2" name="Second value">Skill.keyTime</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" sid="202983136593783" type="System">
+                                            <param id="0" name="First value">Skill.realod</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -1400,6 +1687,18 @@
                                         <action id="-23" name="Move at angle" sid="326545039830404" type="Player">
                                             <param id="0" name="Angle">-90</param>
                                             <param id="1" name="Distance">2</param>
+                                        </action>
+                                        <action id="-12" name="Subtract from" sid="437504132500081" type="Player">
+                                            <param id="0" name="Instance variable">sp</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="586616270069447" type="Function">
+                                            <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="155836305023516" type="Skill">
+                                            <param id="0" name="Instance variable">realod</param>
+                                            <param id="1" name="Value">5</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -1440,7 +1739,11 @@
                                             <param id="0" name="Instance variable">lastKeyTime</param>
                                             <param id="1" name="Value">time</param>
                                         </action>
-                                        <action id="14" name="Log" sid="498677790645533" type="Browser">
+                                        <action id="-12" name="Subtract from" sid="428389112564251" type="Skill">
+                                            <param id="0" name="Instance variable">realod</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action disabled="1" id="14" name="Log" sid="498677790645533" type="Browser">
                                             <param id="0" name="Type">0</param>
                                             <param id="1" name="Message">&quot;time is:&quot; &amp; time</param>
                                         </action>
@@ -1455,26 +1758,22 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Platform" id="5" name="Set gravity" sid="614888156352659" type="Player">
-                                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
-                                </action>
-                                <action behavior="Platform" id="1" name="Set max speed" sid="948452650893236" type="Player">
-                                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                                <action id="0" name="Call function" sid="263935863695754" type="Function">
+                                    <param id="0" name="Name">&quot;ResetPlayerSpeed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
                                 </action>
                             </actions>
                         </event-block>
                         <event-block any="1" sid="595291509739762">
                             <conditions>
                                 <condition id="0" name="On collision with another object" sid="197650996384302" type="Player">
-                                    <param id="0" name="Object">StageOne_Solido</param>
+                                    <param id="0" name="Object">Solidos</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Platform" id="5" name="Set gravity" sid="303206169143900" type="Player">
-                                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
-                                </action>
-                                <action behavior="Platform" id="1" name="Set max speed" sid="465328753369389" type="Player">
-                                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                                <action id="0" name="Call function" sid="745001249184145" type="Function">
+                                    <param id="0" name="Name">&quot;ResetPlayerSpeed&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1552,6 +1851,11 @@
                                 <condition id="0" name="On function" sid="608158838936104" type="Function">
                                     <param id="0" name="Name">&quot;Fall&quot;</param>
                                 </condition>
+                                <condition id="-7" name="Compare instance variable" sid="564307662431332" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
                             <actions />
                             <sub-events>
@@ -1584,6 +1888,14 @@
                                             <param id="0" name="Instance variable">speedFall</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
+                                        <action id="-12" name="Subtract from" sid="243955340478948" type="Player">
+                                            <param id="0" name="Instance variable">sp</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="673754093330012" type="Function">
+                                            <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block sid="223198538527298">
@@ -1597,7 +1909,7 @@
                                             <param id="0" name="Instance variable">lastKeyTime</param>
                                             <param id="1" name="Value">time</param>
                                         </action>
-                                        <action id="14" name="Log" sid="181120417380888" type="Browser">
+                                        <action disabled="1" id="14" name="Log" sid="181120417380888" type="Browser">
                                             <param id="0" name="Type">0</param>
                                             <param id="1" name="Message">&quot;time is:&quot; &amp; time</param>
                                         </action>
@@ -1608,7 +1920,7 @@
                         <event-block sid="343848837334483">
                             <conditions>
                                 <condition id="0" name="On collision with another object" sid="665590356889097" type="Player">
-                                    <param id="0" name="Object">StageOne_Solido</param>
+                                    <param id="0" name="Object">Solidos</param>
                                 </condition>
                                 <condition id="-8" name="Is boolean instance variable set" sid="975777575606967" type="Player">
                                     <param id="0" name="Instance variable">speedFall</param>
@@ -1625,6 +1937,10 @@
                                     <param id="0" name="Object">Bullet</param>
                                     <param id="1" name="Layer">&quot;Player&quot;</param>
                                     <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-23" name="Move at angle" sid="905944264213721" type="Bullet">
+                                    <param id="0" name="Angle">90</param>
+                                    <param id="1" name="Distance">96</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="862910055565895" type="Bullet">
                                     <param id="0" name="Instance variable">maxDistance</param>
@@ -1654,26 +1970,19 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-block sid="275794947062714">
+        <event-block sid="877607004482386">
             <conditions>
-                <condition id="-18" name="On created" sid="438734497030425" type="FallDamage" />
-            </conditions>
-            <actions>
-                <action behavior="Timer" id="0" name="Start timer" sid="769854367321193" type="FallDamage">
-                    <param id="0" name="Duration">1.0</param>
-                    <param id="1" name="Type">0</param>
-                    <param id="2" name="Tag">&quot;&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="766225844629363">
-            <conditions>
-                <condition behavior="Timer" id="0" name="On timer" sid="113144660803350" type="FallDamage">
-                    <param id="0" name="Tag">&quot;&quot;</param>
+                <condition id="0" name="On function" sid="968315794400170" type="Function">
+                    <param id="0" name="Name">&quot;ResetPlayerSpeed&quot;</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="949164789907902" type="FallDamage" />
+                <action behavior="Platform" id="5" name="Set gravity" sid="437379559141720" type="Player">
+                    <param id="0" name="Gravity">PLAYER_GRAVITY</param>
+                </action>
+                <action behavior="Platform" id="1" name="Set max speed" sid="249429321356530" type="Player">
+                    <param id="0" name="Max Speed">MAX_PLAYER_SPEED</param>
+                </action>
             </actions>
         </event-block>
     </events>

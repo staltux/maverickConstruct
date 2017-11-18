@@ -325,32 +325,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="MouseTarget" uid="133">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <hookx>0</hookx>
-                        <hooky>0</hooky>
-                    </instance-variables>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>823</x>
-                        <y>-279</y>
-                        <z>0</z>
-                        <width>128</width>
-                        <height>128</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.200000003</opacity>
-                    </world>
-                </instance>
             </instances>
             <effects />
         </layer>
@@ -641,7 +615,6 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
-                        <behavior-instance type="DestroyOutsideLayout" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -690,9 +663,11 @@
                     <instance-variables>
                         <hp>16</hp>
                         <isPlayerNear>false</isPlayerNear>
-                        <attackDelay>30</attackDelay>
+                        <attackDelay>15</attackDelay>
                         <attackCount>0</attackCount>
                         <attack>1</attack>
+                        <direction>0</direction>
+                        <time>0</time>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -711,6 +686,11 @@
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -719,7 +699,7 @@
                         <y>1780</y>
                         <z>0</z>
                         <width>64</width>
-                        <height>192</height>
+                        <height>252</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>1</hotspotY>
@@ -737,9 +717,11 @@
                     <instance-variables>
                         <hp>16</hp>
                         <isPlayerNear>false</isPlayerNear>
-                        <attackDelay>30</attackDelay>
+                        <attackDelay>15</attackDelay>
                         <attackCount>0</attackCount>
                         <attack>1</attack>
+                        <direction>0</direction>
+                        <time>0</time>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -758,6 +740,11 @@
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -766,7 +753,7 @@
                         <y>1780</y>
                         <z>0</z>
                         <width>64</width>
-                        <height>192</height>
+                        <height>252</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>1</hotspotY>
@@ -784,9 +771,11 @@
                     <instance-variables>
                         <hp>16</hp>
                         <isPlayerNear>false</isPlayerNear>
-                        <attackDelay>30</attackDelay>
+                        <attackDelay>15</attackDelay>
                         <attackCount>0</attackCount>
                         <attack>1</attack>
+                        <direction>0</direction>
+                        <time>0</time>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -805,6 +794,11 @@
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -813,7 +807,7 @@
                         <y>1788</y>
                         <z>0</z>
                         <width>64</width>
-                        <height>192</height>
+                        <height>252</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>1</hotspotY>
@@ -831,9 +825,11 @@
                     <instance-variables>
                         <hp>16</hp>
                         <isPlayerNear>false</isPlayerNear>
-                        <attackDelay>30</attackDelay>
+                        <attackDelay>15</attackDelay>
                         <attackCount>0</attackCount>
                         <attack>1</attack>
+                        <direction>0</direction>
+                        <time>0</time>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -852,6 +848,11 @@
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -860,7 +861,7 @@
                         <y>1783</y>
                         <z>0</z>
                         <width>64</width>
-                        <height>192</height>
+                        <height>252</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>1</hotspotY>
@@ -878,9 +879,11 @@
                     <instance-variables>
                         <hp>16</hp>
                         <isPlayerNear>false</isPlayerNear>
-                        <attackDelay>30</attackDelay>
+                        <attackDelay>15</attackDelay>
                         <attackCount>0</attackCount>
                         <attack>1</attack>
+                        <direction>0</direction>
+                        <time>0</time>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -899,6 +902,11 @@
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -907,7 +915,7 @@
                         <y>1781</y>
                         <z>0</z>
                         <width>64</width>
-                        <height>192</height>
+                        <height>252</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>1</hotspotY>
@@ -943,6 +951,42 @@
             </instances>
             <effects />
         </layer>
+        <layer name="black" sid="136297735839764">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>1</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances />
+            <effects />
+        </layer>
+        <layer name="white" sid="658477732992199">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances />
+            <effects />
+        </layer>
         <layer name="HUD" sid="232853960193309">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
@@ -975,6 +1019,7 @@
                 <lastKeyTime>0</lastKeyTime>
                 <keyTime>0.5</keyTime>
                 <speed_mult>5</speed_mult>
+                <realod>0</realod>
             </instance-variables>
         </instance>
     </nonworld-instances>

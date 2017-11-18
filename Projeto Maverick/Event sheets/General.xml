@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>General</name>
     <events>
+        <variable constant="0" name="EnemyCount" sid="551737957287502" static="0" type="number">0</variable>
         <event-block sid="599336368248038">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="465229080078902" type="Bullet">
@@ -17,10 +18,19 @@
                     <param id="0" name="Name">&quot;Dimiss&quot;</param>
                     <param id="1" name="Parameter {n}">Bullet.UID</param>
                 </action>
+                <action id="-3" name="Create object" sid="189010748300314" type="System">
+                    <param id="0" name="Object to create">Explosion</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="X">Bullet.X</param>
+                    <param id="3" name="Y">Bullet.Y</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="822075964529785">
             <conditions>
+                <condition id="-11" name="For Each" sid="630322269151555" type="System">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
                 <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="485750381653239" type="Bullet">
                     <param id="0" name="Comparison">4</param>
                     <param id="1" name="Distance">Bullet.maxDistance</param>
@@ -41,8 +51,15 @@
                 <condition id="-14" name="Pick by unique ID" sid="805373430800949" type="Bullet">
                     <param id="0" name="Unique ID">Function.Param(0)</param>
                 </condition>
+                <condition id="-7" name="Compare instance variable" sid="570579300500169" type="Sopt">
+                    <param id="0" name="Instance variable">root</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Function.Param(0)</param>
+                </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="-9" name="Destroy" sid="813856541794673" type="Sopt" />
+            </actions>
             <sub-events>
                 <variable constant="0" name="x" sid="324800413040978" static="0" type="number">0</variable>
                 <variable constant="0" name="y" sid="263293886452626" static="0" type="number">0</variable>
@@ -80,6 +97,12 @@
                                 <action id="0" name="Call function" sid="108797528949218" type="Function">
                                     <param id="0" name="Name">&quot;SpawnBullet&quot;</param>
                                     <param id="1" name="Parameter {n}">CBFRAGMENT{###} (loopindex * 45){###}x{###}y{###}2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="921021475433633" type="System">
+                                    <param id="0" name="Object to create">Explosion</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">x</param>
+                                    <param id="3" name="Y">y</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -121,11 +144,33 @@
                     <param id="0" name="Object">Player</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="-43" name="Go to next/previous layout" sid="559027089970080" type="System">
-                    <param id="0" name="Which">0</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="477932153407058">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="206020609805802" type="System">
+                            <param id="0" name="First value">LayoutName</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">&quot;Cave&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="559027089970080" type="System">
+                            <param id="0" name="Layout">Cave</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="821191359561586">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="842408600664976" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="810331876584421" type="System">
+                            <param id="0" name="Layout">Upgrade</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="961088230425313">
             <conditions>
@@ -137,6 +182,121 @@
                 <action id="0" name="Call function" sid="239256238265440" type="Function">
                     <param id="0" name="Name">&quot;Damage&quot;</param>
                     <param id="1" name="Parameter {n}">Player.UID{###}4</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="100978372057089">
+            <conditions>
+                <condition id="20" name="On update ready" sid="409951051284647" type="Browser" />
+            </conditions>
+            <actions>
+                <action id="0" name="Alert" sid="550218704247197" type="Browser">
+                    <param id="0" name="Message">&quot;Uma nova versão do jogo está disponivel, Recarregue a pagina para jogar!&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="345102909430043">
+            <conditions>
+                <condition id="-18" name="On created" sid="803758709139195" type="Torch" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="887796915120609" type="Torch">
+                    <param id="0" name="Object">Sopt</param>
+                    <param id="1" name="Layer">&quot;black&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="386546773394586">
+            <conditions>
+                <condition id="-18" name="On created" sid="886516586430528" type="Bullet" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="592449754155421" type="Bullet">
+                    <param id="0" name="Object">Sopt</param>
+                    <param id="1" name="Layer">&quot;black&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="285342556011675" type="Sopt">
+                    <param id="0" name="Width">128</param>
+                    <param id="1" name="Height">128</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="734169659258047" type="Sopt">
+                    <param id="0" name="Pin to">Bullet</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="213715428515148" type="Sopt">
+                    <param id="0" name="Instance variable">root</param>
+                    <param id="1" name="Value">Bullet.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="264097316752517">
+            <conditions>
+                <condition id="-18" name="On created" sid="684238966324532" type="Explosion" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="828687572064102" type="Explosion">
+                    <param id="0" name="Object">Sopt</param>
+                    <param id="1" name="Layer">&quot;black&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-7" name="Set size" sid="569833217823598" type="Sopt">
+                    <param id="0" name="Width">128</param>
+                    <param id="1" name="Height">128</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="910299473864613" type="Sopt">
+                    <param id="0" name="Pin to">Explosion</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="604335167590278" type="Sopt">
+                    <param id="0" name="Instance variable">root</param>
+                    <param id="1" name="Value">Explosion.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="839073964439757">
+            <conditions>
+                <condition id="4" name="On finished" sid="441397219052351" type="Explosion">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="919960427370399" type="Sopt">
+                    <param id="0" name="Instance variable">root</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Explosion.UID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="352800537509372" type="Sopt" />
+                <action id="-9" name="Destroy" sid="622432276062393" type="Explosion" />
+            </actions>
+        </event-block>
+        <event-block sid="534170804700494">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="514659178440482" type="Door">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="259214315062982" type="System">
+                    <param id="0" name="Variable">EnemyCount</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Start" sid="520625981058700" type="Door">
+                    <param id="0" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="283263937474591">
+            <conditions>
+                <condition id="4" name="On finished" sid="156348614195056" type="Door">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="920117877487002" type="System">
+                    <param id="0" name="Layout">Upgrade</param>
                 </action>
             </actions>
         </event-block>

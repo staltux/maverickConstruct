@@ -2,7 +2,7 @@
 <c2layout>
     <name>HomeScreen</name>
     <sid>707534473989000</sid>
-    <event-sheet>Event sheet 1</event-sheet>
+    <event-sheet>Menu</event-sheet>
     <size>
         <width>1920</width>
         <height>1080</height>
@@ -155,8 +155,10 @@
                 <lastKeyTime>0</lastKeyTime>
                 <keyTime>0.5</keyTime>
                 <speed_mult>0</speed_mult>
+                <realod>0</realod>
             </instance-variables>
         </instance>
+        <instance type="MapIndex" uid="150" />
     </nonworld-instances>
     <effects />
 </c2layout>

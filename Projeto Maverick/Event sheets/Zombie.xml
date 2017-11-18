@@ -10,7 +10,7 @@
             <actions>
                 <action id="0" name="Spawn another object" sid="736945344239774" type="Zombie">
                     <param id="0" name="Object">HpBarBase</param>
-                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="1" name="Layer">&quot;white&quot;</param>
                     <param id="2" name="Image point">1</param>
                 </action>
                 <action behavior="Pin" id="0" name="Pin to object" sid="557507710202228" type="HpBarBase">
@@ -23,7 +23,7 @@
                 </action>
                 <action id="0" name="Spawn another object" sid="112871106300434" type="HpBarBase">
                     <param id="0" name="Object">HpBarValue</param>
-                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="1" name="Layer">&quot;white&quot;</param>
                     <param id="2" name="Image point">1</param>
                 </action>
                 <action behavior="Pin" id="0" name="Pin to object" sid="966531198163211" type="HpBarValue">
@@ -77,6 +77,23 @@
                     <param id="0" name="Instance variable">zombie</param>
                     <param id="1" name="Value">Zombie.UID</param>
                 </action>
+                <action id="0" name="Spawn another object" sid="732798208897855" type="Zombie">
+                    <param id="0" name="Object">ZombieWalk</param>
+                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="797813744542998" type="ZombieWalk">
+                    <param id="0" name="Pin to">Zombie</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="398061921243392" type="ZombieWalk">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Value">Zombie.UID</param>
+                </action>
+                <action id="-10" name="Add to" sid="889510653035871" type="System">
+                    <param id="0" name="Variable">EnemyCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="462460330390341">
@@ -119,7 +136,7 @@
                         </action>
                         <action id="0" name="Spawn another object" sid="740613091429458" type="HpBarValue">
                             <param id="0" name="Object">DamageTxt</param>
-                            <param id="1" name="Layer">&quot;Player&quot;</param>
+                            <param id="1" name="Layer">&quot;white&quot;</param>
                             <param id="2" name="Image point">0</param>
                         </action>
                     </actions>
@@ -143,6 +160,23 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block sid="925355400416327">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="228635105370492" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="473035898309230" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="863309861457477" type="Function">
+                            <param id="0" name="Name">&quot;ChasePlayer&quot;</param>
+                            <param id="1" name="Parameter {n}">Zombie.UID</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>
@@ -236,6 +270,10 @@
                 <action id="11" name="Set collisions enabled" sid="726749813279807" type="Gear">
                     <param id="0" name="Collisions">1</param>
                 </action>
+                <action id="-11" name="Subtract from" sid="198454263890406" type="System">
+                    <param id="0" name="Variable">EnemyCount</param>
+                    <param id="1" name="Value">1</param>
+                </action>
             </actions>
             <sub-events>
                 <event-block sid="556823598089034">
@@ -265,6 +303,11 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">Zombie.UID</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="384683504459649" type="ZombieWalk">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="764170367614255" type="HpBarBase" />
@@ -273,6 +316,7 @@
                         <action id="-9" name="Destroy" sid="379670319762672" type="NearDetector" />
                         <action id="-9" name="Destroy" sid="443621097884936" type="FarDetector" />
                         <action id="-9" name="Destroy" sid="914758654913551" type="Zombie" />
+                        <action id="-9" name="Destroy" sid="479064446645420" type="ZombieWalk" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -313,56 +357,26 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">Zombie.UID</param>
                 </condition>
+                <condition id="-7" name="Compare instance variable" sid="235596361524402" type="ZombieWalk">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
             </conditions>
             <actions>
-                <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
-                    <param id="0" name="Vector X">Zombie.Platform.MaxSpeed * ((Player.X &gt; Zombie.X)?1:-1)</param>
+                <action id="-10" name="Set value" sid="768681414366227" type="Zombie">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Value">(Player.X &lt; Zombie.X)?-1:1</param>
+                </action>
+                <action id="-10" name="Set value" sid="620878794518446" type="Zombie">
+                    <param id="0" name="Instance variable">direction</param>
+                    <param id="1" name="Value">(Player.X &gt; Zombie.X)?1:Zombie.direction</param>
+                </action>
+                <action id="-10" name="Set value" sid="843828858662956" type="Zombie">
+                    <param id="0" name="Instance variable">time</param>
+                    <param id="1" name="Value">60</param>
                 </action>
             </actions>
-            <sub-events>
-                <event-block sid="752060858758728">
-                    <conditions>
-                        <condition id="-8" name="Compare two values" sid="785698135008421" type="System">
-                            <param id="0" name="First value">Player.X</param>
-                            <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Second value">Zombie.X</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="7" name="Set mirrored" sid="109951309088545" type="Zombie">
-                            <param id="0" name="State">0</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="853446714421775" type="FightDetector">
-                            <param id="0" name="State">0</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="687325377051747" type="NearDetector">
-                            <param id="0" name="State">0</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="160655857678913" type="FarDetector">
-                            <param id="0" name="State">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block sid="245022279979814">
-                    <conditions>
-                        <condition id="-22" name="Else" sid="123476539400634" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="7" name="Set mirrored" sid="497778145219766" type="Zombie">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="773079507480160" type="FightDetector">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="188143752789106" type="NearDetector">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="7" name="Set mirrored" sid="804169124112925" type="FarDetector">
-                            <param id="0" name="State">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
         </event-block>
         <event-block sid="228482148228033">
             <conditions>
@@ -384,9 +398,67 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">Zombie.UID</param>
                 </condition>
+                <condition id="-7" name="Compare instance variable" sid="353058877412920" type="ZombieWalk">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
             </conditions>
             <actions />
             <sub-events>
+                <event-block sid="752060858758728">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="322571913779360" type="Zombie">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="109951309088545" type="Zombie">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="853446714421775" type="FightDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="687325377051747" type="NearDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="160655857678913" type="FarDetector">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="169105948043150" type="ZombieWalk">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="245022279979814">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="123476539400634" type="System" />
+                        <condition id="-7" name="Compare instance variable" sid="771802260151358" type="Zombie">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="497778145219766" type="Zombie">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="773079507480160" type="FightDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="188143752789106" type="NearDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="804169124112925" type="FarDetector">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="359622465681173" type="ZombieWalk">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="684817545729500">
                     <conditions>
                         <condition id="1" name="Is overlapping another object" sid="626805708249703" type="Player">
@@ -401,6 +473,14 @@
                         <action id="-11" name="Add to" sid="657053042990751" type="Zombie">
                             <param id="0" name="Instance variable">attackCount</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set animation" sid="922107075709203" type="ZombieWalk">
+                            <param id="0" name="Animation">&quot;stop&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="645285204909844" type="Zombie">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -480,6 +560,80 @@
                         <action id="-13" name="Set boolean" sid="951589978520485" type="Zombie">
                             <param id="0" name="Instance variable">isPlayerNear</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-11" name="Add to" sid="910424372856788" type="Zombie">
+                            <param id="0" name="Instance variable">time</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="942751680508172">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="176123566599821" type="Zombie">
+                                    <param id="0" name="Instance variable">time</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">60</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="135354036270285" type="Zombie">
+                                    <param id="0" name="Instance variable">time</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="172853105996780" type="Zombie">
+                                    <param id="0" name="Instance variable">direction</param>
+                                    <param id="1" name="Value">-1 + random(3)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="526026480907837">
+                    <conditions>
+                        <condition id="9" name="Is overlapping at offset" sid="213926633067029" type="Zombie">
+                            <param id="0" name="Object">Solidos</param>
+                            <param id="1" name="Offset X">(Zombie.direction&gt;0)?64:-64</param>
+                            <param id="2" name="Offset Y">64</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
+                            <param id="0" name="Vector X">Zombie.Platform.MaxSpeed * Zombie.direction</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="645267511102369">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="833203906436814" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="583280504271201" type="Zombie">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="663641471441151">
+                    <conditions>
+                        <condition id="9" name="Is overlapping at offset" sid="518198060190770" type="Zombie">
+                            <param id="0" name="Object">Solidos</param>
+                            <param id="1" name="Offset X">(Zombie.direction&gt;0)?32:-32</param>
+                            <param id="2" name="Offset Y">-5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="809084170918034" type="Zombie">
+                            <param id="0" name="Instance variable">direction</param>
+                            <param id="1" name="Value">Zombie.direction * -1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="495187934647565">
+                    <conditions />
+                    <actions>
+                        <action id="4" name="Set animation" sid="730942993413639" type="ZombieWalk">
+                            <param id="0" name="Animation">(Zombie.direction=0)?&quot;stop&quot;:&quot;wallk&quot;</param>
+                            <param id="1" name="From">1</param>
                         </action>
                     </actions>
                 </event-block>

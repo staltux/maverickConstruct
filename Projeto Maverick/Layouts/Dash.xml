@@ -2,7 +2,7 @@
 <c2layout>
     <name>Dash</name>
     <sid>460352430108996</sid>
-    <event-sheet>Stage_One</event-sheet>
+    <event-sheet>Dash</event-sheet>
     <size>
         <width>1980</width>
         <height>1080</height>
@@ -365,32 +365,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="MouseTarget" uid="103">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <hookx>0</hookx>
-                        <hooky>0</hooky>
-                    </instance-variables>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>823</x>
-                        <y>-279</y>
-                        <z>0</z>
-                        <width>128</width>
-                        <height>128</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.200000003</opacity>
-                    </world>
-                </instance>
             </instances>
             <effects />
         </layer>
@@ -681,7 +655,6 @@
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
-                        <behavior-instance type="DestroyOutsideLayout" />
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -708,11 +681,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1406</x>
-                        <y>512</y>
+                        <x>1369</x>
+                        <y>506</y>
                         <z>0</z>
-                        <width>57</width>
-                        <height>250</height>
+                        <width>115</width>
+                        <height>238</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -721,6 +694,42 @@
                     </world>
                 </instance>
             </instances>
+            <effects />
+        </layer>
+        <layer name="black" sid="380942654830537">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>1</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances />
+            <effects />
+        </layer>
+        <layer name="white" sid="164799255539705">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances />
             <effects />
         </layer>
         <layer name="HUD" sid="467326086910640">
@@ -755,6 +764,7 @@
                 <lastKeyTime>0</lastKeyTime>
                 <keyTime>0.5</keyTime>
                 <speed_mult>2.5</speed_mult>
+                <realod>0</realod>
             </instance-variables>
         </instance>
     </nonworld-instances>

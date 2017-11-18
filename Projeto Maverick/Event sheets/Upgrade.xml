@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Upgrade</name>
+    <events>
+        <event-block sid="660711068513937">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="154541782561998" type="System" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="113350257620297" type="System">
+                    <param id="0" name="Layout">Cave</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
