@@ -77,24 +77,49 @@
                     <param id="0" name="Instance variable">zombie</param>
                     <param id="1" name="Value">Zombie.UID</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="732798208897855" type="Zombie">
-                    <param id="0" name="Object">ZombieWalk</param>
-                    <param id="1" name="Layer">&quot;Player&quot;</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action behavior="Pin" id="0" name="Pin to object" sid="797813744542998" type="ZombieWalk">
-                    <param id="0" name="Pin to">Zombie</param>
-                    <param id="1" name="Mode">0</param>
-                </action>
-                <action id="-10" name="Set value" sid="398061921243392" type="ZombieWalk">
-                    <param id="0" name="Instance variable">zombie</param>
-                    <param id="1" name="Value">Zombie.UID</param>
-                </action>
                 <action id="-10" name="Add to" sid="889510653035871" type="System">
                     <param id="0" name="Variable">EnemyCount</param>
                     <param id="1" name="Value">1</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="311801746749755">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="732798208897855" type="Zombie">
+                            <param id="0" name="Object">ZombieWalk</param>
+                            <param id="1" name="Layer">&quot;Player&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="797813744542998" type="ZombieWalk">
+                            <param id="0" name="Pin to">Zombie</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="398061921243392" type="ZombieWalk">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Value">Zombie.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="870577458141447">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="389137270283979" type="Zombie">
+                            <param id="0" name="Object">ZombieGunner</param>
+                            <param id="1" name="Layer">&quot;Player&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="394131924679676" type="ZombieGunner">
+                            <param id="0" name="Pin to">Zombie</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="882786147275225" type="ZombieGunner">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Value">Zombie.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="462460330390341">
             <conditions>
@@ -103,6 +128,9 @@
                 </condition>
                 <condition id="-11" name="For Each" sid="738209677695374" type="System">
                     <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="610600042707566" type="Bullet">
+                    <param id="0" name="Instance variable">monster</param>
                 </condition>
             </conditions>
             <actions />
@@ -180,73 +208,6 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-block disabled="1" sid="916106199682559">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="921793122846189" type="Zombie">
-                    <param id="0" name="Object">Bullet</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="687232120513023" type="HpBarBase">
-                    <param id="0" name="Instance variable">enemie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="533870436507008" type="HpBarValue">
-                    <param id="0" name="Instance variable">enemie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-12" name="Subtract from" sid="354296303743938" type="Zombie">
-                    <param id="0" name="Instance variable">hp</param>
-                    <param id="1" name="Value">Bullet.damage</param>
-                </action>
-                <action id="-5" name="Set width" sid="831265469891395" type="HpBarValue">
-                    <param id="0" name="Width">HpBarBase.Width * (Zombie.hp/HpBarValue.hp)</param>
-                </action>
-                <action id="-16" name="Set opacity" sid="989614490327391" type="HpBarBase">
-                    <param id="0" name="Opacity">100</param>
-                </action>
-                <action id="-16" name="Set opacity" sid="468883810102717" type="HpBarValue">
-                    <param id="0" name="Opacity">100</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="818774136378079" type="HpBarValue">
-                    <param id="0" name="Object">DamageTxt</param>
-                    <param id="1" name="Layer">&quot;Base&quot;</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-            </actions>
-            <sub-events>
-                <event-block disabled="1" sid="671688821804722">
-                    <conditions />
-                    <actions>
-                        <action id="0" name="Set text" sid="657979467493135" type="DamageTxt">
-                            <param id="0" name="Text">&quot;&quot; &amp; Bullet.damage</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="552951064317999" type="DamageTxt">
-                            <param id="0" name="X">DamageTxt.X - (HpBarBase.Width/2)</param>
-                        </action>
-                        <action id="-1" name="Set X" sid="333574307734222" type="DamageTxt">
-                            <param id="0" name="X">DamageTxt.X + int(random(HpBarBase.Width))</param>
-                        </action>
-                        <action id="-16" name="Wait" sid="807779776655268" type="System">
-                            <param id="0" name="Seconds">1.0</param>
-                        </action>
-                        <action id="-9" name="Destroy" sid="119878182025937" type="DamageTxt" />
-                    </actions>
-                </event-block>
-                <event-block disabled="1" sid="341911274569302">
-                    <conditions>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="899155273026763" type="Bullet">
-                            <param id="0" name="Instance variable">isFragment</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" sid="126153703617001" type="Bullet" />
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-block>
         <event-block sid="798318083878961">
             <conditions>
                 <condition id="-11" name="For Each" sid="550798980841633" type="System">
@@ -308,6 +269,11 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">Zombie.UID</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="285135781059705" type="ZombieGunner">
+                            <param id="0" name="Instance variable">zombie</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Zombie.UID</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" sid="764170367614255" type="HpBarBase" />
@@ -317,6 +283,7 @@
                         <action id="-9" name="Destroy" sid="443621097884936" type="FarDetector" />
                         <action id="-9" name="Destroy" sid="914758654913551" type="Zombie" />
                         <action id="-9" name="Destroy" sid="479064446645420" type="ZombieWalk" />
+                        <action id="-9" name="Destroy" sid="528902487127464" type="ZombieGunner" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -341,26 +308,6 @@
                 </condition>
                 <condition id="-14" name="Pick by unique ID" sid="960293920652817" type="Zombie">
                     <param id="0" name="Unique ID">Function.Param(0)</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="136134364535537" type="FightDetector">
-                    <param id="0" name="Instance variable">zombie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="747606571772949" type="NearDetector">
-                    <param id="0" name="Instance variable">zombie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="289815392163990" type="FarDetector">
-                    <param id="0" name="Instance variable">zombie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
-                </condition>
-                <condition id="-7" name="Compare instance variable" sid="235596361524402" type="ZombieWalk">
-                    <param id="0" name="Instance variable">zombie</param>
-                    <param id="1" name="Comparison">0</param>
-                    <param id="2" name="Value">Zombie.UID</param>
                 </condition>
             </conditions>
             <actions>
@@ -403,9 +350,44 @@
                     <param id="1" name="Comparison">0</param>
                     <param id="2" name="Value">Zombie.UID</param>
                 </condition>
+                <condition id="-7" name="Compare instance variable" sid="162918438554533" type="ZombieGunner">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
             </conditions>
             <actions />
             <sub-events>
+                <event-block sid="713820797498448">
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="401515745762145" type="Zombie">
+                            <param id="0" name="Instance variable">gunner</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="719457143292995" type="ZombieWalk">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="176760472875015" type="ZombieGunner">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="243779102433582">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="255391436999396" type="Zombie">
+                            <param id="0" name="Instance variable">gunner</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="508993082356906" type="ZombieWalk">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="258701867774227" type="ZombieGunner">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="752060858758728">
                     <conditions>
                         <condition id="-7" name="Compare instance variable" sid="322571913779360" type="Zombie">
@@ -428,6 +410,9 @@
                             <param id="0" name="State">0</param>
                         </action>
                         <action id="7" name="Set mirrored" sid="169105948043150" type="ZombieWalk">
+                            <param id="0" name="State">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="601920583762440" type="ZombieGunner">
                             <param id="0" name="State">0</param>
                         </action>
                     </actions>
@@ -457,12 +442,18 @@
                         <action id="7" name="Set mirrored" sid="359622465681173" type="ZombieWalk">
                             <param id="0" name="State">1</param>
                         </action>
+                        <action id="7" name="Set mirrored" sid="259312092686211" type="ZombieGunner">
+                            <param id="0" name="State">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="684817545729500">
                     <conditions>
                         <condition id="1" name="Is overlapping another object" sid="626805708249703" type="Player">
                             <param id="0" name="Object">FightDetector</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="434139188501388" type="Zombie">
+                            <param id="0" name="Instance variable">gunner</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -474,8 +465,8 @@
                             <param id="0" name="Instance variable">attackCount</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action disabled="1" id="4" name="Set animation" sid="922107075709203" type="ZombieWalk">
-                            <param id="0" name="Animation">&quot;stop&quot;</param>
+                        <action id="4" name="Set animation" sid="922107075709203" type="ZombieWalk">
+                            <param id="0" name="Animation">&quot;attack&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
                         <action id="-10" name="Set value" sid="645285204909844" type="Zombie">
@@ -517,15 +508,62 @@
                             <param id="0" name="Instance variable">isPlayerNear</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-10" name="Set value" sid="385711196232039" type="Zombie">
-                            <param id="0" name="Instance variable">attackCount</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="0" name="Call function" sid="278006911506038" type="Function">
+                        <action id="0" name="Call function" sid="873060124131112" type="Function">
                             <param id="0" name="Name">&quot;ChasePlayer&quot;</param>
                             <param id="1" name="Parameter {n}">Zombie.UID</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="595416767029435">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="727130515219681" type="Zombie">
+                                    <param id="0" name="Instance variable">gunner</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="114239806919993" type="Zombie">
+                                    <param id="0" name="Instance variable">attackCount</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="861911086484498">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="801453386266097" type="System">
+                                            <param id="0" name="First value">Zombie.attackCount</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">Zombie.attackDelay</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="403744288462923" type="ZombieGunner">
+                                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="219584542900165" type="Zombie">
+                                            <param id="0" name="Instance variable">direction</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="236493120587883" type="Zombie">
+                                            <param id="0" name="Instance variable">attackCount</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="366151377249831">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="565057588705464" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="385711196232039" type="Zombie">
+                                    <param id="0" name="Instance variable">attackCount</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="972923604884575">
                     <conditions>
@@ -595,6 +633,12 @@
                             <param id="1" name="Offset X">(Zombie.direction&gt;0)?64:-64</param>
                             <param id="2" name="Offset Y">64</param>
                         </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="163397155888085" type="ZombieWalk">
+                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="794562024398323" type="ZombieGunner">
+                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
@@ -629,11 +673,115 @@
                     </actions>
                 </event-block>
                 <event-block sid="495187934647565">
-                    <conditions />
+                    <conditions>
+                        <condition id="2" inverted="1" name="Is playing" sid="674612428531298" type="ZombieWalk">
+                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" sid="972003597931421" type="ZombieGunner">
+                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                        </condition>
+                    </conditions>
                     <actions>
                         <action id="4" name="Set animation" sid="730942993413639" type="ZombieWalk">
                             <param id="0" name="Animation">(Zombie.direction=0)?&quot;stop&quot;:&quot;wallk&quot;</param>
                             <param id="1" name="From">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="434708579340303" type="ZombieGunner">
+                            <param id="0" name="Animation">(Zombie.direction=0)?&quot;stop&quot;:&quot;wallk&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="404506829208450">
+            <conditions>
+                <condition id="4" name="On finished" sid="684054039531301" type="ZombieWalk">
+                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="620630035779798" type="ZombieWalk">
+                    <param id="0" name="Animation">&quot;stop&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="884218706855648">
+            <conditions>
+                <condition id="4" name="On finished" sid="867676721987870" type="ZombieGunner">
+                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="997197047249421" type="ZombieGunner">
+                    <param id="0" name="Animation">&quot;stop&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="278553323098822">
+            <conditions>
+                <condition id="-11" name="For Each" sid="296252199398348" type="System">
+                    <param id="0" name="Object">Zombie</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="187406505332672" type="ZombieGunner">
+                    <param id="0" name="Instance variable">zombie</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Zombie.UID</param>
+                </condition>
+                <condition id="2" name="Is playing" sid="961906833270467" type="ZombieGunner">
+                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                </condition>
+                <condition id="3" name="Compare frame" sid="175421266755977" type="ZombieGunner">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">1</param>
+                </condition>
+                <condition disabled="1" id="-4" name="Trigger once while true" sid="758965811934027" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="557866042003047" type="ZombieGunner">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">&quot;white&quot;</param>
+                    <param id="2" name="Image point">&quot;bullet&quot;</param>
+                </action>
+                <action id="-10" name="Set value" sid="192114439897382" type="Bullet">
+                    <param id="0" name="Instance variable">damage</param>
+                    <param id="1" name="Value">Zombie.attack</param>
+                </action>
+                <action id="-10" name="Set value" sid="831322470662268" type="Bullet">
+                    <param id="0" name="Instance variable">maxDistance</param>
+                    <param id="1" name="Value">NearDetector.Width + 100</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="539225865316877" type="Bullet">
+                    <param id="0" name="Speed">900</param>
+                </action>
+                <action id="5" name="Set frame" sid="764354027980140" type="Bullet">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="149433362579628" type="Bullet">
+                    <param id="0" name="Instance variable">monster</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="209939487146601">
+                    <conditions>
+                        <condition id="7" name="Is mirrored" sid="594950179852115" type="ZombieGunner" />
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" sid="378249354962872" type="Bullet">
+                            <param id="0" name="Angle">180</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="391167823130328">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="338673535625835" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-8" name="Set angle" sid="799195355584964" type="Bullet">
+                            <param id="0" name="Angle">0</param>
                         </action>
                     </actions>
                 </event-block>

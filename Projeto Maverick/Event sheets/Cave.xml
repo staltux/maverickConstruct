@@ -643,6 +643,7 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <comment>Cria os modulos e adiciona zumbies e tochas</comment>
         <event-group description="" sid="215462131837491" title="SpawnCave (Name,Layer,X,Y) Object UID">
             <sub-events>
                 <variable constant="0" name="ObjectName" sid="792724000696992" static="0" type="text"></variable>
@@ -726,6 +727,23 @@
                                 </action>
                                 <action id="-25" name="Move to bottom" sid="166017725056750" type="Torch" />
                             </actions>
+                            <sub-events>
+                                <event-block sid="959233478947628">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="730659871503364" type="System">
+                                            <param id="0" name="First value">random(10)</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="332714317655545" type="Zombie">
+                                            <param id="0" name="Instance variable">gunner</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="237896563455112">
                             <conditions />

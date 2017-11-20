@@ -891,7 +891,7 @@
                             <actions>
                                 <action id="0" name="Spawn another object" sid="334859751637032" type="Gun">
                                     <param id="0" name="Object">Bullet</param>
-                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="1" name="Layer">&quot;white&quot;</param>
                                     <param id="2" name="Image point">&quot;bullet&quot;</param>
                                 </action>
                                 <action id="-13" name="Set boolean" sid="310466130163758" type="Bullet">

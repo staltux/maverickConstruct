@@ -563,34 +563,6 @@
                         <opacity>0.050000001</opacity>
                     </world>
                 </instance>
-                <instance type="FightDetector" uid="140">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <zombie>0</zombie>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>357</x>
-                        <y>-410</y>
-                        <z>0</z>
-                        <width>192</width>
-                        <height>250</height>
-                        <depth>0</depth>
-                        <hotspotX>0.256000012</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.050000001</opacity>
-                    </world>
-                </instance>
                 <instance type="Bullet" uid="141">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -603,6 +575,7 @@
                         <maxDistance>0</maxDistance>
                         <isRocket>false</isRocket>
                         <isFragment>false</isFragment>
+                        <monster>false</monster>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -668,6 +641,7 @@
                         <attack>1</attack>
                         <direction>0</direction>
                         <time>0</time>
+                        <gunner>false</gunner>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -722,6 +696,7 @@
                         <attack>1</attack>
                         <direction>0</direction>
                         <time>0</time>
+                        <gunner>false</gunner>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -776,6 +751,7 @@
                         <attack>1</attack>
                         <direction>0</direction>
                         <time>0</time>
+                        <gunner>false</gunner>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -830,6 +806,7 @@
                         <attack>1</attack>
                         <direction>0</direction>
                         <time>0</time>
+                        <gunner>false</gunner>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
@@ -884,6 +861,7 @@
                         <attack>1</attack>
                         <direction>0</direction>
                         <time>0</time>
+                        <gunner>false</gunner>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Platform">
