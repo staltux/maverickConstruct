@@ -108,6 +108,46 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="PlayerConfigs" uid="177">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <gun_default>1</gun_default>
+                        <gun_rocket>0</gun_rocket>
+                        <gun_shotgun>0</gun_shotgun>
+                        <gun_sniper>0</gun_sniper>
+                        <gun_machine>0</gun_machine>
+                        <gears>0</gears>
+                        <hpMax>5</hpMax>
+                        <spMax>4</spMax>
+                        <skull>0</skull>
+                        <slot1>0</slot1>
+                        <slot2>0</slot2>
+                        <slot3>0</slot3>
+                        <slot4>0</slot4>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Persist" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>258</x>
+                        <y>-207</y>
+                        <z>0</z>
+                        <width>250</width>
+                        <height>250</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
@@ -126,6 +166,10 @@
                 <bullets>0</bullets>
                 <maxspeed>0</maxspeed>
                 <id>2</id>
+                <isRecharging>false</isRecharging>
+                <rechargeTime>0</rechargeTime>
+                <isReloading>false</isReloading>
+                <reloadTime>0</reloadTime>
             </instance-variables>
         </instance>
         <instance type="Sniper" uid="52">
@@ -141,6 +185,10 @@
                 <bullets>0</bullets>
                 <maxspeed>0</maxspeed>
                 <id>3</id>
+                <isRecharging>false</isRecharging>
+                <rechargeTime>0</rechargeTime>
+                <isReloading>false</isReloading>
+                <reloadTime>0</reloadTime>
             </instance-variables>
         </instance>
         <instance type="WallJump" uid="120">
@@ -159,6 +207,32 @@
             </instance-variables>
         </instance>
         <instance type="MapIndex" uid="150" />
+        <instance type="Skull" uid="228">
+            <properties>
+                <width>10</width>
+                <height>10</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+        <instance type="MachineGun" uid="229">
+            <properties>
+                <width>10</width>
+                <height>10</height>
+                <depth>1</depth>
+            </properties>
+            <instance-variables>
+                <initial>1</initial>
+                <current>1</current>
+                <max>1</max>
+                <bullets>0</bullets>
+                <maxspeed>0</maxspeed>
+                <id>4</id>
+                <isRecharging>false</isRecharging>
+                <rechargeTime>0</rechargeTime>
+                <isReloading>false</isReloading>
+                <reloadTime>0</reloadTime>
+            </instance-variables>
+        </instance>
     </nonworld-instances>
     <effects />
 </c2layout>

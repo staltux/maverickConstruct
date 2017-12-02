@@ -258,7 +258,7 @@
     <nonworld-instances>
         <instance type="DialogArray" uid="13">
             <properties>
-                <width>5</width>
+                <width>50</width>
                 <height>2</height>
                 <depth>1</depth>
             </properties>

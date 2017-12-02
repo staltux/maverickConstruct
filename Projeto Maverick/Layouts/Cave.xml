@@ -81,8 +81,8 @@
                         <x>-259</x>
                         <y>94</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -103,8 +103,8 @@
                         <x>-161</x>
                         <y>-284</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -125,8 +125,8 @@
                         <x>313</x>
                         <y>-121</y>
                         <z>0</z>
-                        <width>70</width>
-                        <height>70</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -147,8 +147,8 @@
                         <x>1154</x>
                         <y>-299</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.642857134</hotspotX>
                         <hotspotY>0.461904764</hotspotY>
@@ -169,8 +169,8 @@
                         <x>1486</x>
                         <y>-242</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.666666687</hotspotX>
                         <hotspotY>0.452380955</hotspotY>
@@ -191,8 +191,8 @@
                         <x>2043</x>
                         <y>-252</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.657142878</hotspotX>
                         <hotspotY>0.45714286</hotspotY>
@@ -213,8 +213,8 @@
                         <x>1933</x>
                         <y>-320</y>
                         <z>0</z>
-                        <width>210</width>
-                        <height>210</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.804761887</hotspotX>
                         <hotspotY>0.442857146</hotspotY>
@@ -266,7 +266,7 @@
                                 <max-speed>600</max-speed>
                                 <acceleration>3000</acceleration>
                                 <deceleration>3000</deceleration>
-                                <jump-strength>800</jump-strength>
+                                <jump-strength>900</jump-strength>
                                 <gravity>2000</gravity>
                                 <max-fall-speed>3000</max-fall-speed>
                                 <double-jump>Enabled</double-jump>
@@ -296,8 +296,8 @@
                         <x>239</x>
                         <y>534</y>
                         <z>0</z>
-                        <width>64</width>
-                        <height>192</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -404,62 +404,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="NearDetector" uid="190">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <zombie>0</zombie>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>546</x>
-                        <y>-149</y>
-                        <z>0</z>
-                        <width>704</width>
-                        <height>256</height>
-                        <depth>0</depth>
-                        <hotspotX>0.239999995</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.050000001</opacity>
-                    </world>
-                </instance>
-                <instance type="FarDetector" uid="191">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <instance-variables>
-                        <zombie>0</zombie>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>1237</x>
-                        <y>-517</y>
-                        <z>0</z>
-                        <width>1216</width>
-                        <height>512</height>
-                        <depth>0</depth>
-                        <hotspotX>0.239999995</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.050000001</opacity>
-                    </world>
-                </instance>
                 <instance type="Bullet" uid="193">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -469,7 +413,7 @@
                     </properties>
                     <instance-variables>
                         <damage>0</damage>
-                        <maxDistance>0</maxDistance>
+                        <maxDistance>200</maxDistance>
                         <isRocket>false</isRocket>
                         <isFragment>false</isFragment>
                         <monster>false</monster>
@@ -492,8 +436,8 @@
                         <x>-214</x>
                         <y>514</y>
                         <z>0</z>
-                        <width>16</width>
-                        <height>16</height>
+                        <width>0</width>
+                        <height>0</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -610,7 +554,7 @@
                 <y>1</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
-            <opacity>0.9</opacity>
+            <opacity>0.8</opacity>
             <force-own-texture>1</force-own-texture>
             <global>0</global>
             <use-render-cells>0</use-render-cells>
@@ -634,7 +578,48 @@
             <use-render-cells>0</use-render-cells>
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
-            <instances />
+            <instances>
+                <instance type="PlayerConfigs" uid="178">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <gun_default>1</gun_default>
+                        <gun_rocket>0</gun_rocket>
+                        <gun_shotgun>0</gun_shotgun>
+                        <gun_sniper>0</gun_sniper>
+                        <gun_machine>0</gun_machine>
+                        <gears>0</gears>
+                        <hpMax>5</hpMax>
+                        <spMax>4</spMax>
+                        <skull>0</skull>
+                        <slot1>0</slot1>
+                        <slot2>0</slot2>
+                        <slot3>0</slot3>
+                        <slot4>0</slot4>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Persist" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>374</x>
+                        <y>-1105</y>
+                        <z>0</z>
+                        <width>250</width>
+                        <height>250</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
             <effects />
         </layer>
         <layer name="HUD" sid="630711567751560">
@@ -656,6 +641,14 @@
             <effects />
         </layer>
     </layers>
-    <nonworld-instances />
+    <nonworld-instances>
+        <instance type="Upgrades" uid="244">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
+            </properties>
+        </instance>
+    </nonworld-instances>
     <effects />
 </c2layout>

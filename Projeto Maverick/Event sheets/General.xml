@@ -62,6 +62,9 @@
                 <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="354586006674930" type="Bullet">
                     <param id="0" name="Instance variable">isFragment</param>
                 </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="282582095399869" type="Bullet">
+                    <param id="0" name="Instance variable">monster</param>
+                </condition>
             </conditions>
             <actions>
                 <action id="0" name="Call function" sid="109455221351278" type="Function">
@@ -73,6 +76,16 @@
                     <param id="1" name="Layer">&quot;Player&quot;</param>
                     <param id="2" name="X">Bullet.X</param>
                     <param id="3" name="Y">Bullet.Y</param>
+                </action>
+                <action disabled="1" id="25" name="Play at object" sid="187847766686953" type="Audio">
+                    <param id="0" name="Audio file">WALK_MOB</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Zombie</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -127,6 +140,25 @@
                         <action id="-9" name="Destroy" sid="599479002782001" type="Bullet" />
                     </actions>
                     <sub-events>
+                        <event-block sid="586520931143807">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="140510616144467" type="Bullet">
+                                    <param id="0" name="Instance variable">isRocket</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="25" name="Play at object" sid="189368023032186" type="Audio">
+                                    <param id="0" name="Audio file">BAZOOKA_EXPLOSION_MAV</param>
+                                    <param id="1" name="Loop">0</param>
+                                    <param id="2" name="Volume">0</param>
+                                    <param id="3" name="Object">Player</param>
+                                    <param id="4" name="Inner angle">360</param>
+                                    <param id="5" name="Outer angle">360</param>
+                                    <param id="6" name="Outer gain">0</param>
+                                    <param id="7" name="Tag (optional)">&quot;BAZOOKA_EXPLOSION_MAV&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block sid="993737132856998">
                             <conditions>
                                 <condition id="-8" name="Is boolean instance variable set" sid="247049851836870" type="Bullet">
@@ -321,6 +353,10 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="-10" name="Set value" sid="573918105960364" type="PlayerConfigs">
+                    <param id="0" name="Instance variable">gears</param>
+                    <param id="1" name="Value">Player.gears</param>
+                </action>
                 <action id="-2" name="Go to layout" sid="920117877487002" type="System">
                     <param id="0" name="Layout">Upgrade</param>
                 </action>

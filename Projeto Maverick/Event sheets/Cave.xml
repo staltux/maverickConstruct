@@ -27,6 +27,21 @@
                 <variable constant="0" name="continue" sid="826654048099491" static="0" type="number">0</variable>
                 <variable constant="0" name="holeX" sid="668926401846179" static="0" type="number">0</variable>
                 <variable constant="0" name="hole" sid="623168555240734" static="0" type="number">5</variable>
+                <event-block sid="282515351465215">
+                    <conditions>
+                        <condition id="5" inverted="1" name="Is tag playing" sid="287970005840190" type="Audio">
+                            <param id="0" name="Tag">&quot;music&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="147703452153248" type="Audio">
+                            <param id="0" name="Audio file">214009__NES__Thriller</param>
+                            <param id="2" name="Loop">1</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;music&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="745345739444167">
                     <conditions />
                     <actions>
@@ -90,10 +105,6 @@
                                     <param id="0" name="Variable">continue</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action disabled="1" id="14" name="Log" sid="465230949573961" type="Browser">
-                                    <param id="0" name="Type">0</param>
-                                    <param id="1" name="Message">&quot;Tentando em x:&quot; &amp; nx &amp; &quot; y:&quot; &amp; ny &amp; &quot; d:&quot; &amp; d</param>
-                                </action>
                             </actions>
                             <sub-events>
                                 <event-block any="1" sid="381402657094799">
@@ -124,10 +135,6 @@
                                             <param id="0" name="Variable">continue</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
-                                        <action disabled="1" id="14" name="Log" sid="315618342488773" type="Browser">
-                                            <param id="0" name="Type">0</param>
-                                            <param id="1" name="Message">&quot;Posição fora da borda&quot;</param>
-                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block any="1" sid="817687337707326">
@@ -145,10 +152,6 @@
                                             <param id="0" name="Variable">continue</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
-                                        <action disabled="1" id="14" name="Log" sid="745346151775356" type="Browser">
-                                            <param id="0" name="Type">0</param>
-                                            <param id="1" name="Message">&quot;Posição ocupada&quot;</param>
-                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
@@ -162,10 +165,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="14" name="Log" sid="698991579437825" type="Browser">
-                                    <param id="0" name="Type">0</param>
-                                    <param id="1" name="Message">&quot;Posição Ok, criando cave&quot;</param>
-                                </action>
                                 <action id="-9" name="Set value" sid="903778168829020" type="System">
                                     <param id="0" name="Variable">lastX</param>
                                     <param id="1" name="Value">x</param>
@@ -182,17 +181,9 @@
                                     <param id="0" name="Variable">y</param>
                                     <param id="1" name="Value">ny</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="378074501149283" type="System">
-                                    <param id="0" name="Variable">currUID</param>
-                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_01&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
-                                </action>
                                 <action id="-10" name="Add to" sid="438029563912844" type="System">
                                     <param id="0" name="Variable">nodeCount</param>
                                     <param id="1" name="Value">1</param>
-                                </action>
-                                <action disabled="1" id="0" name="Call function" sid="250286656656440" type="Function">
-                                    <param id="0" name="Name">&quot;SpawnCave&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;Cave_01&quot;{###}&quot;bkg&quot;{###}x * 1920{###}y * 960</param>
                                 </action>
                                 <action id="0" name="Add key" sid="187942744514302" type="MapIndex">
                                     <param id="0" name="Key">&quot;&quot; &amp; nx &amp; &quot;:&quot; &amp; ny</param>
@@ -200,364 +191,649 @@
                                 </action>
                             </actions>
                             <sub-events>
+                                <variable constant="0" name="rnd" sid="458163563698836" static="0" type="number">0</variable>
+                                <event-block sid="346691518591348">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="502867486338694" type="System">
+                                            <param id="0" name="Variable">rnd</param>
+                                            <param id="1" name="Value">int(random(5))</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="113716479516607">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="289812020795666" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="354589577845338" type="System">
+                                                    <param id="0" name="Variable">currUID</param>
+                                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_01&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="779272789486124">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="788979011740267" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="925726149796466" type="System">
+                                                    <param id="0" name="Variable">currUID</param>
+                                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_02&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="993508641941674">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="511074291635983" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="788037400008366" type="System">
+                                                    <param id="0" name="Variable">currUID</param>
+                                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_03&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="713989569392749">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="793167374521601" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="511157504155806" type="System">
+                                                    <param id="0" name="Variable">currUID</param>
+                                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_04&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="819609804623780">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="515068465169043" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="380566948597184" type="System">
+                                                    <param id="0" name="Variable">currUID</param>
+                                                    <param id="1" name="Value">Function.Call(&quot;SpawnCave&quot;,&quot;Cave_05&quot;,&quot;bkg&quot;,x*1920,y*960)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="595547087749917">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="289025331964411" type="System">
+                                            <param id="0" name="Variable">rnd</param>
+                                            <param id="1" name="Value">int(random(2))</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <comment>Juta dois corredores horizontalmente</comment>
-                                <event-block sid="698746984562742">
+                                <event-block sid="129659366630461">
                                     <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="673379961222821" type="Cave_01">
-                                            <param id="0" name="Unique ID">lastUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="629576296270495" type="System">
+                                        <condition id="-14" name="Compare variable" sid="721367727539617" type="System">
                                             <param id="0" name="Variable">lastX</param>
                                             <param id="1" name="Comparison">2</param>
                                             <param id="2" name="Value">x</param>
                                         </condition>
-                                        <condition id="-14" name="Compare variable" sid="198617779507179" type="System">
+                                        <condition id="-14" name="Compare variable" sid="374990625955581" type="System">
                                             <param id="0" name="Variable">lastY</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">y</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
+                                    <actions>
+                                        <action id="14" name="Log" sid="812672265220054" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;lastX:&quot; &amp; lastX &amp; &quot; x:&quot; &amp; x &amp; &quot; lastY:&quot; &amp; lasty &amp; &quot; y:&quot; &amp; y</param>
+                                        </action>
+                                    </actions>
                                     <sub-events>
-                                        <event-block sid="761244640318843">
+                                        <event-block sid="997791635997319">
                                             <conditions>
-                                                <condition id="-10" name="For" sid="195901268105446" type="System">
+                                                <condition id="-10" name="For" sid="447638673703579" type="System">
                                                     <param id="0" name="Name">&quot;&quot;</param>
                                                     <param id="1" name="Start index">1</param>
                                                     <param id="2" name="End index">13</param>
                                                 </condition>
                                             </conditions>
-                                            <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="776392600403836" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="595339303957534" type="Cave_01">
-                                                    <param id="0" name="Tile X">29</param>
-                                                    <param id="1" name="Tile Y">loopindex</param>
-                                                </action>
-                                            </actions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="502647908704775">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="956786750026001" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="563107659614444" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">loopindex</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="230035041809220" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">62</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="349180916620747" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">54</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="314231605059345">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="645326097776573" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="454123107864648" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">loopindex</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="186104956881147" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">62</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="300443867621751" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">54</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block sid="338889935607935">
+                                <event-block sid="944320837794074">
                                     <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="385160614353153" type="Cave_01">
-                                            <param id="0" name="Unique ID">currUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="910312305615963" type="System">
-                                            <param id="0" name="Variable">lastX</param>
-                                            <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Value">x</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="239242255874217" type="System">
-                                            <param id="0" name="Variable">lastY</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">y</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block sid="603955287882923">
-                                            <conditions>
-                                                <condition id="-10" name="For" sid="896043881041092" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">1</param>
-                                                    <param id="2" name="End index">13</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="763853364478248" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="870882712586189" type="Cave_01">
-                                                    <param id="0" name="Tile X">0</param>
-                                                    <param id="1" name="Tile Y">loopindex</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="884888135834900">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="348156737971698" type="Cave_01">
-                                            <param id="0" name="Unique ID">lastUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="823899667370501" type="System">
-                                            <param id="0" name="Variable">lastX</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">x</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="122050023047604" type="System">
-                                            <param id="0" name="Variable">lastY</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">y</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block sid="786917790082213">
-                                            <conditions>
-                                                <condition id="-10" name="For" sid="114957202059588" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">1</param>
-                                                    <param id="2" name="End index">13</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="564974116711209" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="739858303697324" type="Cave_01">
-                                                    <param id="0" name="Tile X">0</param>
-                                                    <param id="1" name="Tile Y">loopindex</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="728556045598937">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="498385185559026" type="Cave_01">
-                                            <param id="0" name="Unique ID">currUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="524984604944917" type="System">
+                                        <condition id="-14" name="Compare variable" sid="134968762249062" type="System">
                                             <param id="0" name="Variable">lastX</param>
                                             <param id="1" name="Comparison">4</param>
                                             <param id="2" name="Value">x</param>
                                         </condition>
-                                        <condition id="-14" name="Compare variable" sid="229392239388724" type="System">
+                                        <condition id="-14" name="Compare variable" sid="540143898864155" type="System">
                                             <param id="0" name="Variable">lastY</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">y</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
+                                    <actions>
+                                        <action id="14" name="Log" sid="943190314835965" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;lastX:&quot; &amp; lastX &amp; &quot; x:&quot; &amp; x &amp; &quot; lastY:&quot; &amp; lasty &amp; &quot; y:&quot; &amp; y</param>
+                                        </action>
+                                    </actions>
                                     <sub-events>
-                                        <event-block sid="278049452632217">
+                                        <event-block sid="296135232674387">
                                             <conditions>
-                                                <condition id="-10" name="For" sid="863490552314680" type="System">
+                                                <condition id="-10" name="For" sid="166056842880671" type="System">
                                                     <param id="0" name="Name">&quot;&quot;</param>
                                                     <param id="1" name="Start index">1</param>
                                                     <param id="2" name="End index">13</param>
                                                 </condition>
                                             </conditions>
-                                            <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="772457258866164" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="632464593970365" type="Cave_01">
-                                                    <param id="0" name="Tile X">29</param>
-                                                    <param id="1" name="Tile Y">loopindex</param>
-                                                </action>
-                                            </actions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="444617305370306">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="951622733779485" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="273164356891697" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">loopindex</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="442867107552589" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">62</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="409728832715737" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">54</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="536305235435708">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="986185141122591" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="608960148846052" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">loopindex</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="127806722591461" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">62</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="327767640673537" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">54</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
                                 <comment>Juta dois corredores verticalmente</comment>
-                                <event-block sid="663898569972083">
-                                    <conditions />
+                                <event-block sid="521198710999064">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="100685526581380" type="System">
+                                            <param id="0" name="Variable">lastX</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">x</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="931684742830489" type="System">
+                                            <param id="0" name="Variable">lastY</param>
+                                            <param id="1" name="Comparison">2</param>
+                                            <param id="2" name="Value">y</param>
+                                        </condition>
+                                    </conditions>
                                     <actions>
-                                        <action id="-9" name="Set value" sid="685200709817045" type="System">
-                                            <param id="0" name="Variable">holeX</param>
-                                            <param id="1" name="Value">1+random(28-hole)</param>
+                                        <action id="14" name="Log" sid="504456262656584" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;lastX:&quot; &amp; lastX &amp; &quot; x:&quot; &amp; x &amp; &quot; lastY:&quot; &amp; lasty &amp; &quot; y:&quot; &amp; y</param>
                                         </action>
                                     </actions>
-                                </event-block>
-                                <event-block sid="238512623130026">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="580103431049151" type="Cave_01">
-                                            <param id="0" name="Unique ID">lastUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="386731121055685" type="System">
-                                            <param id="0" name="Variable">lastX</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">x</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="211009335280400" type="System">
-                                            <param id="0" name="Variable">lastY</param>
-                                            <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Value">y</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
                                     <sub-events>
-                                        <event-block sid="605823262464046">
+                                        <event-block sid="511513447167302">
                                             <conditions>
-                                                <condition id="-10" name="For" sid="720635224323720" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">holeX</param>
-                                                    <param id="2" name="End index">holeX+hole</param>
+                                                <condition id="-14" name="Compare variable" sid="984861712032821" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="708481750670826" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="929415749182911" type="Cave_01">
-                                                    <param id="0" name="Tile X">loopindex</param>
-                                                    <param id="1" name="Tile Y">14</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block sid="711164785275739">
-                                            <conditions />
-                                            <actions>
-                                                <action id="-3" name="Create object" sid="835247338218945" type="System">
+                                                <action id="-3" name="Create object" sid="559511320681717" type="System">
                                                     <param id="0" name="Object to create">HookPoint</param>
-                                                    <param id="1" name="Layer">&quot;bkg&quot;</param>
-                                                    <param id="2" name="X">Cave_01.TileToPositionX(hole+holeX-1)</param>
-                                                    <param id="3" name="Y">Cave_01.TileToPositionY(14)</param>
+                                                    <param id="1" name="Layer">&quot;white&quot;</param>
+                                                    <param id="2" name="X">(x *1920) + 320</param>
+                                                    <param id="3" name="Y">y * 960</param>
                                                 </action>
                                             </actions>
                                         </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="225000368461176">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="604241201081782" type="Cave_01">
-                                            <param id="0" name="Unique ID">currUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="742862881173583" type="System">
-                                            <param id="0" name="Variable">lastX</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">x</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="524908488241841" type="System">
-                                            <param id="0" name="Variable">lastY</param>
-                                            <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Value">y</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block sid="545086937035146">
+                                        <event-block sid="129284815362943">
                                             <conditions>
-                                                <condition id="-10" name="For" sid="364407302351749" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">holeX</param>
-                                                    <param id="2" name="End index">holeX+hole</param>
+                                                <condition id="-14" name="Compare variable" sid="584011939768245" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="603535950412965" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="463772811147609" type="Cave_01">
-                                                    <param id="0" name="Tile X">loopindex</param>
-                                                    <param id="1" name="Tile Y">0</param>
+                                                <action id="-3" name="Create object" sid="737415321367353" type="System">
+                                                    <param id="0" name="Object to create">HookPoint</param>
+                                                    <param id="1" name="Layer">&quot;white&quot;</param>
+                                                    <param id="2" name="X">(x *1920) + 1856</param>
+                                                    <param id="3" name="Y">y * 960</param>
                                                 </action>
                                             </actions>
                                         </event-block>
+                                        <event-block sid="940000371491638">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="613812165952993" type="System">
+                                                    <param id="0" name="Name">&quot;&quot;</param>
+                                                    <param id="1" name="Start index">1</param>
+                                                    <param id="2" name="End index">4</param>
+                                                </condition>
+                                                <condition id="-14" name="Compare variable" sid="888265387336581" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="832447039388691">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="175876255738932" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="610785362606261" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="623717918669775" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">123</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="841523548548558" type="Caves">
+                                                            <param id="0" name="Tile X">5</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">115</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="550747512598272">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="953365171169268" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="967915556934313" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="386928584310557" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">69</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="739040472500552" type="Caves">
+                                                            <param id="0" name="Tile X">5</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">61</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="750504326781487">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="397744583278162" type="System">
+                                                    <param id="0" name="Name">&quot;&quot;</param>
+                                                    <param id="1" name="Start index">25</param>
+                                                    <param id="2" name="End index">28</param>
+                                                </condition>
+                                                <condition id="-14" name="Compare variable" sid="423690724636086" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="415378040121803">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="753465976208626" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="744283074024424" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="181377409897894" type="Caves">
+                                                            <param id="0" name="Tile X">24</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">123</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="615561511802756" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">115</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="584902638852790">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="301529731022146" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="121148794125189" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="785420874725660" type="Caves">
+                                                            <param id="0" name="Tile X">24</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">69</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="210109092200558" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">61</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
                                     </sub-events>
                                 </event-block>
-                                <event-block sid="587820848078728">
+                                <event-block sid="255735415530412">
                                     <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="316976982849316" type="Cave_01">
-                                            <param id="0" name="Unique ID">lastUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="929600218130749" type="System">
+                                        <condition id="-14" name="Compare variable" sid="466368224386178" type="System">
                                             <param id="0" name="Variable">lastX</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">x</param>
                                         </condition>
-                                        <condition id="-14" name="Compare variable" sid="935700552756537" type="System">
+                                        <condition id="-14" name="Compare variable" sid="644105199048634" type="System">
                                             <param id="0" name="Variable">lastY</param>
                                             <param id="1" name="Comparison">4</param>
                                             <param id="2" name="Value">y</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
+                                    <actions>
+                                        <action id="14" name="Log" sid="131478389042300" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;lastX:&quot; &amp; lastX &amp; &quot; x:&quot; &amp; x &amp; &quot; lastY:&quot; &amp; lasty &amp; &quot; y:&quot; &amp; y</param>
+                                        </action>
+                                    </actions>
                                     <sub-events>
-                                        <event-block sid="570535066065002">
+                                        <event-block sid="236606989022962">
                                             <conditions>
-                                                <condition id="-10" name="For" sid="220408915442819" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">holeX</param>
-                                                    <param id="2" name="End index">holeX+hole</param>
+                                                <condition id="-14" name="Compare variable" sid="298193148394785" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="639103330400996" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="937949781080998" type="Cave_01">
-                                                    <param id="0" name="Tile X">loopindex</param>
-                                                    <param id="1" name="Tile Y">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="889274472249936">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" sid="725946625128492" type="Cave_01">
-                                            <param id="0" name="Unique ID">currUID</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="564028104671507" type="System">
-                                            <param id="0" name="Variable">lastX</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">x</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" sid="331113293274211" type="System">
-                                            <param id="0" name="Variable">lastY</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">y</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block sid="901818070074709">
-                                            <conditions>
-                                                <condition id="-10" name="For" sid="401444701894419" type="System">
-                                                    <param id="0" name="Name">&quot;&quot;</param>
-                                                    <param id="1" name="Start index">holeX</param>
-                                                    <param id="2" name="End index">holeX+hole</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="1" name="Set tile" sid="964037784510301" type="Cave_01">
-                                                    <param id="0" name="Tile X">5</param>
-                                                    <param id="1" name="Tile Y">5</param>
-                                                    <param id="2" name="Tile">5</param>
-                                                    <param id="3" name="State">0</param>
-                                                </action>
-                                                <action id="0" name="Erase tile" sid="328910672241051" type="Cave_01">
-                                                    <param id="0" name="Tile X">loopindex</param>
-                                                    <param id="1" name="Tile Y">14</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block sid="250156016979114">
-                                            <conditions />
-                                            <actions>
-                                                <action id="-3" name="Create object" sid="382240687320548" type="System">
+                                                <action id="-3" name="Create object" sid="102325520959204" type="System">
                                                     <param id="0" name="Object to create">HookPoint</param>
-                                                    <param id="1" name="Layer">&quot;bkg&quot;</param>
-                                                    <param id="2" name="X">Cave_01.TileToPositionX(hole+holeX-1)</param>
-                                                    <param id="3" name="Y">Cave_01.TileToPositionY(14)</param>
+                                                    <param id="1" name="Layer">&quot;white&quot;</param>
+                                                    <param id="2" name="X">(x *1920) + 320</param>
+                                                    <param id="3" name="Y">(y * 960)+960</param>
                                                 </action>
                                             </actions>
+                                        </event-block>
+                                        <event-block sid="150427169767285">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="913100772474444" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Create object" sid="255563469889997" type="System">
+                                                    <param id="0" name="Object to create">HookPoint</param>
+                                                    <param id="1" name="Layer">&quot;white&quot;</param>
+                                                    <param id="2" name="X">(x *1920) + 1856</param>
+                                                    <param id="3" name="Y">(y * 960)+960</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="707901053407625">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="396393890195073" type="System">
+                                                    <param id="0" name="Name">&quot;&quot;</param>
+                                                    <param id="1" name="Start index">1</param>
+                                                    <param id="2" name="End index">4</param>
+                                                </condition>
+                                                <condition id="-14" name="Compare variable" sid="126511035416640" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="473652237416879">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="445708889043599" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="809451983944111" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="253668361838047" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">69</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="954247037982962" type="Caves">
+                                                            <param id="0" name="Tile X">5</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">61</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="943667557716537">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="197464476523576" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="751358595399232" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="937518060731916" type="Caves">
+                                                            <param id="0" name="Tile X">0</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">123</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="124035010946844" type="Caves">
+                                                            <param id="0" name="Tile X">5</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">115</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="551701915748760">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="729897439209348" type="System">
+                                                    <param id="0" name="Name">&quot;&quot;</param>
+                                                    <param id="1" name="Start index">25</param>
+                                                    <param id="2" name="End index">28</param>
+                                                </condition>
+                                                <condition id="-14" name="Compare variable" sid="955563469544622" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="422451465516508">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="339145752181319" type="Caves">
+                                                            <param id="0" name="Unique ID">currUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="817945195452309" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="621934837020156" type="Caves">
+                                                            <param id="0" name="Tile X">24</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">69</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="527557815948353" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">14</param>
+                                                            <param id="2" name="Tile">61</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="741002228384386">
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" sid="976066107554195" type="Caves">
+                                                            <param id="0" name="Unique ID">lastUID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Erase tile" sid="311859250346250" type="Caves">
+                                                            <param id="0" name="Tile X">loopindex</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="513095996313589" type="Caves">
+                                                            <param id="0" name="Tile X">24</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">123</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                        <action id="1" name="Set tile" sid="258324257702202" type="Caves">
+                                                            <param id="0" name="Tile X">29</param>
+                                                            <param id="1" name="Tile Y">0</param>
+                                                            <param id="2" name="Tile">115</param>
+                                                            <param id="3" name="State">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
@@ -572,6 +848,21 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <event-block sid="956814412275230">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="655849586787684" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="664375013772360" type="System">
+                                    <param id="0" name="Variable">nx</param>
+                                    <param id="1" name="Value">x</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="349004009652109" type="System">
+                                    <param id="0" name="Variable">ny</param>
+                                    <param id="1" name="Value">y</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-block>
                 <event-block sid="367304552245046">
@@ -584,7 +875,7 @@
                         <action id="-3" name="Create object" sid="442328570111010" type="System">
                             <param id="0" name="Object to create">Door</param>
                             <param id="1" name="Layer">&quot;bkg&quot;</param>
-                            <param id="2" name="X">x *1920 + ((holeX + hole) *64)</param>
+                            <param id="2" name="X">x *1920 + (1920/2)</param>
                             <param id="3" name="Y">(y * 960) + 512</param>
                         </action>
                         <action id="-24" name="Move to top" sid="872743441510711" type="Door" />
@@ -612,34 +903,6 @@
                     <actions>
                         <action id="-26" name="Restart layout" sid="254958911634406" type="System" />
                     </actions>
-                </event-block>
-                <event-block disabled="1" sid="290319806724712">
-                    <conditions>
-                        <condition id="-10" name="For" sid="843782450593485" type="System">
-                            <param id="0" name="Name">&quot;i&quot;</param>
-                            <param id="1" name="Start index">0</param>
-                            <param id="2" name="End index">4</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block disabled="1" sid="737096924515260">
-                            <conditions>
-                                <condition id="-10" name="For" sid="673232311506262" type="System">
-                                    <param id="0" name="Name">&quot;j&quot;</param>
-                                    <param id="1" name="Start index">0</param>
-                                    <param id="2" name="End index">4</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <event-block disabled="1" sid="906934972614231">
-                                    <conditions />
-                                    <actions />
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
@@ -674,14 +937,314 @@
                             <param id="0" name="Variable">Y</param>
                             <param id="1" name="Value">Function.Param(3)</param>
                         </action>
+                        <action disabled="1" id="14" name="Log" sid="510187998420896" type="Browser">
+                            <param id="0" name="Type">0</param>
+                            <param id="1" name="Message">&quot;Creating Cave in &quot; &amp; X &amp; &quot; &quot; &amp; Y</param>
+                        </action>
                     </actions>
                     <sub-events>
+                        <event-block sid="219725669050187">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="297750667211885" type="System">
+                                    <param id="0" name="Variable">ObjectName</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Cave_01&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="670651454151209" type="System">
+                                    <param id="0" name="Object to create">Cave_01</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="636512771871628" type="System">
+                                    <param id="0" name="Variable">UID</param>
+                                    <param id="1" name="Value">Cave_01.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="694784325173243" type="System">
+                                    <param id="0" name="Object to create">Cave_01_p</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="649805752139875" type="System">
+                                    <param id="0" name="Object to create">Bkg2</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="340934691327898" type="Bkg2" />
+                                <action id="-3" name="Create object" sid="472465146034029" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="814551323868673" type="Torch" />
+                                <action id="-3" name="Create object" sid="871787807172887" type="System">
+                                    <param id="0" name="Object to create">Zombie</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480 + 448</param>
+                                    <param id="3" name="Y">Y + 192</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="467792805096051" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480 + 1000</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="145277898125060" type="Torch" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="640253342499269">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="617611676735322" type="System">
+                                            <param id="0" name="First value">random(10)</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="714222264622100" type="Zombie">
+                                            <param id="0" name="Instance variable">gunner</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="238214614736741">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="375401439749710" type="System">
+                                    <param id="0" name="Variable">ObjectName</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Cave_02&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="14" name="Log" sid="148599100532782" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Creating Cave in &quot; &amp; X &amp; &quot; &quot; &amp; Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="257354398293578" type="System">
+                                    <param id="0" name="Object to create">Cave_02</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="899911503197596" type="System">
+                                    <param id="0" name="Variable">UID</param>
+                                    <param id="1" name="Value">Cave_02.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="368356655695213" type="System">
+                                    <param id="0" name="Object to create">Cave_02_p</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="954147982541196" type="System">
+                                    <param id="0" name="Object to create">Bkg2</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="852593892254676" type="Bkg2" />
+                                <action id="-3" name="Create object" sid="452921019643942" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="918048529268129" type="Torch" />
+                                <action id="-3" name="Create object" sid="234690035602126" type="System">
+                                    <param id="0" name="Object to create">Zombie</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 1024</param>
+                                    <param id="3" name="Y">Y + 256</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="432851180124243" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480 + 1000</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="409649557673223" type="Torch" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="624390413407012">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="354149600275585" type="System">
+                                            <param id="0" name="First value">random(10)</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="624583385543730" type="Zombie">
+                                            <param id="0" name="Instance variable">gunner</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="976669629554175">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="978192582558757" type="System">
+                                    <param id="0" name="Variable">ObjectName</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Cave_03&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="14" name="Log" sid="514793513278989" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Creating Cave in &quot; &amp; X &amp; &quot; &quot; &amp; Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="362678402851491" type="System">
+                                    <param id="0" name="Object to create">Cave_03</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="860744077000093" type="System">
+                                    <param id="0" name="Variable">UID</param>
+                                    <param id="1" name="Value">Cave_03.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="491886832685919" type="System">
+                                    <param id="0" name="Object to create">Cave_03_p</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="619101544412755" type="System">
+                                    <param id="0" name="Object to create">Bkg2</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="900210945161061" type="Bkg2" />
+                                <action id="-3" name="Create object" sid="972041544993835" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="137624095534523" type="Torch" />
+                                <action id="-3" name="Create object" sid="126082657114540" type="System">
+                                    <param id="0" name="Object to create">Zombie</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 512</param>
+                                    <param id="3" name="Y">Y + 320</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="716735672326275" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480 + 1000</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="850793733419228" type="Torch" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="291954844552051">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="174059046665947" type="System">
+                                            <param id="0" name="First value">random(10)</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="768201470364694" type="Zombie">
+                                            <param id="0" name="Instance variable">gunner</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="204685346972176">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="779994742525042" type="System">
+                                    <param id="0" name="Variable">ObjectName</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Cave_04&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action disabled="1" id="14" name="Log" sid="606166779015756" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Creating Cave in &quot; &amp; X &amp; &quot; &quot; &amp; Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="681423072262774" type="System">
+                                    <param id="0" name="Object to create">Cave_04</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="922449732128354" type="System">
+                                    <param id="0" name="Variable">UID</param>
+                                    <param id="1" name="Value">Cave_04.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="913876802785234" type="System">
+                                    <param id="0" name="Object to create">Cave_04_p</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="479815008569582" type="System">
+                                    <param id="0" name="Object to create">Bkg2</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="426413422581434" type="Bkg2" />
+                                <action id="-3" name="Create object" sid="572847622028992" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="196401293448588" type="Torch" />
+                                <action id="-3" name="Create object" sid="835668849904791" type="System">
+                                    <param id="0" name="Object to create">Zombie</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 1664</param>
+                                    <param id="3" name="Y">Y + 320</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="359240895647015" type="System">
+                                    <param id="0" name="Object to create">Torch</param>
+                                    <param id="1" name="Layer">&quot;Player&quot;</param>
+                                    <param id="2" name="X">X + 480 + 1000</param>
+                                    <param id="3" name="Y">Y + 700</param>
+                                </action>
+                                <action id="-25" name="Move to bottom" sid="627071861065597" type="Torch" />
+                            </actions>
+                            <sub-events>
+                                <event-block sid="872547738750969">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="636020283886870" type="System">
+                                            <param id="0" name="First value">random(10)</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-13" name="Set boolean" sid="209430605998163" type="Zombie">
+                                            <param id="0" name="Instance variable">gunner</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <event-block sid="280893323415699">
                             <conditions>
                                 <condition id="-14" name="Compare variable" sid="808175817961236" type="System">
                                     <param id="0" name="Variable">ObjectName</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">&quot;Cave_01&quot;</param>
+                                    <param id="2" name="Value">&quot;Cave_05&quot;</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -690,14 +1253,20 @@
                                     <param id="1" name="Message">&quot;Creating Cave in &quot; &amp; X &amp; &quot; &quot; &amp; Y</param>
                                 </action>
                                 <action id="-3" name="Create object" sid="916593562243309" type="System">
-                                    <param id="0" name="Object to create">Cave_01</param>
+                                    <param id="0" name="Object to create">Cave_05</param>
                                     <param id="1" name="Layer">LayerName</param>
                                     <param id="2" name="X">X</param>
                                     <param id="3" name="Y">Y</param>
                                 </action>
                                 <action id="-9" name="Set value" sid="496615866442348" type="System">
                                     <param id="0" name="Variable">UID</param>
-                                    <param id="1" name="Value">Cave_01.UID</param>
+                                    <param id="1" name="Value">Cave_05.UID</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="282990216909505" type="System">
+                                    <param id="0" name="Object to create">Cave_05_p</param>
+                                    <param id="1" name="Layer">LayerName</param>
+                                    <param id="2" name="X">X</param>
+                                    <param id="3" name="Y">Y</param>
                                 </action>
                                 <action id="-3" name="Create object" sid="455720273379715" type="System">
                                     <param id="0" name="Object to create">Bkg2</param>
@@ -716,8 +1285,8 @@
                                 <action id="-3" name="Create object" sid="308829411583072" type="System">
                                     <param id="0" name="Object to create">Zombie</param>
                                     <param id="1" name="Layer">&quot;Player&quot;</param>
-                                    <param id="2" name="X">X + 480 + 500</param>
-                                    <param id="3" name="Y">Y + 700</param>
+                                    <param id="2" name="X">X +1408</param>
+                                    <param id="3" name="Y">Y + 256</param>
                                 </action>
                                 <action id="-3" name="Create object" sid="820326705513053" type="System">
                                     <param id="0" name="Object to create">Torch</param>

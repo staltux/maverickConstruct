@@ -135,6 +135,10 @@
             </conditions>
             <actions />
             <sub-events>
+                <event-block sid="550701404739829">
+                    <conditions />
+                    <actions />
+                </event-block>
                 <event-block sid="146592976701581">
                     <conditions>
                         <condition id="-7" name="Compare instance variable" sid="679745408205280" type="HpBarBase">
@@ -324,6 +328,36 @@
                     <param id="1" name="Value">60</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="880910330593409">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="383508322496690" type="Zombie">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">Player.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="12" name="Fall through" sid="554089715482028" type="Zombie" />
+                    </actions>
+                </event-block>
+                <event-block sid="352643685156155">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="602749570677150" type="Zombie">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">Player.Y +99</param>
+                        </condition>
+                        <condition behavior="Platform" id="2" name="Is on floor" sid="488470730920618" type="Zombie" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Platform" id="7" name="Simulate control" sid="308228309286355" type="Zombie">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                        <action behavior="Platform" id="9" name="Set vector Y" sid="911257918655876" type="Zombie">
+                            <param id="0" name="Vector Y"> -Zombie.Platform.JumpStrength</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="228482148228033">
             <conditions>
@@ -465,10 +499,6 @@
                             <param id="0" name="Instance variable">attackCount</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="4" name="Set animation" sid="922107075709203" type="ZombieWalk">
-                            <param id="0" name="Animation">&quot;attack&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
                         <action id="-10" name="Set value" sid="645285204909844" type="Zombie">
                             <param id="0" name="Instance variable">direction</param>
                             <param id="1" name="Value">0</param>
@@ -492,7 +522,102 @@
                                     <param id="0" name="Instance variable">attackCount</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
+                                <action id="4" name="Set animation" sid="922107075709203" type="ZombieWalk">
+                                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
                             </actions>
+                            <sub-events>
+                                <variable constant="0" name="rnd" sid="404052797348135" static="0" type="number">0</variable>
+                                <event-block sid="947315673808285">
+                                    <conditions>
+                                        <condition id="5" inverted="1" name="Is tag playing" sid="959769556082579" type="Audio">
+                                            <param id="0" name="Tag">&quot;ATACK_GRUNT_MOB_&quot; &amp; Zombie.UID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="690496248738873" type="System">
+                                            <param id="0" name="Variable">rnd</param>
+                                            <param id="1" name="Value">int(random(3))</param>
+                                        </action>
+                                        <action id="25" name="Play at object" sid="338261273346181" type="Audio">
+                                            <param id="0" name="Audio file">ATACK_MOB</param>
+                                            <param id="1" name="Loop">0</param>
+                                            <param id="2" name="Volume">0</param>
+                                            <param id="3" name="Object">Zombie</param>
+                                            <param id="4" name="Inner angle">360</param>
+                                            <param id="5" name="Outer angle">360</param>
+                                            <param id="6" name="Outer gain">0</param>
+                                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="139347411579273">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="223944670245131" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="25" name="Play at object" sid="690543126505849" type="Audio">
+                                                    <param id="0" name="Audio file">ATACK_GROUT_MOB1</param>
+                                                    <param id="1" name="Loop">0</param>
+                                                    <param id="2" name="Volume">0</param>
+                                                    <param id="3" name="Object">Zombie</param>
+                                                    <param id="4" name="Inner angle">360</param>
+                                                    <param id="5" name="Outer angle">360</param>
+                                                    <param id="6" name="Outer gain">0</param>
+                                                    <param id="7" name="Tag (optional)">&quot;ATACK_GRUNT_MOB_&quot; &amp; Zombie.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="605687027332802">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="537436513087012" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="25" name="Play at object" sid="337220092086638" type="Audio">
+                                                    <param id="0" name="Audio file">ATACK_GROUT_MOB2</param>
+                                                    <param id="1" name="Loop">0</param>
+                                                    <param id="2" name="Volume">0</param>
+                                                    <param id="3" name="Object">Zombie</param>
+                                                    <param id="4" name="Inner angle">360</param>
+                                                    <param id="5" name="Outer angle">360</param>
+                                                    <param id="6" name="Outer gain">0</param>
+                                                    <param id="7" name="Tag (optional)">&quot;ATACK_GRUNT_MOB_&quot; &amp; Zombie.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="937492515838054">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="583111050196056" type="System">
+                                                    <param id="0" name="Variable">rnd</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="25" name="Play at object" sid="867745752948505" type="Audio">
+                                                    <param id="0" name="Audio file">ATACK_GROUT_MOB3</param>
+                                                    <param id="1" name="Loop">0</param>
+                                                    <param id="2" name="Volume">0</param>
+                                                    <param id="3" name="Object">Zombie</param>
+                                                    <param id="4" name="Inner angle">360</param>
+                                                    <param id="5" name="Outer angle">360</param>
+                                                    <param id="6" name="Outer gain">0</param>
+                                                    <param id="7" name="Tag (optional)">&quot;ATACK_GRUNT_MOB_&quot; &amp; Zombie.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -626,25 +751,66 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="526026480907837">
+                <comment>se tem chao ou se esta persiguindo, caminha</comment>
+                <event-block any="1" sid="287867565476257">
                     <conditions>
-                        <condition id="9" name="Is overlapping at offset" sid="213926633067029" type="Zombie">
+                        <condition id="9" name="Is overlapping at offset" sid="241583437392103" type="Zombie">
                             <param id="0" name="Object">Solidos</param>
                             <param id="1" name="Offset X">(Zombie.direction&gt;0)?64:-64</param>
                             <param id="2" name="Offset Y">64</param>
                         </condition>
-                        <condition id="2" inverted="1" name="Is playing" sid="163397155888085" type="ZombieWalk">
-                            <param id="0" name="Animation">&quot;attack&quot;</param>
-                        </condition>
-                        <condition id="2" inverted="1" name="Is playing" sid="794562024398323" type="ZombieGunner">
-                            <param id="0" name="Animation">&quot;attack&quot;</param>
+                        <condition id="-8" name="Is boolean instance variable set" sid="739728051888902" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
-                            <param id="0" name="Vector X">Zombie.Platform.MaxSpeed * Zombie.direction</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="526026480907837">
+                            <conditions>
+                                <condition id="1" inverted="1" name="Is overlapping another object" sid="562125912859228" type="Zombie">
+                                    <param id="0" name="Object">Zombie</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="163397155888085" type="ZombieWalk">
+                                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                                </condition>
+                                <condition id="2" inverted="1" name="Is playing" sid="794562024398323" type="ZombieGunner">
+                                    <param id="0" name="Animation">&quot;attack&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Platform" id="8" name="Set vector X" sid="684908515174796" type="Zombie">
+                                    <param id="0" name="Vector X">Zombie.Platform.MaxSpeed * Zombie.direction</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="328927904626385">
+                                    <conditions>
+                                        <condition id="-3" name="Is on-screen" sid="650858304377969" type="Zombie" />
+                                        <condition id="-7" name="Compare instance variable" sid="758103364307613" type="Zombie">
+                                            <param id="0" name="Instance variable">direction</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                        <condition id="5" inverted="1" name="Is tag playing" sid="842872505981674" type="Audio">
+                                            <param id="0" name="Tag">&quot;WALK _MOB_&quot; &amp; Zombie.UID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="25" name="Play at object" sid="140147208969429" type="Audio">
+                                            <param id="0" name="Audio file">WALK_MOB</param>
+                                            <param id="1" name="Loop">0</param>
+                                            <param id="2" name="Volume">0</param>
+                                            <param id="3" name="Object">Zombie</param>
+                                            <param id="4" name="Inner angle">360</param>
+                                            <param id="5" name="Outer angle">360</param>
+                                            <param id="6" name="Outer gain">0</param>
+                                            <param id="7" name="Tag (optional)">&quot;WALK _MOB_&quot; &amp; Zombie.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="645267511102369">
                     <conditions>
@@ -663,6 +829,9 @@
                             <param id="0" name="Object">Solidos</param>
                             <param id="1" name="Offset X">(Zombie.direction&gt;0)?32:-32</param>
                             <param id="2" name="Offset Y">-5</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="278358327997220" type="Zombie">
+                            <param id="0" name="Instance variable">isPlayerNear</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -740,10 +909,30 @@
                 <condition disabled="1" id="-4" name="Trigger once while true" sid="758965811934027" type="System" />
             </conditions>
             <actions>
-                <action id="0" name="Spawn another object" sid="557866042003047" type="ZombieGunner">
+                <action id="25" name="Play at object" sid="583932953780942" type="Audio">
+                    <param id="0" name="Audio file">SHOT_MOB</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Zombie</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;SHOT_MOB_&quot; &amp; Zombie.UID</param>
+                </action>
+                <action id="-3" name="Create object" sid="429382029038733" type="System">
+                    <param id="0" name="Object to create">Bullet</param>
+                    <param id="1" name="Layer">&quot;white&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action disabled="1" id="0" name="Spawn another object" sid="557866042003047" type="ZombieGunner">
                     <param id="0" name="Object">Bullet</param>
                     <param id="1" name="Layer">&quot;white&quot;</param>
                     <param id="2" name="Image point">&quot;bullet&quot;</param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="246100127471365" type="Bullet">
+                    <param id="0" name="Object">ZombieGunner</param>
+                    <param id="1" name="Image point (optional)">&quot;bullet&quot;</param>
                 </action>
                 <action id="-10" name="Set value" sid="192114439897382" type="Bullet">
                     <param id="0" name="Instance variable">damage</param>
@@ -751,7 +940,7 @@
                 </action>
                 <action id="-10" name="Set value" sid="831322470662268" type="Bullet">
                     <param id="0" name="Instance variable">maxDistance</param>
-                    <param id="1" name="Value">NearDetector.Width + 100</param>
+                    <param id="1" name="Value">abs(NearDetector.Width) + 100</param>
                 </action>
                 <action behavior="Bullet" id="0" name="Set speed" sid="539225865316877" type="Bullet">
                     <param id="0" name="Speed">900</param>
@@ -773,6 +962,9 @@
                         <action id="-8" name="Set angle" sid="378249354962872" type="Bullet">
                             <param id="0" name="Angle">180</param>
                         </action>
+                        <action behavior="Bullet" id="3" name="Set angle of motion" sid="685115107509836" type="Bullet">
+                            <param id="0" name="Angle">180</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="391167823130328">
@@ -786,6 +978,23 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-block sid="550715716063002">
+            <conditions>
+                <condition behavior="Platform" id="9" name="On landed" sid="368959921356397" type="Zombie" />
+            </conditions>
+            <actions>
+                <action id="25" name="Play at object" sid="573569341050603" type="Audio">
+                    <param id="0" name="Audio file">FALL_MOB</param>
+                    <param id="1" name="Loop">0</param>
+                    <param id="2" name="Volume">0</param>
+                    <param id="3" name="Object">Zombie</param>
+                    <param id="4" name="Inner angle">360</param>
+                    <param id="5" name="Outer angle">360</param>
+                    <param id="6" name="Outer gain">0</param>
+                    <param id="7" name="Tag (optional)">&quot;FALL_MOB&quot;</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

@@ -13,6 +13,64 @@
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="362295660160401">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="510881101190883" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="581941928500214" type="Slot">
+                            <param id="0" name="Frame number">PlayerConfigs.slot1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="899664396360326">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="246229484497625" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="629959160167828" type="Slot">
+                            <param id="0" name="Frame number">PlayerConfigs.slot2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="885188558683621">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="701933225364734" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="611257367829516" type="Slot">
+                            <param id="0" name="Frame number">PlayerConfigs.slot3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="635145402471169">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="844532981383897" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="497137841385242" type="Slot">
+                            <param id="0" name="Frame number">PlayerConfigs.slot4</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="135555857599963">
             <conditions>
@@ -129,6 +187,20 @@
                     <actions>
                         <action id="0" name="Set text" sid="753092657045342" type="GearText">
                             <param id="0" name="Text">&quot;&quot; &amp; Player.gears</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="432815168100138">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="630804934666610" type="Guns">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Player.gun</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="328171849351884" type="BulletText">
+                            <param id="0" name="Text">&quot;&quot; &amp;  Guns.bullets</param>
                         </action>
                     </actions>
                 </event-block>

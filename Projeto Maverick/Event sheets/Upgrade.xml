@@ -3,15 +3,940 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Upgrade</name>
     <events>
+        <variable constant="0" name="GUN_DEFAULT_MAX_LEVEL" sid="918447681534389" static="0" type="number">3</variable>
+        <variable constant="0" name="GUN_SHOTGUN_MAX_LEVEL" sid="706744379071437" static="0" type="number">3</variable>
+        <variable constant="0" name="GUN_ROCKET_MAX_LEVEL" sid="458281991172457" static="0" type="number">3</variable>
+        <variable constant="0" name="GUN_SNIPER_MAX_LEVEL" sid="865416916345111" static="0" type="number">2</variable>
+        <variable constant="0" name="GUN_SKULL_MAX_LEVEL" sid="446587657794795" static="0" type="number">3</variable>
+        <variable constant="0" name="GUN_MACHINE_MAX_LEVEL" sid="419150128456571" static="0" type="number">3</variable>
         <event-block sid="660711068513937">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="154541782561998" type="System" />
             </conditions>
             <actions>
-                <action id="-2" name="Go to layout" sid="113350257620297" type="System">
+                <action disabled="1" id="-2" name="Go to layout" sid="113350257620297" type="System">
+                    <param id="0" name="Layout">Cave</param>
+                </action>
+                <action id="0" name="Call function" sid="403483749294530" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="557676953639669">
+            <conditions>
+                <condition id="0" name="On function" sid="368771544117789" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="313241431816847" type="Hp" />
+                <action id="-9" name="Destroy" sid="508090980840180" type="Sp" />
+                <action id="-9" name="Destroy" sid="299977291559912" type="HudTail" />
+            </actions>
+            <sub-events>
+                <variable constant="0" name="hx" sid="772495338250345" static="0" type="number">0</variable>
+                <event-block sid="740992480744940">
+                    <conditions>
+                        <condition id="-10" name="For" sid="443713142532636" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">PlayerConfigs.hpMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="561118615838305" type="System">
+                            <param id="0" name="Object to create">Hp</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;hp&quot;) + hx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;hp&quot;)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="396583889737586" type="System">
+                            <param id="0" name="Variable">hx</param>
+                            <param id="1" name="Value">Hp.Width</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="428101315765584">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="770280503252430" type="Player">
+                                    <param id="0" name="Instance variable">hp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="544211930708137" type="Hp">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="461552060024416">
+                    <conditions />
+                    <actions>
+                        <action id="-3" name="Create object" sid="247711192657274" type="System">
+                            <param id="0" name="Object to create">HudTail</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;hp&quot;) + hx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;hp&quot;) - ((HudTail.Height - Hp.Height)/2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <variable constant="0" name="sx" sid="697403592322340" static="0" type="number">0</variable>
+                <event-block sid="133959882381010">
+                    <conditions>
+                        <condition id="-10" name="For" sid="605506791085010" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">PlayerConfigs.spMax</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="869217830532865" type="System">
+                            <param id="0" name="Object to create">Sp</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;sp&quot;) + sx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;sp&quot;)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="645461218540126" type="System">
+                            <param id="0" name="Variable">sx</param>
+                            <param id="1" name="Value">Hp.Width</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="107079261476234">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="290207540993729" type="Player">
+                                    <param id="0" name="Instance variable">sp</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="5" name="Set frame" sid="875803570940593" type="Sp">
+                                    <param id="0" name="Frame number">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="742941751521812">
+                    <conditions />
+                    <actions>
+                        <action id="-3" name="Create object" sid="291331497067370" type="System">
+                            <param id="0" name="Object to create">HudTail</param>
+                            <param id="1" name="Layer">&quot;HUD&quot;</param>
+                            <param id="2" name="X">HudBase.ImagePointX(&quot;sp&quot;) + sx</param>
+                            <param id="3" name="Y">HudBase.ImagePointY(&quot;sp&quot;) - ((HudTail.Height - Sp.Height)/2)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="412256151131337">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="292799816180074" type="GearText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gears</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="190854909772561">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="543703596343404" type="Guns">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">Player.gun</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="715679271333808" type="BulletText">
+                            <param id="0" name="Text">&quot;&quot; </param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="190561135666484">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="465544755531021" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">1</param>
+                    <param id="2" name="Object clicked">SkillUp</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="972429888665581" type="Function">
+                    <param id="0" name="Name">&quot;UpdateHUD&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="471096473250513">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="771251989970380" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="285470259884610">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="483030084641426" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="751871413370350" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="927036201550366" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="916408136839533" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="745299620740893">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="358292207994959" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="271686733461085" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="342609603266206" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="971506012417139" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="997918084159827">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="375603573798230" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="972004912325639">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="357454982032187" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="436993081904902" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">8</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="334325130627219" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="364229055967469" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">8</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="553761873033440">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="999093421525402" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="118358247544600" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">16</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="491614953361544" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="407155970105518" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">16</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="704698626856947">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="150812618102953" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="661635853827603">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="176383112802945" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="139169802191071" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="898330197349058" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="155708965971852" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">4</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="598746156654240">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="879625621490623" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="792201984368477" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">8</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="297540411529741" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="606663003298394" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">8</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="175318793868297">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="107746978196155" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="736238817439581">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="133717756170407" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_sniper</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="688593057740141" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">7</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="804441001064642" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_sniper</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="489142045344776" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">7</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="407206430103044">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="452675123636727" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="803523612739679">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="776028127918782" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">PlayerConfigs.hpMax</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-12" name="Subtract from" sid="993885053931437" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">PlayerConfigs.hpMax</param>
+                                </action>
+                                <action id="-11" name="Add to" sid="409067321624799" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">hpMax</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="817971482681384">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="597176651407798" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="375610307176011">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="971818093905542" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_machine</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="217397598399886" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="102343124511683" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_machine</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="127861729951129" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="136490333359274">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="970061207149619" type="SkillUp">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">9</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="113096618290911">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="659545076630699" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="602481920631417" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="789905858204019" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="933036959159675" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="757276146589407">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="878885985413340" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="113926232990025" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">10</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="727214719608761" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-12" name="Subtract from" sid="104298450237980" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gears</param>
+                                    <param id="1" name="Value">10</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="986301635016551">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="705694468309102" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="877236863673253">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="506112755604372" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="190880615258543" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="939428663273683" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gun_default</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="808057445119648">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="466283170703006" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="463884534203990" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;5&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="482094250042810">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="572082377547054" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_default</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="412560632904067" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;10&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="426654808707373">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="890661912238352" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="653841354523190" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="685682592656190" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gun_rocket</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="222156220404194">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="905128930989634" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="282311993030811" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;8&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="564633149510572">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="528959232356394" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_rocket</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="843655715026402" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;16&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="651213868254578">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="139059225029409" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="648248986008540" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="755475937179867" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gun_shotgun</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="984715820563829">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="973802005134994" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="798107742374427" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;4&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="166854140476625">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="951643349640112" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_shotgun</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="143058674111886" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;8&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="142773147976825">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="668926709714968" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="255527029936488" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="788551198819514" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gun_sniper</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="569820197515161">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="645778120791492" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_sniper</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="749806305111095" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;7&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="730168093098736">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="297376299921226" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="808853088799234" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="721083324993456" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.hpMax</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="451278058778863">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Set text" sid="187407057039011" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.hpMax</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="833175921155300">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="457037961981293" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="370518348921357" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="437093600980308" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.gun_machine</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="982431994998192">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="426416493164614" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">gun_machine</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="652025352249433" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;10&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="243938429342561">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="683280862016316" type="LevelText">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">9</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="418931612301262" type="GearCostTxt">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">9</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="143388155573049" type="LevelText">
+                            <param id="0" name="Text">&quot;&quot; &amp; PlayerConfigs.skull</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="522680013130574">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="924525145091798" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="911099264229489" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;5&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="743510974752847">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="712513849783140" type="PlayerConfigs">
+                                    <param id="0" name="Instance variable">skull</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="164934601013875" type="GearCostTxt">
+                                    <param id="0" name="Text">&quot;10&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="909923395541831">
+            <conditions>
+                <condition id="0" name="On clicked" sid="895163852252075" type="Voltar" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="169174232332752" type="System">
                     <param id="0" name="Layout">Cave</param>
                 </action>
             </actions>
+        </event-block>
+        <event-group description="" sid="801305175633985" title="Slots">
+            <sub-events>
+                <event-block sid="179613543667545">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="956317637148162" type="Keyboard">
+                            <param id="0" name="Key">49 (1)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="590152948029328" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="7" name="Cursor is over object" sid="892619349700733" type="Mouse">
+                            <param id="0" name="Object">SkillUp</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="454279046260851" type="Slot">
+                            <param id="0" name="Frame number">SkillUp.id+1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="620907803092349" type="PlayerConfigs">
+                            <param id="0" name="Instance variable">slot1</param>
+                            <param id="1" name="Value">SkillUp.id+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="193666370785490">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="737528477617926" type="Keyboard">
+                            <param id="0" name="Key">50 (2)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="517413681577268" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                        <condition id="7" name="Cursor is over object" sid="272107654202879" type="Mouse">
+                            <param id="0" name="Object">SkillUp</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="464082083111887" type="Slot">
+                            <param id="0" name="Frame number">SkillUp.id+1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="436159073998681" type="PlayerConfigs">
+                            <param id="0" name="Instance variable">slot2</param>
+                            <param id="1" name="Value">SkillUp.id+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="321878381859642">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="705032041421822" type="Keyboard">
+                            <param id="0" name="Key">51 (3)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="593144803357651" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                        <condition id="7" name="Cursor is over object" sid="677274491239549" type="Mouse">
+                            <param id="0" name="Object">SkillUp</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="479232435173096" type="Slot">
+                            <param id="0" name="Frame number">SkillUp.id+1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="624738222677705" type="PlayerConfigs">
+                            <param id="0" name="Instance variable">slot3</param>
+                            <param id="1" name="Value">SkillUp.id+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="713258739598233">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="505900680308765" type="Keyboard">
+                            <param id="0" name="Key">52 (4)</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="303464591265891" type="Slot">
+                            <param id="0" name="Instance variable">id</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                        <condition id="7" name="Cursor is over object" sid="233430386525321" type="Mouse">
+                            <param id="0" name="Object">SkillUp</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="172537988301292" type="Slot">
+                            <param id="0" name="Frame number">SkillUp.id+1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="785734979984368" type="PlayerConfigs">
+                            <param id="0" name="Instance variable">slot4</param>
+                            <param id="1" name="Value">SkillUp.id+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="878388748432191">
+            <conditions>
+                <condition id="0" name="On completed" sid="636861805706003" type="AJAX">
+                    <param id="0" name="Tag">&quot;Upgrades&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
         </event-block>
     </events>
 </c2eventsheet>
